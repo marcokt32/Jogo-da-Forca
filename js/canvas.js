@@ -11,13 +11,13 @@ function desenharLinhas() {
     tabuleiro.fillStyle = 'blue';
     tabuleiro.strokeStyle = 'blue';
 
-    let largura = 1200/palavraSecreta.length;
+    let largura = 1600/palavraSecreta.length;
 
     tabuleiro.beginPath();
     
     for(let i = 0; i < palavraSecreta.length; i++) {
-        tabuleiro.moveTo(400+(largura*i),70);
-        tabuleiro.lineTo(450+(largura*i),70);
+        tabuleiro.moveTo(250+(largura*i),70);
+        tabuleiro.lineTo(350+(largura*i),70);
     }
 
     tabuleiro.stroke();
@@ -29,14 +29,14 @@ function escreverLetraCorreta(index) {
     tabuleiro.lineCap = 'round';
     tabuleiro.fillStyle = 'blue';
     tabuleiro.lineWidth = 6;
-    let largura = 1200/palavraSecreta.length;
+    let largura = 1600/palavraSecreta.length;
 
     if(fim === false) {
         if(acertos < palavraSecreta.length) {
-            tabuleiro.fillText(palavraSecreta[index], 400+(largura*index), 65)
+            tabuleiro.fillText(palavraSecreta[index], 260+(largura*index), 65)
         }else{
-            tabuleiro.fillText(palavraSecreta[index], 400+(largura*index), 65)
-            document.querySelector(".pop-up-ganhou").style.display = "block";
+            tabuleiro.fillText(palavraSecreta[index], 260+(largura*index), 65)
+            document.querySelector(".pop-up-ganhou").style.display = "flex";
             document.querySelector(".tutorial").style.display = "none";
             let img = document.querySelector('.desenho-forca')
             img.setAttribute('src', "ganhou.png");
@@ -56,7 +56,7 @@ function escreverLetrasIncorretas(letra, erros) {
             tabuleiro.fillText(letra, 600 + (40 * erros), 130, 40)
         }else{
             tabuleiro.fillText(letra, 600 + (40 * erros), 130, 40)
-            document.querySelector(".pop-up-perdeu").style.display = "block";
+            document.querySelector(".pop-up-perdeu").style.display = "flex";
             document.querySelector(".tutorial").style.display = "none";
             fim = true;
         }
