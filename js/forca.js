@@ -14,10 +14,10 @@ let erros = 0;
 let acertos = 0;
 let fim = false;
 let mostraDicaDaPalavra = "";
-let codLetra = ""
 
 
 function iniciarJogo() {
+    adicionaTecladoVirtual();
     document.querySelector(".area-canvas").style.display = "inherit";
     document.querySelector(".menu-inicial").style.display = "none";
     document.getElementById("botao-desistir").style.display = "initial";
@@ -31,36 +31,14 @@ function iniciarJogo() {
         document.onkeydown = (e) => {
             let letra = e.key.toUpperCase();
             let codLetra = e.key.charCodeAt();
-            console.log(codLetra)
-            
-            if((verificarLetra(codLetra) === true) && (palavraSecreta.includes(letra))) {
-                if((letras.includes(letra) === false)) {
-                    for(let i = 0; i < palavraSecreta.length; i++) {
-                        if(palavraSecreta[i] === letra) {
-                            adicionarAcerto();
-                            escreverLetraCorreta(i);
-                        }
-                    }
-                    letras.push(letra);
-                }
-            }else{
-                if((verificarLetra(codLetra) === true) && (palavraSecreta.includes(letra) === false)) {
-                    if((letras.includes(letra) === false)) {
-                        adicionarErro();
-                        escreverLetrasIncorretas(letra, erros);
-                        complementarForca(erros);
-                        letras.push(letra);
-                        
-                    }
-            
-                }
-            }
+            validarJogada(letra, codLetra);
         }
     }
 
 }
 
 function IniciarJogoPersonalizado() {
+    adicionaTecladoVirtual();
     document.querySelector(".area-canvas").style.display = "inherit";
     document.querySelector(".menu-inicial").style.display = "none";
     document.getElementById("botao-desistir").style.display = "initial";
@@ -76,30 +54,7 @@ function IniciarJogoPersonalizado() {
         document.onkeydown = (e) => {
             let letra = e.key.toUpperCase();
             let codLetra = e.key.charCodeAt();
-            console.log(codLetra)
-            
-            if((verificarLetra(codLetra) === true) && (palavraSecreta.includes(letra))) {
-                if((letras.includes(letra) === false)) {
-                    for(let i = 0; i < palavraSecreta.length; i++) {
-                        if(palavraSecreta[i] === letra) {
-                            adicionarAcerto();
-                            escreverLetraCorreta(i);
-                        }
-                    }
-                    letras.push(letra);
-                }
-            }else{
-                if((verificarLetra(codLetra) === true) && (palavraSecreta.includes(letra) === false)) {
-                    if((letras.includes(letra) === false)) {
-                        adicionarErro();
-                        escreverLetrasIncorretas(letra, erros);
-                        complementarForca(erros);
-                        letras.push(letra);
-                        
-                    }
-            
-                }
-            }
+            validarJogada(letra, codLetra);
         }
     }
 }
@@ -118,16 +73,25 @@ function sorteiaPalavra() {
     palavraSecreta = palavra;
 }
 
-function verificarLetra(key) {
-    let estado = false;
-    if(((key >= 97) && (key <= 122))) {
+function verificarLetra(codkey) {
+    let estado = false
+    if(((codkey >= 97) && (codkey <= 122))) {
         estado = true;
         return estado;
 
-    } else {
-        return estado;
+    }else{ 
+        return estado
     }
+}
 
+function verificarLetraTecladoVirtual(key) {
+
+    if(fim === false) {
+        let letra = key.toLowerCase();
+        let codLetra = letra.charCodeAt();
+
+        validarJogada(key,codLetra);
+    }
 }
 
 function adicionarErro() {
@@ -152,4 +116,51 @@ function adicionarPalavra() {
 
 function voltar() {
     document.querySelector(".campo-nova-palavra").style.display = "none";
+}
+
+function adicionaTecladoVirtual() {
+    let fileira1 = ["Q","W","E","R","T","Y","U","I","O","P"];
+    let fileira2 = ["A","S","D","F","G","H","J","K","L"];
+    let fileira3 = ["Z","X","C","V","B","N","M"];
+
+    document.querySelector(".teclado-virtual").style.display = "grid";
+
+    for(i = 0;i < fileira1.length;i++) {
+        document.getElementById("fileira1").innerHTML += "<button class='tecla' id='" + fileira1[i] + "' value='" + fileira1[i] + "' onclick='verificarLetraTecladoVirtual(value)'>" + fileira1[i] + "</button>";
+    }
+
+    for(i = 0;i < fileira2.length;i++) {
+        document.getElementById('fileira2').innerHTML += "<button class='tecla' id='" + fileira2[i] + "' value='" + fileira2[i] + "' onclick='verificarLetraTecladoVirtual(value)'>" + fileira2[i] + "</button>";
+    }
+
+    for(i = 0;i < fileira3.length;i++) {
+        document.getElementById('fileira3').innerHTML += "<button class='tecla' id='" + fileira3[i] + "' value='" + fileira3[i] + "' onclick='verificarLetraTecladoVirtual(value)'>" + fileira3[i] + "</button>";
+    }
+
+}
+
+function validarJogada(letra, codletra) {
+    
+    if(verificarLetra(codletra) === true) {
+        if((palavraSecreta.includes(letra)) && (letras.includes(letra) === false)) {
+            for(let i = 0; i < palavraSecreta.length; i++) {
+                if(palavraSecreta[i] === letra) {
+                    adicionarAcerto();
+                    escreverLetraCorreta(i);
+                    letras.push(letra)
+                    document.getElementById(letra).style.backgroundColor = "green";
+                }
+            }
+        }else{
+            if((palavraSecreta.includes(letra) === false) && (letras.includes(letra) === false)) {
+                adicionarErro();
+                escreverLetrasIncorretas(letra, erros);
+                complementarForca(erros);
+                letras.push(letra);
+                document.getElementById(letra).style.backgroundColor = "red";
+            }
+
+        }
+    }
+
 }

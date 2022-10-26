@@ -1,5 +1,6 @@
 body {
     width: 100%;
+    height: 100%;
     font-size: 18px;
     font-family: 'Inter';
     font-style: normal;
@@ -104,7 +105,7 @@ label {
     display: none;
     width: 80%;
     margin: 0 auto;
-    height: 10em;
+    height: 7em;
 }
 
 .dica-palavra {
@@ -167,11 +168,16 @@ label {
 
 .teclado-virtual {
     display: none;
-    padding: .5em;
+    padding: 2.5em;
+    gap: .2em;
 }
 
 .fileira {
     padding: .1em;
+    display: flex;
+    flex-direction: row;
+    gap: .2em;
+    justify-content: center;
 }
 
 .tecla {
@@ -196,6 +202,10 @@ label {
 }
 
 @media screen and (max-width: 650px) {
+
+    .teclado-virtual {
+        padding: 1em;
+    }
     .tutorial {
         display: none;
     }
