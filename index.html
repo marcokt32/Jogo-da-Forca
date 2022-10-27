@@ -25,50 +25,52 @@
 
 		<main>
             <section class="principal">
-                <img src="forca.png" class="desenho-forca" alt="jogo da forca">
-				<div class="tutorial">
-					<h2>Como Jogar.</h2>
-					<p><br>Siga a dica para descobrir a palavra secreta.</p>
-					<p><br>Clique em uma das letras. Se a letra existir na palavra, a letra será exibida.</p>
-					<p><br>Caso contrário seu personagem não ficará muito feliz...</p>
-					<p><br>Boa Sorte!!!</p>
-				</div>
-				<div class="pop-up-perdeu">
-					<h2>Você perdeu! Tente novamente.</h2>
-				</div>
-				<div class="pop-up-ganhou">
-					<h2>Parabéns, você acertou!!!</h2>
-				</div>
-				<div class="campo-nova-palavra">
-					<h2>Jogo Personalizado</h2>
-					<label for="palavra">Digite a Palavra Secreta.</label>
-					<textarea type="text" name="palavra" id="palavra" class="input" placeholder="Exemplo: futebol"></textarea>
-					<label for="dica">Digite uma Dica.</label>
-					<textarea type="text" name="dica" id="dica" class="input" placeholder="Exemplo: esporte"></textarea>
-					<div class="botoes">
-						<button class="botao" onclick="IniciarJogoPersonalizado()">Iniciar Jogo</button>
-						<button class="botao" onclick="voltar()">Voltar</button>
+				<div class="container-principal">
+					<img src="forca.png" class="desenho-forca" alt="jogo da forca">
+					<div class="tutorial">
+						<h2>Como Jogar.</h2>
+						<p><br>Siga a dica para descobrir a palavra secreta.</p>
+						<p><br>Clique em uma das letras. Se a letra existir na palavra, a letra será exibida.</p>
+						<p><br>Caso contrário seu personagem não ficará muito feliz...</p>
+						<p><br>Boa Sorte!!!</p>
+					</div>
+					<div class="area-canvas">
+						<h2 class="dica-palavra"></h2>
+						<div id="forca" ></div>
+						<div class="pop-up-perdeu">
+							<h2>Você perdeu! Tente novamente.</h2>
+						</div>
+						<div class="pop-up-ganhou">
+							<h2>Parabéns, você acertou!!!</h2>
+						</div>
+					</div>
+					<div class="campo-nova-palavra">
+						<h2>Jogo Personalizado</h2>
+						<label for="palavra">Digite a Palavra Secreta.</label>
+						<textarea type="text" name="palavra" id="palavra" class="input" placeholder="Exemplo: futebol"></textarea>
+						<label for="dica">Digite uma Dica.</label>
+						<textarea type="text" name="dica" id="dica" class="input" placeholder="Exemplo: esporte"></textarea>
+						<div class="botoes">
+							<button class="botao" onclick="IniciarJogoPersonalizado()">Iniciar Jogo</button>
+							<button class="botao" onclick="voltar()">Voltar</button>
+						</div>
 					</div>
 				</div>
             </section>
-			<div class="area-canvas">
-				<h2 class="dica-palavra"></h2>
-				<canvas id="forca" height="150px" width="2000px"></canvas>
-			</div>
             <section class="menu-inicial">
 				<div class="botoes">
 					<button class="botao" onclick="iniciarJogo()">Iniciar</button>
 					<button class="botao" onclick="adicionarPalavra()">Adicionar palavra</button>
 				</div>
             </section>
-			<section class="teclado-virtual">
+			<div class="teclado-virtual">
 				<div class="fileira" id="fileira1">
 				</div>
 				<div class="fileira" id="fileira2">
 				</div>
 				<div class="fileira" id="fileira3">
 				</div>
-            </section>
+			</div>
 			<button class="botao" id="botao-desistir" onclick="recarregar()">Reiniciar</button>
 		</main>
 

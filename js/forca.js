@@ -7,8 +7,6 @@ let cor = ["VERMELHO","VERDE","AMARELO","AZUL","ROSA","LARANJA","PRETO","BRANCO"
 let profissao = ["PROGRAMADOR","MEDICO","ENGENHEIRO","ESTETICISTA","PROFESSOR","ADVOGADO","PAPILOSCOPISTA","MOTORISTA"];
 let instrumentoMusical = ["VIOLINO","VIOLAO","GAITA","TAMBOR","TAMBORIM","TECLADO","BATERIA","FLAUTA","TROMBONE","TROMPETE"];
 let elementoQuimico = ["ALUMINIO","ANTIMONIO","ARSENIO","BARIO","BORO","BISMUTO","CALCIO","CARBONO","CESIO","DISPROSIO","ENXOFRE","FERRO","GALIO","HIDROGEIO","IODO","LITIO","MAGNESIO","OURO","PRATA","ZINCO"];
-let canvas = document.getElementById("forca");
-let tabuleiro = canvas.getContext('2d');
 let letras = [];
 let erros = 0;
 let acertos = 0;
@@ -18,13 +16,13 @@ let mostraDicaDaPalavra = "";
 
 function iniciarJogo() {
     adicionaTecladoVirtual();
-    document.querySelector(".area-canvas").style.display = "inherit";
+    document.querySelector(".tutorial").style.display = "none";
+    document.querySelector(".area-canvas").style.display = "flex";
     document.querySelector(".menu-inicial").style.display = "none";
     document.getElementById("botao-desistir").style.display = "initial";
-    canvas.style.display = "inline-block";
+    document.getElementById("forca").style.display = "flex";
     sorteiaDica();
     sorteiaPalavra();
-    desenharCanvas();
     desenharLinhas();
 
     if(fim === false) {
@@ -39,15 +37,15 @@ function iniciarJogo() {
 
 function IniciarJogoPersonalizado() {
     adicionaTecladoVirtual();
-    document.querySelector(".area-canvas").style.display = "inherit";
+    document.querySelector(".tutorial").style.display = "none";
+    document.querySelector(".area-canvas").style.display = "flex";
     document.querySelector(".menu-inicial").style.display = "none";
     document.getElementById("botao-desistir").style.display = "initial";
+    document.getElementById("forca").style.display = "flex";
     document.querySelector(".campo-nova-palavra").style.display = "none";
-    canvas.style.display = "inline-block";
     palavraSecreta = document.getElementById('palavra').value.toUpperCase();
     let dica = document.getElementById('dica').value.toUpperCase();
     document.querySelector(".dica-palavra").innerText = "Dica da Palvra:  " + dica;
-    desenharCanvas();
     desenharLinhas();
 
     if(fim === false) {
@@ -146,7 +144,7 @@ function validarJogada(letra, codletra) {
             for(let i = 0; i < palavraSecreta.length; i++) {
                 if(palavraSecreta[i] === letra) {
                     adicionarAcerto();
-                    escreverLetraCorreta(i);
+                    escreverLetraCorreta(i, letra);
                     letras.push(letra)
                     document.getElementById(letra).style.backgroundColor = "green";
                 }
