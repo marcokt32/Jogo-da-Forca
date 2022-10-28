@@ -34,11 +34,11 @@ header {
 
 footer {
     padding: 0 5%;
-    display: flex;
-    align-items: center;
+    display: absolute;
+    left: 0;
+    bottom: 0;
     justify-content: space-between;
     margin-top: 3em;
-    height: 5em;
     background-color: rgb(0, 50, 100);;
 }
 
@@ -65,6 +65,10 @@ label {
     height: 100%;
 }
 
+.logo-rodape {
+    height: 70%;
+}
+
 .container {
     display: flex;
     height: 4em;
@@ -75,7 +79,7 @@ label {
 .principal {
     display: flex;
     flex-direction: column;
-    height: 15em;
+    height: 16em;
     align-items: center;
 }
 
@@ -155,7 +159,8 @@ label {
 
 .pop-up-ganhou, .pop-up-perdeu {
     display: none;
-    text-align: center;
+    justify-content: center;
+
 }
 
 #palavra, #dica {
@@ -271,17 +276,4 @@ label {
         display: none;
     }
 
-}
-
-@media screen and (max-width: 450px) {
-    .tecla {
-        width: 1.2m;
-        height: 1.2em;
-        border-radius: 5px;
-        border: none;
-        background-color: rgb(0, 50, 100);
-        color: white;
-        text-align: center;
-        font-size: .9em;
-    }
 }

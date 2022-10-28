@@ -139,25 +139,27 @@ function adicionaTecladoVirtual() {
 
 function validarJogada(letra, codletra) {
     
-    if(verificarLetra(codletra) === true) {
-        if((palavraSecreta.includes(letra)) && (letras.includes(letra) === false)) {
-            for(let i = 0; i < palavraSecreta.length; i++) {
-                if(palavraSecreta[i] === letra) {
-                    adicionarAcerto();
-                    escreverLetraCorreta(i, letra);
-                    letras.push(letra)
-                    document.getElementById(letra).style.backgroundColor = "green";
+    if(fim === false) {
+        if(verificarLetra(codletra) === true) {
+            if((palavraSecreta.includes(letra)) && (letras.includes(letra) === false)) {
+                for(let i = 0; i < palavraSecreta.length; i++) {
+                    if(palavraSecreta[i] === letra) {
+                        adicionarAcerto();
+                        escreverLetraCorreta(i, letra);
+                        letras.push(letra)
+                        document.getElementById(letra).style.backgroundColor = "green";
+                    }
                 }
-            }
-        }else{
-            if((palavraSecreta.includes(letra) === false) && (letras.includes(letra) === false)) {
-                adicionarErro();
-                escreverLetrasIncorretas(letra, erros);
-                complementarForca(erros);
-                letras.push(letra);
-                document.getElementById(letra).style.backgroundColor = "red";
-            }
+            }else{
+                if((palavraSecreta.includes(letra) === false) && (letras.includes(letra) === false)) {
+                    adicionarErro();
+                    escreverLetrasIncorretas(letra, erros);
+                    complementarForca(erros);
+                    letras.push(letra);
+                    document.getElementById(letra).style.backgroundColor = "red";
+                }
 
+            }
         }
     }
 
