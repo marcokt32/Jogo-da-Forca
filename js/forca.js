@@ -8,7 +8,7 @@ let profissao = ["PROGRAMADOR","MEDICO","ENGENHEIRO","ESTETICISTA","PROFESSOR","
 let instrumentoMusical = ["VIOLINO","VIOLAO","GAITA","TAMBOR","TAMBORIM","TECLADO","BATERIA","FLAUTA","TROMBONE","TROMPETE","FLAUTIM","XILOFONE","SAXOFONE","GUITARRA","BAIXO","VIOLONCELO","TRIANGULO","CAVAQUINHO"];
 let elementoQuimico = ["ALUMINIO","ANTIMONIO","ARSENIO","BARIO","BORO","BISMUTO","CALCIO","CARBONO","CESIO","DISPROSIO","ENXOFRE","FERRO","GALIO","HIDROGENIO","IODO","LITIO","MAGNESIO","OURO","PRATA","ZINCO"];
 let pais = ["BRASIL","CHILE","VENEZUELA","EGITO","JAPAO","CHINA","INDIA","CANADA","FRANCA","ITALIA","ALEMANHA","INGLATERRA","MEXICO","AUSTRALIA","JAMAICA","ANGOLA","RUSSIA","IRA","ISRAEL","PAQUISTAO","MONACO"];
-let corpoHumano = ["BRACO";"PERNA";"CABECA";"TORAX";"ORELHA";"OLHO";"CABELO";"CORACAO";"INTESTINO";"FIGADO";"BOCA";"NARIZ";"ESTOMAGO";"RIM";"PULMAO";"CEREBRO";"OSSO";"DENTE";"LINGUA";"UNHA";"OUVIDO";"JOELHO"];
+let corpoHumano = ["BRACO","PERNA","CABECA","TORAX","ORELHA","OLHO","CABELO","CORACAO","INTESTINO","FIGADO","BOCA","NARIZ","ESTOMAGO","RIM","PULMAO","CEREBRO","OSSO","DENTE","LINGUA","UNHA","OUVIDO","JOELHO"];
 let letras = [];
 let erros = 0;
 let acertos = 0;
@@ -61,7 +61,7 @@ function IniciarJogoPersonalizado() {
 
 function sorteiaDica() {
     let dicas = [fruta,animal,cor,profissao,instrumentoMusical,elementoQuimico,pais,corpoHumano];
-    let nomeDicas = ["FRUTA","ANIMAL","COR","PROFISSÃO","INSTRUMENTO MUSICAL","ELEMENTO QUÍMICO","PAÍS";"CORPO HUMANO"];
+    let nomeDicas = ["FRUTA","ANIMAL","COR","PROFISSÃO","INSTRUMENTO MUSICAL","ELEMENTO QUÍMICO","PAÍS","CORPO HUMANO"];
     let rng = Math.floor(Math.random() * dicas.length);
     let dica = dicas[rng];
     dicaDaPalavra = dica;
