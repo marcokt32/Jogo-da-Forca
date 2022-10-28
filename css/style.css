@@ -251,7 +251,7 @@ label {
 @media screen and (max-width: 650px) {
 
     .teclado-virtual {
-        padding: 1.5em;
+        padding: 1.5em 0;
     }
 
     .container {
