@@ -1,6 +1,6 @@
 /*Determina o tamanho e posicionamento das três partes html*/
 html, body {
-    height: 100%;
+    height: 100vh;
 }
 
 header, footer {
@@ -45,7 +45,7 @@ main {
     padding: 2.5%;
     width: 90%;
     margin: 0 auto;
-    height: 90%;
+    height: auto;
 }
 
 .menu-inicial {
@@ -130,7 +130,7 @@ main {
 }
 
 /*Define campos invisíveis*/
-.pop-up-perdeu, .pop-up-ganhou, .teclado-virtual, #botao-desistir, .campo-nova-palavra {
+.pop-up-perdeu, .pop-up-ganhou, .teclado-virtual, #botao-desistir, .campo-nova-palavra, .area-canvas {
     display: none;
 }
 
@@ -159,7 +159,7 @@ main {
     }
 
     .desenho-forca {
-        width: 50%;
+        width: 80%;
     }
 
     .area-canvas {
