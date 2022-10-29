@@ -45,6 +45,7 @@ function IniciarJogoPersonalizado() {
     document.getElementById("botao-desistir").style.display = "initial";
     document.getElementById("forca").style.display = "flex";
     document.querySelector(".campo-nova-palavra").style.display = "none";
+    document.querySelector(".principal").style.display = "flex";
     palavraSecreta = document.getElementById('palavra').value.toUpperCase();
     let dica = document.getElementById('dica').value.toUpperCase();
     document.querySelector(".dica-palavra").innerText = "Dica da Palvra:  " + dica;
@@ -111,11 +112,13 @@ function recarregar() {
 }
 
 function adicionarPalavra() {
-    document.querySelector(".campo-nova-palavra").style.display = "initial";
+    document.querySelector(".campo-nova-palavra").style.display = "flex";
+    document.querySelector(".principal").style.display = "none";
 }
 
 function voltar() {
     document.querySelector(".campo-nova-palavra").style.display = "none";
+    document.querySelector(".principal").style.display = "flex";
 }
 
 function adicionaTecladoVirtual() {

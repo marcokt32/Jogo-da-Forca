@@ -1,65 +1,67 @@
-html, body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    width: 100%;
+html {
     font-size: 18px;
-    font-family: 'Inter';
-    font-style: normal;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+main {
     background-color: azure;
-    font-family: 'Open Sans',Arial,sans-serif;
-}
+} 
 
-h1 {
-    font-size: 2em;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 800;
-    line-height: 2em;
+h1, h2 {
     color: rgb(0, 50, 100);
-}
-
-h2 {
-    font-size: 1.5em;
-    font-family: 'Inter';
-    font-style: normal;
+    font-size: 1.5rem;
     font-weight: 800;
-    line-height: 1.5em;
-    color: rgb(0, 50, 100);
-    font-weight: bold;
-}
-
-header {
-    max-width: 90%;
-    width: 100%;
-    margin: 0 auto;
 }
 
 footer {
-    width: 100%;
-    left: 0;
-    bottom: 0;
-    margin-top: 3em;
-    background-color: rgb(0, 50, 100);;
+    background-color: rgb(0,50,100);
 }
 
-.main {
-    height: inherit;
+.copyright {
+    color: white;
 }
 
-main, .campo-nova-palavra {
-    max-width: 80%;
-    box-shadow: 1em 1em 1em lightgray;
-    border-radius: 15px;
-    padding: 2%;
-    margin: 0 auto;
+.principal {
     background-color: whitesmoke;
-    width: 100%;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 1rem 1rem 1rem #ccc;
+}
+
+button {
+    font-size: 1rem;
+    font-weight: 400;
+    color: aliceblue;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(0,50,100);
+    box-shadow: .5rem .5rem .5rem #ccc;
+}
+
+button:hover {
+    font-size: 1.1em;
+    padding-bottom: .2rem;
+    box-shadow: .5rem .5rem .5rem #999;
+}
+
+.teclado-virtual button {
+    border-radius: 5px;
+}
+
+.letra {
+    border-bottom: 2px solid rgb(0, 50, 100);
+    font-size: 30px;
     text-align: center;
+    vertical-align: baseline;
+}
+
+.campo-nova-palavra {
+    background-color: whitesmoke;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 1rem 1rem 1rem #ccc;
 }
 
 label {
@@ -68,109 +70,7 @@ label {
     margin: 1em 0;
     font-size: 1.3em;
     border-bottom: 1px solid #ccc;
-}
-
-.logo {
-    height: 100%;
-}
-
-.logo-rodape {
-    height: 70%;
-}
-
-.container {
-    display: flex;
-    height: 4em;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.principal {
-    display: flex;
-    flex-direction: column;
-    height: 13em;
-    align-items: center;
-}
-
-.principal .container-principal {
-    display: flex;
-    justify-content: center;
-    width: 70%;
-    align-items: center;
-    height: 100%;
-}
-
-.desenho-forca {
-    flex-grow: 1;
-    height: 100%;
-}
-
-.botoes {
-    padding: 3%;
-    display: flex;
-    justify-content: center;
-    gap: 1em;
-}
-
-.botao {
-    margin-bottom: 0.5em;
-    width: 12em;
-    height: 3em;
-    border-radius: 15px;
-    border: none;
-    background-color: rgb(0, 50, 100);
-    color: white;
-    font-size: 1em;
-}
-
-.botao:hover {
-    padding-bottom: .2em;
-    border: 2px solid whitesmoke;
-    font-weight: bold;
-    box-shadow: .5em .5em .2em #ccc;
-}
-
-.area-canvas {
-    display: none;
-    width: 80%;
-    margin: 0 auto;
-    flex-direction: column;
-    flex-grow: 2;
-    align-items: center;
-}
-
-.letra {
-    width: 30px;
-    height: 30px;
-    border-bottom: 2px solid rgb(0, 50, 100);
-    font-size: 30px;
     text-align: center;
-    vertical-align: baseline;
-}
-
-.dica-palavra {
-    height: 2em;
-}
-
-#forca {
-    display: none;
-    max-width: 100%;
-    height: 8em;
-    justify-content: space-around;
-    align-items: center;
-    gap: 1em;
-
-}
-
-.tutorial, .pop-up-ganhou, .pop-up-perdeu {
-    align-items: center;
-    text-align: left;
-}
-
-.pop-up-ganhou, .pop-up-perdeu {
-    display: none;
-    justify-content: center;
-
 }
 
 #palavra, #dica {
@@ -183,125 +83,16 @@ label {
     border: #ccc 1px solid;
     border-radius: 15px;
     background: #F3F5FC;
-
     font-family: 'Inter';
-	font-style: normal;
-	font-weight: 400;
-	font-size: 1.2em;
-	line-height: 2em;
-	color: rgb(0, 50, 100);
-}
-
-.campo-nova-palavra {
-    display: none;
-    position: absolute;
-    left: 8%;
-    top: 4em;
-    text-align: center;
-}
-
-#botao-desistir {
-    display: none;
-}
-
-.teclado-virtual {
-    display: none;
-    padding: 1em;
-    gap: .2em;
-}
-
-.fileira {
-    padding: .1em;
-    display: flex;
-    flex-direction: row;
-    gap: .2em;
-    justify-content: center;
-}
-
-.tecla {
-    width: 1.3em;
-    height: 1.3em;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(0, 50, 100);
-    color: white;
-    font-size: 1.3em;
-}
-
-.copyright {
-    color: white;
-    font-size: .7em;
-}
-
-@media screen and (max-width: 950px) {
-    .tutorial {
-        font-size: 70%;
-    }
-
-    .titulo {
-        font-size: 1em;
-    }
-
-    .dica-palavra {
-        font-size: 1em;
-        height: auto;
-    }
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: 2em;
+    color: rgb(0, 50, 100);
 }
 
 @media screen and (max-width: 650px) {
-
-    .teclado-virtual {
-        padding: 1.5em 0;
+    body {
+        font-size: 14px;
     }
-
-    .container {
-        justify-content: space-around;
-    }
-
-    .principal .container-principal {
-        flex-direction: column;
-        justify-content: initial;
-        height: 70%;
-    }
-
-    .tutorial {
-        display: none;
-    }
-
-    .desenho-forca {
-        flex-grow: 0;
-    }
-
-    main {
-        height: inherit;
-        max-width: 95%;
-        border-radius: 15px;
-        padding: 1%;
-        margin: 0 auto;
-        background-color: whitesmoke;
-        width: 100%;
-        text-align: center;
-    }
-    .area-canvas {
-        width: 100%;
-        height: 50%;
-    }
-
-    a {
-        display: none;
-    }
-
-    .pop-up-ganhou, .pop-up-perdeu {
-        padding: 5% 0; 
-    }
-
-    #forca {
-        gap: .5em;
-    }
-
-    .letra {
-        font-size: 1.3em;
-
-    }
-
 }

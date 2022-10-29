@@ -1,0 +1,161 @@
+/*Determina o tamanho e posicionamento das três partes html*/
+html, body {
+    height: 100%;
+}
+
+header, footer {
+    height: 2.5rem;
+    width: calc(100%-1rem);
+    padding: 0.5rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.logo, .logo-rodape {
+    height: 100%;
+}
+
+main {
+    min-height: 70%;
+    height: auto;
+    padding: 2rem;
+
+}
+
+/*Determina o pocicionamento dos itens iniciais*/
+
+.container-principal, .menu-inicial, .botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.principal, .tutorial, .campo-nova-palavra, .container-nova-palavra {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.principal {
+    padding: 2.5%;
+    width: 90%;
+    margin: 0 auto;
+    height: 90%;
+}
+
+.menu-inicial {
+    height: 20%;
+}
+
+.botoes {
+    gap: 1rem;
+}
+
+.desenho-forca {
+    width: 30%;
+}
+
+.tutorial {
+    align-items: flex-start;
+    width: 30%;
+}  
+
+/*Determina o posicionamento do teclado virtual*/
+
+.teclado-virtual {
+    padding: .5rem;
+    flex-grow: 1%;
+}
+
+.teclado-virtual button {
+    width: 2rem;
+    height: 2rem;
+}
+
+.fileira {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+    justify-content: center;
+    padding: 0.2rem
+}
+
+/*Determina o tabuleiro do Jogo*/
+
+.area-canvas {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.dica-palavra {
+    height: 3rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+#forca {
+    max-width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+}
+
+.letra {
+    width: 30px;
+    height: 30px;
+}
+
+/*Pop-ups*/
+
+.campo-nova-palavra {
+    padding: 2.5%;
+    width: 90%;
+    margin: 0 auto;
+    height: 90%;
+}
+
+.container-nova-palavra {
+    padding: 3rem;
+    width: 90%;
+}
+
+.pop-up-ganhou, .pop-up-perdeu {
+    padding: 3%;
+}
+
+/*Define campos invisíveis*/
+.pop-up-perdeu, .pop-up-ganhou, .teclado-virtual, #botao-desistir, .campo-nova-palavra {
+    display: none;
+    flex-grow: 1;
+}
+
+/*Modo Responsivo*/
+
+@media screen and (max-width: 650px) {
+    main {
+        padding: 2% 0;
+    }
+    
+    .tutorial {
+        display: none;
+    }
+
+    .container-principal {
+        flex-direction: column;
+    }
+
+    .desenho-forca {
+        width: 50%;
+    }
+
+    .area-canvas {
+        width: 100%;
+    }
+}

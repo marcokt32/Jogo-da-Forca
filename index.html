@@ -8,6 +8,7 @@
 		<title>Jogo da Forca</title>
 		<link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/flexbox.css">
 	</head>
 
 	<body>
@@ -17,13 +18,26 @@
 				<img src="Logo.png" class="logo" alt="Logo do desenvolvedor">
 				<h1 class="titulo">Challange: Jogo da Forca</h1>
 				</div>
-				<nav>
+				<nav class="navegacao">
 					<a href="https://marcokt32.github.io/GitRepository/">Decodificador</a>
 				</nav>
 			</div>
 		</header>
 
 		<main>
+			<section class="campo-nova-palavra">
+				<h2>Jogo Personalizado</h2>
+				<div class="container-nova-palavra">
+					<label for="palavra">Digite a Palavra Secreta.</label>
+					<textarea type="text" name="palavra" id="palavra" class="input" placeholder="Exemplo: futebol"></textarea>
+					<label for="dica">Digite uma Dica.</label>
+					<textarea type="text" name="dica" id="dica" class="input" placeholder="Exemplo: esporte"></textarea>
+				</div>
+				<div class="botoes">
+					<button class="botao" onclick="IniciarJogoPersonalizado()">Iniciar Jogo</button>
+					<button class="botao" onclick="voltar()">Voltar</button>
+				</div>
+			</section>
             <section class="principal">
 				<div class="container-principal">
 					<img src="forca.png" class="desenho-forca" alt="jogo da forca">
@@ -38,40 +52,29 @@
 						<h2 class="dica-palavra"></h2>
 						<div id="forca" ></div>
 					</div>
-					<div class="campo-nova-palavra">
-						<h2>Jogo Personalizado</h2>
-						<label for="palavra">Digite a Palavra Secreta.</label>
-						<textarea type="text" name="palavra" id="palavra" class="input" placeholder="Exemplo: futebol"></textarea>
-						<label for="dica">Digite uma Dica.</label>
-						<textarea type="text" name="dica" id="dica" class="input" placeholder="Exemplo: esporte"></textarea>
-						<div class="botoes">
-							<button class="botao" onclick="IniciarJogoPersonalizado()">Iniciar Jogo</button>
-							<button class="botao" onclick="voltar()">Voltar</button>
-						</div>
+				</div>
+				<div class="menu-inicial">
+					<div class="botoes">
+						<button class="botao" onclick="iniciarJogo()">Iniciar</button>
+						<button class="botao" onclick="adicionarPalavra()">Adicionar palavra</button>
 					</div>
 				</div>
+				<div class="pop-up-perdeu">
+					<h2>Você perdeu! Tente novamente.</h2>
+				</div>
+				<div class="pop-up-ganhou">
+					<h2>Parabéns, você acertou!!!</h2>
+				</div>
+				<div class="teclado-virtual">
+					<div class="fileira" id="fileira1">
+					</div>
+					<div class="fileira" id="fileira2">
+					</div>
+					<div class="fileira" id="fileira3">
+					</div>
+				</div>
+				<button class="botao" id="botao-desistir" onclick="recarregar()">Reiniciar</button>
             </section>
-            <section class="menu-inicial">
-				<div class="botoes">
-					<button class="botao" onclick="iniciarJogo()">Iniciar</button>
-					<button class="botao" onclick="adicionarPalavra()">Adicionar palavra</button>
-				</div>
-            </section>
-			<div class="pop-up-perdeu">
-				<h2>Você perdeu! Tente novamente.</h2>
-			</div>
-			<div class="pop-up-ganhou">
-				<h2>Parabéns, você acertou!!!</h2>
-			</div>
-			<div class="teclado-virtual">
-				<div class="fileira" id="fileira1">
-				</div>
-				<div class="fileira" id="fileira2">
-				</div>
-				<div class="fileira" id="fileira3">
-				</div>
-			</div>
-			<button class="botao" id="botao-desistir" onclick="recarregar()">Reiniciar</button>
 		</main>
 
 		<footer class="rodape">
