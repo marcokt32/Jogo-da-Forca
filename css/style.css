@@ -92,7 +92,7 @@ label {
 }
 
 @media screen and (max-width: 650px) {
-    body {
-        font-size: 14px;
+    html {
+        font-size: 17px;
     }
 }

@@ -5,7 +5,6 @@ html, body {
 
 header, footer {
     height: 2.5rem;
-    width: calc(100%-1rem);
     padding: 0.5rem;
 }
 
@@ -133,12 +132,20 @@ main {
 /*Define campos invisíveis*/
 .pop-up-perdeu, .pop-up-ganhou, .teclado-virtual, #botao-desistir, .campo-nova-palavra {
     display: none;
-    flex-grow: 1;
+}
+
+.pop-up-perdeu, .pop-up-ganhou {
+    text-align: center;
 }
 
 /*Modo Responsivo*/
 
 @media screen and (max-width: 650px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
     main {
         padding: 2% 0;
     }
@@ -158,4 +165,23 @@ main {
     .area-canvas {
         width: 100%;
     }
+
+    main {
+        min-height: 100%;
+        height: auto;
+    }
+
+    .teclado-virtual {
+        padding: .3rem;
+    }
+
+    #forca {
+        gap: .5rem;
+    }
+
+    .letra {
+        width: 1rem;
+    }
+
+    
 }
