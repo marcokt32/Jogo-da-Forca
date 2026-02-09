@@ -1,40 +1,49 @@
-//Seletores
-
-//let palavras = ["ALURA", "ORACLE", "HTML", "LOGICA"];
-let fruta = ["BANANA","MACA","TANGERINA","ABACATE","LARANJA","MELANCIA","UVA","LIMAO","GOIABA","MARACUJA","ABACAXI","GRAVIOLA","CARAMBOLA","PITAYA","MAMAO","MELAO","MORANGO","JACA","JAMELAO","JABUTICABA"];
-let animal = ["CACHORRO","GATO","PAPAGAIO","VACA","TARTARUGA","COIOTE","JACARE","GRALHA","ALBATROZ","COBRA","LEOPARDO","CAMELO","BALEIA","GOLFINHO","AGUIA","MORCEGO","GIRAFA","ORNITORRINCO","POLVO","HARPIA"];
-let cor = ["VERMELHO","VERDE","AMARELO","AZUL","ROSA","LARANJA","PRETO","BRANCO","ROXO","LILAS","CINZA","VIOLETA","MARSALA","CIANO","MAGENTA","BEGE","INDIGO","GRENA"];
-let profissao = ["PROGRAMADOR","MEDICO","ENGENHEIRO","ESTETICISTA","PROFESSOR","ADVOGADO","PAPILOSCOPISTA","MOTORISTA","GARÇOM","PILOTO","MANOBRISTA","GARI","CONTADOR","PIZZAIOLO","BARISTA","GENETICISTA"];
-let instrumentoMusical = ["VIOLINO","VIOLAO","GAITA","TAMBOR","TAMBORIM","TECLADO","BATERIA","FLAUTA","TROMBONE","TROMPETE","FLAUTIM","XILOFONE","SAXOFONE","GUITARRA","BAIXO","VIOLONCELO","TRIANGULO","CAVAQUINHO"];
-let elementoQuimico = ["ALUMINIO","ANTIMONIO","ARSENIO","BARIO","BORO","BISMUTO","CALCIO","CARBONO","CESIO","DISPROSIO","ENXOFRE","FERRO","GALIO","HIDROGENIO","IODO","LITIO","MAGNESIO","OURO","PRATA","ZINCO"];
-let pais = ["BRASIL","CHILE","VENEZUELA","EGITO","JAPAO","CHINA","INDIA","CANADA","FRANCA","ITALIA","ALEMANHA","INGLATERRA","MEXICO","AUSTRALIA","JAMAICA","ANGOLA","RUSSIA","IRA","ISRAEL","PAQUISTAO","MONACO"];
-let corpoHumano = ["BRACO","PERNA","CABECA","TORAX","ORELHA","OLHO","CABELO","CORACAO","INTESTINO","FIGADO","BOCA","NARIZ","ESTOMAGO","RIM","PULMAO","CEREBRO","OSSO","DENTE","LINGUA","UNHA","OUVIDO","JOELHO"];
-let letras = [];
-let erros = 0;
-let acertos = 0;
-let fim = false;
-let mostraDicaDaPalavra = "";
-
-
 function iniciarJogo() {
+    fim = false;
+    erros = 0;
+    acertos = 0;
+    letrasUsadas = [];
+
+    totalLetras = palavraSecreta.replace(/ /g, "").length;
     adicionaTecladoVirtual();
+
+    document.querySelectorAll('.estrela').forEach(e => e.classList.add('ativa'));
     document.querySelector(".tutorial").style.display = "none";
     document.querySelector(".area-canvas").style.display = "flex";
     document.querySelector(".menu-inicial").style.display = "none";
+    document.querySelector(".categorias").style.display = "none";
+    document.querySelector(".contadores").style.display = "none";
     document.getElementById("botao-desistir").style.display = "initial";
     document.getElementById("forca").style.display = "flex";
-    sorteiaDica();
-    sorteiaPalavra();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    // usa a dica já definida
+    document.querySelector(".dica-palavra").textContent = dicaAtual;
+
     desenharLinhas();
+    document.addEventListener('keydown', (e) => {
+        if (fim) return;
 
-    if(fim === false) {
-        document.onkeydown = (e) => {
-            let letra = e.key.toUpperCase();
-            let codLetra = e.key.charCodeAt();
-            validarJogada(letra, codLetra);
-        }
-    }
+        if (!/^[a-zA-Z]$/.test(e.key)) return;
 
+        const letra = e.key.toUpperCase();
+        validarJogada(letra);
+    });
+}
+
+
+function iniciarJogoCategoria(categoria) {
+    const lista = bancoPalavras[categoria];
+    const sorteada = lista[Math.floor(Math.random() * lista.length)];
+
+    palavraSecreta = sorteada.palavra;
+    dicaAtual = sorteada.dica;
+
+    iniciarJogo();
 }
 
 function IniciarJogoPersonalizado() {
@@ -51,7 +60,7 @@ function IniciarJogoPersonalizado() {
     document.querySelector(".dica-palavra").innerText = "Dica da Palvra:  " + dica;
     desenharLinhas();
 
-    if(fim === false) {
+    if (fim === false) {
         document.onkeydown = (e) => {
             let letra = e.key.toUpperCase();
             let codLetra = e.key.charCodeAt();
@@ -60,112 +69,144 @@ function IniciarJogoPersonalizado() {
     }
 }
 
-function sorteiaDica() {
-    let dicas = [fruta,animal,cor,profissao,instrumentoMusical,elementoQuimico,pais,corpoHumano];
-    let nomeDicas = ["FRUTA","ANIMAL","COR","PROFISSÃO","INSTRUMENTO MUSICAL","ELEMENTO QUÍMICO","PAÍS","CORPO HUMANO"];
-    let rng = Math.floor(Math.random() * dicas.length);
-    let dica = dicas[rng];
-    dicaDaPalavra = dica;
-    document.querySelector(".dica-palavra").innerText = "Dica da Palvra:  " + nomeDicas[rng];
-}
-
-function sorteiaPalavra() {
-    let palavra = dicaDaPalavra[Math.floor(Math.random() * dicaDaPalavra.length)];
-    palavraSecreta = palavra;
-}
-
 function verificarLetra(codkey) {
     let estado = false
-    if(((codkey >= 97) && (codkey <= 122))) {
+    if (((codkey >= 97) && (codkey <= 122))) {
         estado = true;
         return estado;
 
-    }else{ 
+    } else {
         return estado
     }
 }
 
 function verificarLetraTecladoVirtual(key) {
 
-    if(fim === false) {
+    if (fim === false) {
         let letra = key.toLowerCase();
         let codLetra = letra.charCodeAt();
 
-        validarJogada(key,codLetra);
+        validarJogada(key, codLetra);
     }
 }
 
 function adicionarErro() {
-    if(fim === false){
+    if (fim === false) {
         erros++;
     }
 }
 
 function adicionarAcerto() {
-    if(fim === false){
+    if (fim === false) {
         acertos++;
     }
 }
 
 function recarregar() {
-    return location.reload();
+    fim = false;
+    erros = 0;
+    acertos = 0;
+    letrasUsadas = [];
+
+    document.querySelector(".categorias").style.display = "flex";
+    document.querySelector(".principal").style.display = "flex";
+    document.querySelector(".pop-up-perdeu").style.display = "none";
+    document.querySelector(".pop-up-ganhou").style.display = "none";
+    document.querySelector(".campo-nova-palavra").style.display = "none";
+
+    document.getElementById("categorias").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function reiniciarPagina() {
+    fim = false;
+    erros = 0;
+    acertos = 0;
+    letrasUsadas = [];
+    document.querySelector(".categorias").style.display = "flex";
+    document.querySelector(".principal").style.display = "flex";
+    document.querySelector(".tutorial").style.display = "flex";
+    document.querySelector(".contadores").style.display = "flex";
+    document.querySelector(".menu-inicial").style.display = "flex";
+    document.querySelector(".pop-up-perdeu").style.display = "none";
+    document.querySelector(".pop-up-ganhou").style.display = "none";
+    document.querySelector(".campo-nova-palavra").style.display = "none";
+    document.querySelector(".area-canvas").style.display = "none";
+    document.querySelector(".teclado-virtual").style.display = "none";
+    document.getElementById("botao-desistir").style.display = "none";
+    
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 function adicionarPalavra() {
     document.querySelector(".campo-nova-palavra").style.display = "flex";
     document.querySelector(".principal").style.display = "none";
+    document.querySelector(".categorias").style.display = "none";
 }
 
 function voltar() {
     document.querySelector(".campo-nova-palavra").style.display = "none";
     document.querySelector(".principal").style.display = "flex";
+    document.querySelector(".categorias").style.display = "flex";
 }
 
 function adicionaTecladoVirtual() {
-    let fileira1 = ["Q","W","E","R","T","Y","U","I","O","P"];
-    let fileira2 = ["A","S","D","F","G","H","J","K","L"];
-    let fileira3 = ["Z","X","C","V","B","N","M"];
+    document.getElementById("fileira1").innerHTML = "";
+    document.getElementById("fileira2").innerHTML = "";
+    document.getElementById("fileira3").innerHTML = "";
+    let fileira1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
+    let fileira2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
+    let fileira3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
     document.querySelector(".teclado-virtual").style.display = "grid";
 
-    for(i = 0;i < fileira1.length;i++) {
+    for (i = 0; i < fileira1.length; i++) {
         document.getElementById("fileira1").innerHTML += "<button class='tecla' id='" + fileira1[i] + "' value='" + fileira1[i] + "' onclick='verificarLetraTecladoVirtual(value)'>" + fileira1[i] + "</button>";
     }
 
-    for(i = 0;i < fileira2.length;i++) {
+    for (i = 0; i < fileira2.length; i++) {
         document.getElementById('fileira2').innerHTML += "<button class='tecla' id='" + fileira2[i] + "' value='" + fileira2[i] + "' onclick='verificarLetraTecladoVirtual(value)'>" + fileira2[i] + "</button>";
     }
 
-    for(i = 0;i < fileira3.length;i++) {
+    for (i = 0; i < fileira3.length; i++) {
         document.getElementById('fileira3').innerHTML += "<button class='tecla' id='" + fileira3[i] + "' value='" + fileira3[i] + "' onclick='verificarLetraTecladoVirtual(value)'>" + fileira3[i] + "</button>";
     }
 
 }
 
-function validarJogada(letra, codletra) {
-    
-    if(fim === false) {
-        if(verificarLetra(codletra) === true) {
-            if((palavraSecreta.includes(letra)) && (letras.includes(letra) === false)) {
-                for(let i = 0; i < palavraSecreta.length; i++) {
-                    if(palavraSecreta[i] === letra) {
-                        adicionarAcerto();
-                        escreverLetraCorreta(i, letra);
-                        letras.push(letra)
-                        document.getElementById(letra).style.backgroundColor = "green";
-                    }
-                }
-            }else{
-                if((palavraSecreta.includes(letra) === false) && (letras.includes(letra) === false)) {
-                    adicionarErro();
-                    escreverLetrasIncorretas(letra, erros);
-                    complementarForca(erros);
-                    letras.push(letra);
-                    document.getElementById(letra).style.backgroundColor = "red";
-                }
+function validarJogada(letra) {
+    if (fim) return;
+    if (letrasUsadas.includes(letra)) return;
 
-            }
+    letrasUsadas.push(letra);
+
+    let acertou = false;
+
+    for (let i = 0; i < palavraSecreta.length; i++) {
+        if (palavraSecreta[i] === " ") continue;
+
+        if (palavraSecreta[i] === letra) {
+            escreverLetraCorreta(i, letra);
+            acertou = true;
         }
     }
 
+    if (!acertou) {
+        erros++;
+        escreverLetrasIncorretas(letra, erros);
+    }
+
+    verificarVitoria();
+}
+
+function verificarVitoria() {
+    if (acertos === totalLetras) {
+        fim = true;
+        document.querySelector(".pop-up-ganhou").style.display = "flex";
+    }
 }

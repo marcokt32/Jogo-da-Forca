@@ -1,39 +1,61 @@
 function desenharLinhas() {
-    
-    for(let i = 0; i < palavraSecreta.length; i++) {
-        document.getElementById("forca").innerHTML += "<p class='letra' id='"+i+"'></p>";
-    }
+    const forca = document.getElementById("forca");
+    forca.innerHTML = "";
 
-}
-
-function escreverLetraCorreta(index, letra) {
-
-    if(fim === false) {
-        if(acertos < palavraSecreta.length) {
-            document.getElementById(index).innerText = letra;
-        }else{
-            document.getElementById(index).innerText = letra;
-            document.querySelector(".pop-up-ganhou").style.display = "flex";
-            let img = document.querySelector('.desenho-forca')
-            img.setAttribute('src', "ganhou.png");
-            fim = true;
+    for (let i = 0; i < palavraSecreta.length; i++) {
+        if (palavraSecreta[i] === " ") {
+            forca.innerHTML += `<p class="letra espaco"></p>`;
+        } else {
+            forca.innerHTML += `<p class="letra" id="letra-${i}"></p>`;
         }
     }
+}
+
+
+function escreverLetraCorreta(index, letra) {
+    if (fim) return;
+
+    const campo = document.getElementById(`letra-${index}`);
+
+    // Evita contar a mesma letra duas vezes
+    if (campo.innerText === '') {
+        campo.innerText = letra;
+        acertos++;
+    }
+
+    const botao = document.getElementById(letra);
+    if (botao) {
+        botao.classList.add("letra-correta");
+    }
+
 }
 
 function escreverLetrasIncorretas(letra, erros) {
+    if (fim) return;
 
-    if(fim === false) {
-        if(erros >= 6) {
-            fim = true;
-            document.querySelector(".pop-up-perdeu").style.display = "flex";
-        }
+    const botao = document.getElementById(letra);
+    if (botao) {
+        botao.classList.add("letra-errada");
+        botao.disabled = true;
     }
+
+    complementarForca(erros);
 }
 
 function complementarForca(erros) {
-    let img = document.querySelector('.desenho-forca');
-    let forcas = ['forca.png','forca1.png','forca2.png','forca3.png','forca4.png','forca5.png','forca6.png'];
+    const estrelas = document.querySelectorAll('.estrela');
+    const totalEstrelas = estrelas.length;
 
-    img.setAttribute('src', forcas[erros]);
+    estrelas.forEach((estrela, index) => {
+        if (index < totalEstrelas - erros) {
+            estrela.classList.add('ativa');
+        } else {
+            estrela.classList.remove('ativa');
+        }
+    });
+
+    if (erros >= totalEstrelas) {
+        fim = true;
+        document.querySelector(".pop-up-perdeu").style.display = "flex";
+    }
 }

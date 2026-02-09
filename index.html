@@ -1,90 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
 
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Jogo da Forca</title>
-		<link rel="stylesheet" href="css/reset.css">
-        <link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/flexbox.css">
-	</head>
+<head>
 
-	<body>
-		<header>
-			<div class="container">
-				<div class="container">
-				<img src="Logo.png" class="logo" alt="Logo do desenvolvedor">
-				<h1 class="titulo">Challange: Jogo da Forca</h1>
-				</div>
-				<nav class="navegacao">
-					<a href="https://marcokt32.github.io/GitRepository/">Decodificador</a>
-				</nav>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Jogo da Forca</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/flexbox.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lobster&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet">
+</head>
+
+<body>
+	<header id="header">
+		<img src="img/hung.png" class="logo" alt="logo do enforcado" onclick="reiniciarPagina()">
+		<h1 class="titulo">O Enforcado</h1>
+	</header>
+	<main id="main">
+		<section class="campo-nova-palavra">
+			<h2>Jogo Personalizado</h2>
+			<div class="container-nova-palavra">
+				<label for="palavra">Digite a Palavra Secreta.</label>
+				<textarea type="text" name="palavra" id="palavra" class="input"
+					placeholder="Exemplo: futebol"></textarea>
+				<label for="dica">Digite uma Dica.</label>
+				<textarea type="text" name="dica" id="dica" class="input" placeholder="Exemplo: esporte"></textarea>
 			</div>
-		</header>
-
-		<main>
-			<section class="campo-nova-palavra">
-				<h2>Jogo Personalizado</h2>
-				<div class="container-nova-palavra">
-					<label for="palavra">Digite a Palavra Secreta.</label>
-					<textarea type="text" name="palavra" id="palavra" class="input" placeholder="Exemplo: futebol"></textarea>
-					<label for="dica">Digite uma Dica.</label>
-					<textarea type="text" name="dica" id="dica" class="input" placeholder="Exemplo: esporte"></textarea>
+			<div class="botoes">
+				<button class="botao" onclick="IniciarJogoPersonalizado()">Iniciar Jogo</button>
+				<button class="botao" onclick="voltar()">Voltar</button>
+			</div>
+		</section>
+		<section class="principal" id="principal">
+			<div class="container-principal">
+				<div class="titulo">
+					<img src="img/hung.png" class="logo-main" alt="logo do enforcado">
+					<h1 class="titulo">O ENFORCADO</h1>
 				</div>
+				<div class="tutorial">
+					<h2>Como Jogar</h2>
+					<p>
+						Vamos Jogar Enforcado?<br>
+						Descubra a palavra escondida antes que suas chances acabem!<br>
+						escolha uma das categorias abaixo e se divirta<br>
+						Boa Sorte!!!
+					</p>
+				</div>
+				<div class="contadores">
+					<span id="contador-categorias">0 categorias</span>
+					<span id="contador-palavras">0 palavras</span>
+				</div>
+				<div class="area-canvas">
+					<h2 class="dica-palavra"></h2>
+					<div class="vidas">
+						<span class="estrela ativa">★</span>
+						<span class="estrela ativa">★</span>
+						<span class="estrela ativa">★</span>
+						<span class="estrela ativa">★</span>
+						<span class="estrela ativa">★</span>
+					</div>
+					<div id="forca" class="forca"></div>
+				</div>
+			</div>
+			<div class="menu-inicial">
 				<div class="botoes">
-					<button class="botao" onclick="IniciarJogoPersonalizado()">Iniciar Jogo</button>
-					<button class="botao" onclick="voltar()">Voltar</button>
+					<a href="#categorias">
+						<button class="botao">categorias</button>
+					</a>
+					<button class="botao" onclick="adicionarPalavra()">Jogo Personalizado</button>
 				</div>
-			</section>
-            <section class="principal">
-				<div class="container-principal">
-					<img src="forca.png" class="desenho-forca" alt="jogo da forca">
-					<div class="tutorial">
-						<h2>Como Jogar.</h2>
-						<p><br>Siga a dica para descobrir a palavra secreta.</p>
-						<p><br>Clique em uma das letras. Se a letra existir na palavra, a letra será exibida.</p>
-						<p><br>Caso contrário seu personagem não ficará muito feliz...</p>
-						<p><br>Boa Sorte!!!</p>
-					</div>
-					<div class="area-canvas">
-						<h2 class="dica-palavra"></h2>
-						<div id="forca" ></div>
-					</div>
-				</div>
-				<div class="menu-inicial">
-					<div class="botoes">
-						<button class="botao" onclick="iniciarJogo()">Iniciar</button>
-						<button class="botao" onclick="adicionarPalavra()">Adicionar palavra</button>
-					</div>
-				</div>
-				<div class="pop-up-perdeu">
-					<h2>Você perdeu! Tente novamente.</h2>
-				</div>
-				<div class="pop-up-ganhou">
-					<h2>Parabéns, você acertou!!!</h2>
-				</div>
-				<div class="teclado-virtual">
-					<div class="fileira" id="fileira1">
-					</div>
-					<div class="fileira" id="fileira2">
-					</div>
-					<div class="fileira" id="fileira3">
-					</div>
-				</div>
-				<button class="botao" id="botao-desistir" onclick="recarregar()">Reiniciar</button>
-            </section>
-		</main>
-
-		<footer class="rodape">
-			<div class="container" style="width: 100%">
-				<img src="Logo-branco.svg" class="logo-rodape">
-				<p class="copyright">&copy; Desenvolvido por Marco Quintela - 2022</p>
 			</div>
-		</footer>
+			<div class="pop-up-perdeu">
+				<h2>Você perdeu! Tente novamente.</h2>
+			</div>
+			<div class="pop-up-ganhou">
+				<h2>Parabéns, você acertou!!!</h2>
+			</div>
+			<div class="teclado-virtual">
+				<div class="fileira" id="fileira1">
+				</div>
+				<div class="fileira" id="fileira2">
+				</div>
+				<div class="fileira" id="fileira3">
+				</div>
+			</div>
+			<button class="botao" id="botao-desistir" onclick="recarregar()">Reiniciar</button>
+		</section>
+		<section class="categorias" id="categorias">
+			<div class="categorias-tittle-box">
+				<h1 class="categorias-tittle">Escolha sua categoria</h1>
+				<p class="categorias-subtittle">Selecione um tópico e comece seu desafio</p>
+			</div>
+			<div class="grid-container" id="categorias-container">
+			</div>
+		</section>
+	</main>
 
-        <script type="text/javascript" src="js/forca.js"></script>
-		<script type="text/javascript" src="js/canvas.js"></script>
-	</body>
+	<footer class="rodape">
+		<div class="container">
+			<img src="img/Logo-branco.svg" class="logo-rodape">
+			<p class="copyright">&copy; Desenvolvido por Marco Quintela - 2022</p>
+		</div>
+	</footer>
+	<script src="js/banco-palavras.js"></script>
+	<script type="text/javascript" src="js/render.js"></script>
+	<script type="text/javascript" src="js/forca.js"></script>
+	<script type="text/javascript" src="js/canvas.js"></script>
+</body>
+
 </html>

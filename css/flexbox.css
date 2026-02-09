@@ -1,11 +1,7 @@
 /*Determina o tamanho e posicionamento das três partes html*/
-html, body {
-    height: 100vh;
-}
-
-header, footer {
-    height: 2.5rem;
-    padding: 0.5rem;
+html,
+body {
+    height: 100%;
 }
 
 .container {
@@ -15,26 +11,34 @@ header, footer {
     height: 100%;
 }
 
-.logo, .logo-rodape {
+.container-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-around;
     height: 100%;
-}
-
-main {
-    min-height: 70%;
-    height: auto;
-    padding: 2rem;
-
 }
 
 /*Determina o pocicionamento dos itens iniciais*/
 
-.container-principal, .menu-inicial, .botoes {
+.container-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu-inicial,
+.botoes {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.principal, .tutorial, .campo-nova-palavra, .container-nova-palavra {
+.principal,
+.tutorial,
+.campo-nova-palavra,
+.container-nova-palavra {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -42,14 +46,12 @@ main {
 }
 
 .principal {
-    padding: 2.5%;
-    width: 90%;
-    margin: 0 auto;
-    height: auto;
-}
-
-.menu-inicial {
-    height: 20%;
+    background: linear-gradient(0deg,
+            #f7f7ff,
+            #e2e2f5);
+    width: 100%;
+    height: 90vh;
+    justify-content: center;
 }
 
 .botoes {
@@ -60,10 +62,118 @@ main {
     width: 30%;
 }
 
+.vidas {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: .5rem 0;
+}
+
+.estrela {
+    font-size: 2rem;
+    color: #818181;
+    /* cinza apagado */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.estrela.ativa {
+    color: #facc15;
+    /* dourado */
+}
+
+
 .tutorial {
-    align-items: flex-start;
-    width: 30%;
-}  
+    align-items: center;
+    width: 100%;
+}
+
+.contadores {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    color: #374151;
+}
+
+#contador-categorias,
+#contador-palavras {
+    padding: 1rem;
+    background-color: aliceblue;
+    border-radius: 15px;
+    box-shadow: .2rem .2rem .2rem rgba(0, 0, 0, .5);
+}
+
+
+.categorias {
+    scroll-margin-top: 10vh;
+    padding: 1rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 10;
+}
+
+.categorias-tittle-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.categorias-subtittle {
+    font-size: 1rem;
+}
+
+.grid-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.card {
+    padding: 1rem;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 250px;
+    pointer-events: auto;
+    box-shadow: .2rem .2rem .2rem rgba(0, 0, 0, 0.5);
+    background-color: #ffffff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+    filter: brightness(1.03);
+}
+
+.card-img {
+    transition: transform 0.25s ease;
+    height: 50%;
+}
+
+.card:hover .card-img {
+    transform: scale(1.08);
+}
 
 /*Determina o posicionamento do teclado virtual*/
 
@@ -101,23 +211,15 @@ main {
 
 #forca {
     max-width: 100%;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
+    padding: .5rem;
 }
 
 .letra {
     width: 30px;
-    height: 30px;
-}
-
-/*Pop-ups*/
-
-.campo-nova-palavra {
-    padding: 2.5%;
-    width: 90%;
-    margin: 0 auto;
-    height: 90%;
+    height: 3rem;
 }
 
 .container-nova-palavra {
@@ -125,16 +227,23 @@ main {
     width: 90%;
 }
 
-.pop-up-ganhou, .pop-up-perdeu {
-    padding: 3%;
+.pop-up-ganhou,
+.pop-up-perdeu {
+    padding: .5rem;
 }
 
 /*Define campos invisíveis*/
-.pop-up-perdeu, .pop-up-ganhou, .teclado-virtual, #botao-desistir, .campo-nova-palavra, .area-canvas {
+.pop-up-perdeu,
+.pop-up-ganhou,
+.teclado-virtual,
+#botao-desistir,
+.campo-nova-palavra,
+.area-canvas {
     display: none;
 }
 
-.pop-up-perdeu, .pop-up-ganhou {
+.pop-up-perdeu,
+.pop-up-ganhou {
     text-align: center;
 }
 
@@ -149,7 +258,7 @@ main {
     main {
         padding: 2% 0;
     }
-    
+
     .tutorial {
         display: none;
     }
@@ -183,5 +292,5 @@ main {
         width: 1rem;
     }
 
-    
+
 }
