@@ -236,10 +236,16 @@ body {
 .pop-up-perdeu,
 .pop-up-ganhou,
 .teclado-virtual,
+.botoes-in-game,
 #botao-desistir,
 .campo-nova-palavra,
 .area-canvas {
     display: none;
+}
+
+.botoes-in-game{
+    flex-direction: row;
+    gap: 1rem;
 }
 
 .pop-up-perdeu,
