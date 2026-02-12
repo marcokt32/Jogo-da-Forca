@@ -58,8 +58,12 @@
 				</div>
 				<div class="area-canvas">
 					<div class="display">
+						<div class="display-vidas"></div>
 						<h2 class="display-categoria"></h2>
 						<h2 class="display-pontuacao"></h2>
+						<div class="combo-container">
+							<div id="barra-combo"></div>
+						</div>
 					</div>
 					<div class="status-categoria">
 						<span class="status-nome"></span>
@@ -82,7 +86,7 @@
 			<div class="menu-inicial">
 				<div class="botoes">
 					<a href="#categorias">
-						<button class="botao">categorias</button>
+						<button class="botao" onclick=renderizarCategorias()>categorias</button>
 					</a>
 					<button class="botao" onclick="adicionarPalavra()">Jogo Personalizado</button>
 				</div>
@@ -102,8 +106,9 @@
 				</div>
 			</div>
 			<div class="botoes-in-game">
-				<button class="botao" id="botao-desistir" onclick="novaRodada()">Nova Rodada</button>
-				<button class="botao" id="botao-nova-categoria" onclick="mudarCategoria()">Mudar Categoria</button>
+				<button class="botao-reiniciar" id="botao-reiniciar" onclick="reiniciar()">Reiniciar</button>
+				<button class="botao-proxima" id="botao-proxima" onclick="novaRodada()">Próxima</button>
+				<button class="botao-nova-categoria" id="botao-nova-categoria" onclick="mudarCategoria()">Mudar Categoria</button>
 			</div>
 		</section>
 		<section class="categorias" id="categorias">

@@ -57,5 +57,15 @@ function complementarForca(erros) {
     if (erros >= totalEstrelas) {
         fim = true;
         document.querySelector(".pop-up-perdeu").style.display = "flex";
+        registrarErro();
     }
 }
+function atualizarBarraCombo() {
+    const barra = document.getElementById("barra-combo");
+
+    if (medidorCombo > 1) {
+        let porcentagem = (medidorCombo / 5) * 100;
+        barra.style.width = porcentagem + "%";
+    }
+}
+

@@ -1,8 +1,14 @@
 let categoriaAtual = "";
-let pontuacao = 0;
 let palavraAtualIndex = null;
+let errosRestantes = 3;
+let medidorCombo = 1;
+
 let palavrasRespondidas = JSON.parse(
     localStorage.getItem('palavrasRespondidas')
+) || {};
+
+let pontuacoes = JSON.parse(
+    localStorage.getItem('pontuacoesCategorias')
 ) || {};
 
 function inicializarCategoria(categoria) {
@@ -14,6 +20,10 @@ function inicializarCategoria(categoria) {
 function iniciarJogoCategoria(categoria) {
     categoriaAtual = categoria;
     atualizarStatusCategoria(categoria);
+    mostrarPontuacaoCategoria(categoria);
+    errosRestantes = 3; // 🔥 reseta vidas
+    atualizarDisplayVidas()
+    zeraPontuacao()
 
     const sorteada = sortearPalavraCategoria(categoria);
 
@@ -28,11 +38,44 @@ function iniciarJogoCategoria(categoria) {
     iniciarJogo();
 }
 
+function continuarCategoria(categoria) {
+    categoriaAtual = categoria;
+    atualizarStatusCategoria(categoria);
+    mostrarPontuacaoCategoria(categoria);
+    atualizarDisplayVidas()
+
+    const sorteada = sortearPalavraCategoria(categoria);
+
+    if (!sorteada) {
+        alert("🎉 Você já completou esta categoria!");
+        return;
+    }
+
+    palavraSecreta = sorteada.palavra;
+    dicaAtual = sorteada.dica;
+
+    iniciarJogo();
+}
+
+function zeraPontuacao() {
+    if (pontuacoes[categoriaAtual]) {
+        pontuacoes[categoriaAtual].pontos = 0; // zera só a pontuação atual
+
+        localStorage.setItem(
+            'pontuacoesCategorias',
+            JSON.stringify(pontuacoes)
+        );
+    }
+}
+
 function iniciarJogo() {
-    limparEstado()
+    limparEstado();
+    resetarCombo();
+    atualizarBarraCombo();
 
     totalLetras = palavraSecreta.replace(/ /g, "").length;
     adicionaTecladoVirtual();
+
 
     document.querySelector(".pop-up-perdeu").style.display = "none";
     document.querySelector(".pop-up-ganhou").style.display = "none";
@@ -43,8 +86,9 @@ function iniciarJogo() {
     document.querySelector(".menu-inicial").style.display = "none";
     document.querySelector(".categorias").style.display = "none";
     document.querySelector(".contadores").style.display = "none";
-    document.getElementById("botao-desistir").style.display = "initial";
     document.getElementById("forca").style.display = "flex";
+    document.getElementById("botao-reiniciar").style.display = "none";
+    document.getElementById("botao-proxima").style.display = "block"
 
     window.scrollTo({
         top: 0,
@@ -52,7 +96,6 @@ function iniciarJogo() {
     });
 
     // usa os dados já definidos
-    document.querySelector(".display-categoria").textContent = "Categoria: " + categoriaAtual;
     document.querySelector(".dica-palavra").textContent = "💡 Dica: " + dicaAtual;
 
     desenharLinhas();
@@ -135,8 +178,21 @@ function adicionarErro() {
 }
 
 function adicionarAcerto() {
+    const estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
+
     if (fim === false) {
         acertos++;
+    }
+
+    if (estrelasAtivas === 5) {
+        medidorCombo++;
+
+        atualizarBarraCombo();
+
+        console.log("Combo:", medidorCombo);
+
+    } else {
+        resetarCombo();
     }
 }
 
@@ -154,13 +210,27 @@ function recarregar() {
     });
 }
 
-function novaRodada() {
-    limparEstado()
+function reiniciar() {
+    errosRestantes = 3
     limparJogo()
-    iniciarJogoCategoria(categoriaAtual)
+    limparEstado()
+    novaRodada()
+}
 
-    document.querySelector(".pop-up-perdeu").style.display = "none";
-    document.querySelector(".pop-up-ganhou").style.display = "none";
+function novaRodada() {
+    if (errosRestantes >= 1) {
+        limparEstado()
+        limparJogo()
+        if (document.querySelector(".pop-up-perdeu").style.display === "none" & document.querySelector(".pop-up-ganhou").style.display === "none") {
+            registrarErro()
+        }
+        continuarCategoria(categoriaAtual)
+
+        document.querySelector(".pop-up-perdeu").style.display = "none";
+        document.querySelector(".pop-up-ganhou").style.display = "none";
+    } else {
+        alert("Você não pode pular!");
+    }
 
 }
 
@@ -244,6 +314,7 @@ function limparJogo() {
 }
 
 function mudarCategoria() {
+    renderizarCategorias()
     const categorias = document.getElementById("categorias");
 
     document.querySelector(".categorias").style.display = "flex";
@@ -257,28 +328,57 @@ function mudarCategoria() {
 }
 
 function calcularPontuacao() {
+    if (!categoriaAtual) return;
+
     const estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
-    const pontosGanhos = estrelasAtivas * 20;
+    const pontosGanhos = 10 * estrelasAtivas * medidorCombo;
 
-    const pontuacaoAnterior = pontuacao;
-    pontuacao += pontosGanhos;
+    if (pontosGanhos === 0) return;
 
-    localStorage.setItem('pontuacao', pontuacao);
+    if (!pontuacoes[categoriaAtual]) {
+        pontuacoes[categoriaAtual] = {
+            pontos: 0,
+            hiscore: 0
+        };
+    }
 
-    animarPontuacao(pontuacaoAnterior, pontuacao);
+    const valorInicial = pontuacoes[categoriaAtual].pontos;
+    const valorFinal = valorInicial + pontosGanhos;
+
+    // Atualiza pontuação real
+    pontuacoes[categoriaAtual].pontos = valorFinal;
+
+    // Atualiza hi-score
+    if (valorFinal > pontuacoes[categoriaAtual].hiscore) {
+        pontuacoes[categoriaAtual].hiscore = valorFinal;
+    }
+
+    // Salva
+    localStorage.setItem(
+        'pontuacoesCategorias',
+        JSON.stringify(pontuacoes)
+    );
+
+    // 🔥 Agora anima
+    animarPontuacao(valorInicial, valorFinal, categoriaAtual);
 }
 
-function animarPontuacao(valorInicial, valorFinal, duracao = 600) {
+function animarPontuacao(valorInicial, valorFinal, categoria) {
     const display = document.querySelector('.display-pontuacao');
     const inicio = performance.now();
+    const duracao = 600;
 
     function animar(tempoAtual) {
         const progresso = Math.min((tempoAtual - inicio) / duracao, 1);
+
         const valorAtual = Math.floor(
             valorInicial + (valorFinal - valorInicial) * progresso
         );
 
-        display.textContent = `Placar: ${valorAtual}`;
+        const hiscore = pontuacoes[categoria]?.hiscore || 0;
+
+        display.textContent =
+            `Pontos: ${valorAtual} | Recorde: ${hiscore}`;
 
         if (progresso < 1) {
             requestAnimationFrame(animar);
@@ -336,4 +436,113 @@ function confirmarPalavraRespondida() {
     );
 
     palavraAtualIndex = null;
+}
+
+function limparCategoria(categoria) {
+    // 🔹 Remove palavras respondidas
+    if (palavrasRespondidas[categoria]) {
+        delete palavrasRespondidas[categoria];
+
+        localStorage.setItem(
+            'palavrasRespondidas',
+            JSON.stringify(palavrasRespondidas)
+        );
+    }
+
+    // 🔹 Zera pontuação atual (mantém hiscore)
+    if (pontuacoes[categoria]) {
+        pontuacoes[categoria].pontos = 0;
+
+        localStorage.setItem(
+            'pontuacoesCategorias',
+            JSON.stringify(pontuacoes)
+        );
+    }
+
+    // 🔹 Atualiza interface
+    renderizarCategorias();
+
+    console.log(`Categoria ${categoria} limpa com sucesso.`);
+}
+
+function adicionarPontos(categoria, pontos) {
+    if (!pontuacoes[categoria]) {
+        pontuacoes[categoria] = {
+            pontos: 0,
+            hiscore: 0
+        };
+    }
+
+    pontuacoes[categoria].pontos += pontos;
+
+    // Atualiza hi-score se necessário
+    if (pontuacoes[categoria].pontos > pontuacoes[categoria].hiscore) {
+        pontuacoes[categoria].hiscore = pontuacoes[categoria].pontos;
+    }
+
+    salvarPontuacoes();
+}
+
+function salvarPontuacoes() {
+    localStorage.setItem(
+        'pontuacoesCategorias',
+        JSON.stringify(pontuacoes)
+    );
+}
+
+function resetarPontuacaoCategoria(categoria) {
+    if (!pontuacoes[categoria]) return;
+
+    pontuacoes[categoria].pontos = 0;
+    salvarPontuacoes();
+}
+
+function mostrarPontuacaoCategoria(categoria) {
+    const dados = pontuacoes[categoria] || { pontos: 0, hiscore: 0 };
+
+    document.querySelector('.display-pontuacao').textContent =
+        `Pontos: ${dados.pontos} | Recorde: ${dados.hiscore}`;
+}
+
+function registrarErro() {
+    if (errosRestantes <= 0) return;
+
+    errosRestantes--;
+
+    atualizarDisplayVidas();
+
+    if (errosRestantes === 0) {
+        gameOver();
+    }
+}
+
+function gameOver() {
+    document.querySelector(".botao-reiniciar").style.display = "block";
+    document.querySelector(".botao-proxima").style.display = "none";
+    
+    alert("Game Over! Você errou 3 vezes.");
+
+
+    if (pontuacoes[categoriaAtual]) {
+        pontuacoes[categoriaAtual].pontos = 0;
+
+        localStorage.setItem(
+            'pontuacoesCategorias',
+            JSON.stringify(pontuacoes)
+        );
+    }
+
+    mostrarPontuacaoCategoria(categoriaAtual);
+}
+
+
+function atualizarDisplayVidas() {
+    const display = document.querySelector('.display-vidas');
+
+    display.textContent = "❤️".repeat(errosRestantes);
+}
+
+function resetarCombo() {
+    medidorCombo = 1;
+    atualizarBarraCombo();
 }

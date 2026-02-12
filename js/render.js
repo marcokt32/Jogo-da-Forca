@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     renderizarCategorias();
     atualizarContadores();
-    mostrarPontuacao();
 });
 
 const categorias = [
@@ -18,7 +17,9 @@ const categorias = [
     { id: 'games', nome: 'Games', imagem: 'img/games.png' },
     { id: 'esporte', nome: 'Esporte', imagem: 'img/esporte.png' },
     { id: 'literatura', nome: 'Literatura', imagem: 'img/literatura.png' },
-    { id: 'politica', nome: 'Politica', imagem: 'img/politica.png' }
+    { id: 'politica', nome: 'Politica', imagem: 'img/politica.png' },
+    { id: 'tratamento', nome: 'Tratamento de água', imagem: 'img/tratamento.png' },
+    { id: 'teste', nome: 'Teste', imagem: '' }
 
 ];
 
@@ -42,11 +43,38 @@ function renderizarCategorias() {
     container.innerHTML = '';
 
     categorias.forEach(categoria => {
+        const dados = obterDadosCategoria(categoria.id);
+        const info = document.createElement('div');
+        info.classList.add('card-info');
         const card = document.createElement('div');
         card.classList.add('card');
-        card.dataset.categoria = categoria.id; // 👈 importante
+        card.dataset.categoria = categoria.id;
+
+        info.innerHTML = `
+    <p>🥇<br> ${dados.hiscore}</p>
+    <p>📚<br> ${dados.descobertas}/${dados.totalPalavras}</p>
+`;
+
 
         card.addEventListener('click', () => iniciarJogoCategoria(categoria.id));
+
+        // 🔹 Botão limpar
+        const botaoLimpar = document.createElement('button');
+        botaoLimpar.textContent = "🗑";
+        botaoLimpar.classList.add('btn-limpar');
+
+        botaoLimpar.addEventListener('click', (e) => {
+            e.stopPropagation(); // 🚨 impede abrir o jogo
+
+            const confirmar = confirm(
+                `Deseja limpar as palavras respondidas da categoria "${categoria.nome}"?`
+            );
+
+            if (confirmar) {
+                limparCategoria(categoria.id);
+                alert("Categoria limpa com sucesso!");
+            }
+        });
 
         const img = document.createElement('img');
         img.src = categoria.imagem;
@@ -55,12 +83,26 @@ function renderizarCategorias() {
         const titulo = document.createElement('h2');
         titulo.textContent = categoria.nome;
 
+        card.appendChild(botaoLimpar); // 👈 primeiro elemento (fica sobreposto)
         card.appendChild(img);
         card.appendChild(titulo);
+        card.appendChild(info);
+
         container.appendChild(card);
     });
 }
 
-function mostrarPontuacao() {
-    document.querySelector('.display-pontuacao').textContent = "Pontuação: " + pontuacao
+function obterDadosCategoria(categoriaId) {
+    const totalPalavras = bancoPalavras[categoriaId]?.length || 0;
+    const descobertas = palavrasRespondidas[categoriaId]?.length || 0;
+
+    const pontos = pontuacoes[categoriaId]?.pontos || 0;
+    const hiscore = pontuacoes[categoriaId]?.hiscore || 0;
+
+    return {
+        totalPalavras,
+        descobertas,
+        pontos,
+        hiscore
+    };
 }
