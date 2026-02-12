@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     renderizarCategorias();
     atualizarContadores();
+    mostrarPontuacao();
 });
 
 const categorias = [
@@ -58,4 +59,8 @@ function renderizarCategorias() {
         card.appendChild(titulo);
         container.appendChild(card);
     });
+}
+
+function mostrarPontuacao() {
+    document.querySelector('.display-pontuacao').textContent = "Pontuação: " + pontuacao
 }

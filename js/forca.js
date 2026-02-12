@@ -1,9 +1,26 @@
-let categoriaAtual = ""
+let categoriaAtual = "";
+let pontuacao = 0;
+let palavraAtualIndex = null;
+let palavrasRespondidas = JSON.parse(
+    localStorage.getItem('palavrasRespondidas')
+) || {};
+
+function inicializarCategoria(categoria) {
+    if (!palavrasRespondidas[categoria]) {
+        palavrasRespondidas[categoria] = [];
+    }
+}
 
 function iniciarJogoCategoria(categoria) {
-    categoriaAtual = categoria
-    const lista = bancoPalavras[categoria];
-    const sorteada = lista[Math.floor(Math.random() * lista.length)];
+    categoriaAtual = categoria;
+    atualizarStatusCategoria(categoria);
+
+    const sorteada = sortearPalavraCategoria(categoria);
+
+    if (!sorteada) {
+        alert("🎉 Você já completou esta categoria!");
+        return;
+    }
 
     palavraSecreta = sorteada.palavra;
     dicaAtual = sorteada.dica;
@@ -16,7 +33,6 @@ function iniciarJogo() {
 
     totalLetras = palavraSecreta.replace(/ /g, "").length;
     adicionaTecladoVirtual();
-
 
     document.querySelector(".pop-up-perdeu").style.display = "none";
     document.querySelector(".pop-up-ganhou").style.display = "none";
@@ -35,8 +51,9 @@ function iniciarJogo() {
         behavior: "smooth"
     });
 
-    // usa a dica já definida
-    document.querySelector(".dica-palavra").textContent = dicaAtual;
+    // usa os dados já definidos
+    document.querySelector(".display-categoria").textContent = "Categoria: " + categoriaAtual;
+    document.querySelector(".dica-palavra").textContent = "💡 Dica: " + dicaAtual;
 
     desenharLinhas();
     document.addEventListener('keydown', (e) => {
@@ -208,6 +225,9 @@ function verificarVitoria() {
     if (acertos === totalLetras) {
         fim = true;
         document.querySelector(".pop-up-ganhou").style.display = "flex";
+        calcularPontuacao()
+        confirmarPalavraRespondida();
+        atualizarStatusCategoria(categoriaAtual);
     }
 }
 
@@ -234,4 +254,86 @@ function mudarCategoria() {
             block: "start"
         });
     }
+}
+
+function calcularPontuacao() {
+    const estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
+    const pontosGanhos = estrelasAtivas * 20;
+
+    const pontuacaoAnterior = pontuacao;
+    pontuacao += pontosGanhos;
+
+    localStorage.setItem('pontuacao', pontuacao);
+
+    animarPontuacao(pontuacaoAnterior, pontuacao);
+}
+
+function animarPontuacao(valorInicial, valorFinal, duracao = 600) {
+    const display = document.querySelector('.display-pontuacao');
+    const inicio = performance.now();
+
+    function animar(tempoAtual) {
+        const progresso = Math.min((tempoAtual - inicio) / duracao, 1);
+        const valorAtual = Math.floor(
+            valorInicial + (valorFinal - valorInicial) * progresso
+        );
+
+        display.textContent = `Placar: ${valorAtual}`;
+
+        if (progresso < 1) {
+            requestAnimationFrame(animar);
+        }
+    }
+
+    requestAnimationFrame(animar);
+}
+
+function sortearPalavraCategoria(categoria) {
+    if (!palavrasRespondidas[categoria]) {
+        palavrasRespondidas[categoria] = [];
+    }
+
+    const lista = bancoPalavras[categoria];
+    const usadas = palavrasRespondidas[categoria];
+
+    if (usadas.length >= lista.length) {
+        return null;
+    }
+
+    let indice;
+    do {
+        indice = Math.floor(Math.random() * lista.length);
+    } while (usadas.includes(indice));
+
+    palavraAtualIndex = indice; // guarda temporariamente
+    return lista[indice];
+}
+
+function atualizarStatusCategoria(categoria) {
+    const total = bancoPalavras[categoria].length;
+    const feitas = palavrasRespondidas[categoria]?.length || 0;
+
+    const porcentagem = (feitas / total) * 100;
+
+    document.querySelector('.status-nome').textContent =
+        categoria.charAt(0).toUpperCase() + categoria.slice(1);
+
+    document.querySelector('.barra-preenchida').style.width =
+        `${porcentagem}%`;
+
+    document.querySelector('.status-contador').textContent =
+        `${feitas} / ${total}`;
+}
+
+function confirmarPalavraRespondida() {
+    if (palavraAtualIndex === null) return;
+
+    palavrasRespondidas[categoriaAtual].push(palavraAtualIndex);
+
+    localStorage.setItem(
+        'palavrasRespondidas',
+        JSON.stringify(palavrasRespondidas)
+    );
+
+    palavraAtualIndex = null;
 }

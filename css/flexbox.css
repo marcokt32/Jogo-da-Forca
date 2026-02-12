@@ -204,10 +204,62 @@ body {
 }
 
 .dica-palavra {
-    height: 3rem;
-    font-size: 1.3rem;
-    text-align: center;
+    display: flex;
+    height: 1.5rem;
+    font-size: 1.2rem;
+    justify-content: center;
+    align-items: center;
 }
+
+.display {
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-categoria,
+.display-pontuacao {
+    display: flex;
+    height: 1.5rem;
+    font-size: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.status-categoria {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    font-family: "Inter", sans-serif;
+    width: 100%
+}
+
+.barra-progresso {
+    flex: 1;
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.barra-preenchida {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+    transition: width 0.4s ease;
+}
+
+.status-nome,
+.status-contador {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+}
+
 
 #forca {
     max-width: 100%;
@@ -229,6 +281,7 @@ body {
 
 .pop-up-ganhou,
 .pop-up-perdeu {
+    font-weight: bold;
     padding: .5rem;
 }
 
@@ -243,7 +296,7 @@ body {
     display: none;
 }
 
-.botoes-in-game{
+.botoes-in-game {
     flex-direction: row;
     gap: 1rem;
 }

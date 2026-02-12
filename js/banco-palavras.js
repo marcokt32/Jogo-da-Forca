@@ -482,11 +482,11 @@ const bancoPalavras = {
         { palavra: "METALLICA", dica: "Banda de heavy metal" },
         { palavra: "NIRVANA", dica: "Banda do movimento grunge" },
 
-        { palavra: "U2", dica: "Banda irlandesa de rock" },
+        { palavra: "THE DOORS", dica: "Banda de rock psicodélico em L.A. nos anos 60" },
         { palavra: "AC DC", dica: "Banda australiana de rock" },
-        { palavra: "GUNS N ROSES", dica: "Banda de hard rock" },
-        { palavra: "COLDPLAY", dica: "Banda britanica contemporanea" },
-        { palavra: "RADIOHEAD", dica: "Banda alternativa britanica" },
+        { palavra: "GUNS N ROSES", dica: "'A banda mais perigosa do mundo'" },
+        { palavra: "COLDPLAY", dica: "Banda britanica popular de rock alternativo" },
+        { palavra: "THE BEATLES", dica: "Banda alternativa britanica mais famosa" },
 
         // MUSICAS FAMOSAS
         { palavra: "BOHEMIAN RHAPSODY", dica: "Musica classica do Queen" },
@@ -649,7 +649,7 @@ const bancoPalavras = {
 
         // JOGADORES E STREAMERS
         { palavra: "FALLEN", dica: "Jogador brasileiro de CS" },
-        { palavra: "S1MPLE", dica: "Um dos melhores jogadores de CS do mundo" },
+        { palavra: "SIMPLE", dica: "Um dos melhores jogadores de CS do mundo" },
         { palavra: "NINJA", dica: "Streamer famoso de Fortnite" },
         { palavra: "GAULES", dica: "Streamer brasileiro de CS" },
         { palavra: "CEROL", dica: "Jogador brasileiro de Free Fire" },
@@ -657,9 +657,9 @@ const bancoPalavras = {
         // CLASSICOS E REFERENCIAS
         { palavra: "ARCADE", dica: "Maquina classica de jogos" },
         { palavra: "FLIPERAMA", dica: "Local tradicional de jogos" },
-        { palavra: "8 BITS", dica: "Geracao antiga de jogos" },
-        { palavra: "16 BITS", dica: "Geracao classica dos anos 90" },
-        { palavra: "GAME BOY", dica: "Console portatil da Nintendo" },
+        { palavra: "ATARI", dica: "Pioneiro ícone da cultura pop" },
+        { palavra: "MEGA DRIVE", dica: "Icônico console da SEGA de 16 bits" },
+        { palavra: "GAME BOY", dica: "Primeiro console portatil da Nintendo" },
 
         { palavra: "PLAYSTATION", dica: "Console da Sony" },
         { palavra: "XBOX", dica: "Console da Microsoft" },
