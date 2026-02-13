@@ -250,7 +250,6 @@ body {
 }
 
 .display {
-    height: 2rem;
     display: flex;
     flex-direction: row;
     gap: 1rem;
@@ -262,7 +261,7 @@ body {
     display: flex;
     align-content: center;
     justify-content: center;
-    height: 1.5rem;
+    height: 1rem;
     width: 5rem;
 }
 
@@ -288,6 +287,7 @@ body {
     font-size: 1rem;
     justify-content: center;
     align-items: center;
+    align-content: center;
 }
 
 .status-categoria {
@@ -296,7 +296,7 @@ body {
     align-content: center;
     justify-content: center;
     gap: 1rem;
-    margin: 1rem 0;
+    margin: .5rem 0;
     font-family: "Inter", sans-serif;
     width: 30rem
 }

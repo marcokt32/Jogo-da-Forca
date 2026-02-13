@@ -1,7 +1,8 @@
 let categoriaAtual = "";
 let palavraAtualIndex = null;
 let errosRestantes = 3;
-let medidorCombo = 1;
+let medidorCombo = 0;
+let estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
 
 let palavrasRespondidas = JSON.parse(
     localStorage.getItem('palavrasRespondidas')
@@ -18,6 +19,11 @@ function inicializarCategoria(categoria) {
 }
 
 function iniciarJogoCategoria(categoria) {
+    document.querySelector(".pop-up-perdeu").style.display = "none";
+    document.querySelector(".pop-up-ganhou").style.display = "none";
+    limparEstado()
+    limparJogo()
+    resetarCombo()
     categoriaAtual = categoria;
     atualizarStatusCategoria(categoria);
     mostrarPontuacaoCategoria(categoria);
@@ -39,6 +45,8 @@ function iniciarJogoCategoria(categoria) {
 }
 
 function continuarCategoria(categoria) {
+    document.querySelector(".pop-up-perdeu").style.display = "none";
+    document.querySelector(".pop-up-ganhou").style.display = "none";
     categoriaAtual = categoria;
     atualizarStatusCategoria(categoria);
     mostrarPontuacaoCategoria(categoria);
@@ -70,7 +78,6 @@ function zeraPontuacao() {
 
 function iniciarJogo() {
     limparEstado();
-    resetarCombo();
     atualizarBarraCombo();
 
     totalLetras = palavraSecreta.replace(/ /g, "").length;
@@ -177,25 +184,6 @@ function adicionarErro() {
     }
 }
 
-function adicionarAcerto() {
-    const estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
-
-    if (fim === false) {
-        acertos++;
-    }
-
-    if (estrelasAtivas === 5) {
-        medidorCombo++;
-
-        atualizarBarraCombo();
-
-        console.log("Combo:", medidorCombo);
-
-    } else {
-        resetarCombo();
-    }
-}
-
 function recarregar() {
 
     document.querySelector(".categorias").style.display = "flex";
@@ -214,27 +202,32 @@ function reiniciar() {
     errosRestantes = 3
     limparJogo()
     limparEstado()
+    resetarCombo()
     novaRodada()
 }
 
 function novaRodada() {
-    if (errosRestantes >= 1) {
-        limparEstado()
-        limparJogo()
-        if (document.querySelector(".pop-up-perdeu").style.display === "none" & document.querySelector(".pop-up-ganhou").style.display === "none") {
+    limparEstado()
+    limparJogo()
+    if (errosRestantes > 1) {
+        if (document.querySelector(".pop-up-perdeu").style.display === "none"
+            & document.querySelector(".pop-up-ganhou").style.display === "none") {
             registrarErro()
         }
         continuarCategoria(categoriaAtual)
-
-        document.querySelector(".pop-up-perdeu").style.display = "none";
-        document.querySelector(".pop-up-ganhou").style.display = "none";
-    } else {
-        alert("Você não pode pular!");
+    } else if (errosRestantes === 1) {
+        if (document.querySelector(".pop-up-perdeu").style.display === "none"
+            & document.querySelector(".pop-up-ganhou").style.display === "none") {
+            alert("Você não pode pular essa!")
+        } else {
+            continuarCategoria(categoriaAtual)
+        }
     }
 
 }
 
 function reiniciarPagina() {
+    resetarCombo()
     limparEstado()
     document.querySelector(".categorias").style.display = "flex";
     document.querySelector(".principal").style.display = "flex";
@@ -293,6 +286,16 @@ function validarJogada(letra) {
 
 function verificarVitoria() {
     if (acertos === totalLetras) {
+        if (estrelasAtivas === 5) {
+            medidorCombo++;
+
+            atualizarBarraCombo();
+
+            console.log("Combo:", medidorCombo);
+
+        } else {
+            resetarCombo();
+        }
         fim = true;
         document.querySelector(".pop-up-ganhou").style.display = "flex";
         calcularPontuacao()
@@ -331,7 +334,8 @@ function calcularPontuacao() {
     if (!categoriaAtual) return;
 
     const estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
-    const pontosGanhos = 10 * estrelasAtivas * medidorCombo;
+    const multiplicadorCombo = medidorCombo > 0 ? medidorCombo : 1;
+    const pontosGanhos = 10 * estrelasAtivas * multiplicadorCombo;
 
     if (pontosGanhos === 0) return;
 
@@ -442,17 +446,15 @@ function limparCategoria(categoria) {
     // 🔹 Remove palavras respondidas
     if (palavrasRespondidas[categoria]) {
         delete palavrasRespondidas[categoria];
-
         localStorage.setItem(
             'palavrasRespondidas',
             JSON.stringify(palavrasRespondidas)
         );
     }
 
-    // 🔹 Zera pontuação atual (mantém hiscore)
+    // 🔹 Remove pontuação E hi-score da categoria
     if (pontuacoes[categoria]) {
-        pontuacoes[categoria].pontos = 0;
-
+        delete pontuacoes[categoria];
         localStorage.setItem(
             'pontuacoesCategorias',
             JSON.stringify(pontuacoes)
@@ -462,7 +464,7 @@ function limparCategoria(categoria) {
     // 🔹 Atualiza interface
     renderizarCategorias();
 
-    console.log(`Categoria ${categoria} limpa com sucesso.`);
+    console.log(`Categoria ${categoria} limpa COMPLETAMENTE.`);
 }
 
 function adicionarPontos(categoria, pontos) {
@@ -519,7 +521,7 @@ function registrarErro() {
 function gameOver() {
     document.querySelector(".botao-reiniciar").style.display = "block";
     document.querySelector(".botao-proxima").style.display = "none";
-    
+
     alert("Game Over! Você errou 3 vezes.");
 
 
@@ -543,6 +545,6 @@ function atualizarDisplayVidas() {
 }
 
 function resetarCombo() {
-    medidorCombo = 1;
+    medidorCombo = 0;
     atualizarBarraCombo();
 }

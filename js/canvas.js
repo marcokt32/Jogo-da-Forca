@@ -38,7 +38,7 @@ function escreverLetrasIncorretas(letra, erros) {
         botao.classList.add("letra-errada");
         botao.disabled = true;
     }
-
+    resetarCombo()
     complementarForca(erros);
 }
 
@@ -64,8 +64,10 @@ function atualizarBarraCombo() {
     const barra = document.getElementById("barra-combo");
 
     if (medidorCombo > 1) {
-        let porcentagem = (medidorCombo / 5) * 100;
+        let porcentagem = (medidorCombo / 8) * 100;
         barra.style.width = porcentagem + "%";
+    } else {
+        barra.style.width = 0 + "%";
     }
 }
 

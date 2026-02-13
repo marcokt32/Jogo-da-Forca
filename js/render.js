@@ -19,7 +19,7 @@ const categorias = [
     { id: 'literatura', nome: 'Literatura', imagem: 'img/literatura.png' },
     { id: 'politica', nome: 'Politica', imagem: 'img/politica.png' },
     { id: 'tratamento', nome: 'Tratamento de água', imagem: 'img/tratamento.png' },
-    { id: 'teste', nome: 'Teste', imagem: '' }
+    { id: 'biblia', nome: 'Bíblia', imagem: 'img/biblia.png' }
 
 ];
 

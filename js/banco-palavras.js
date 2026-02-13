@@ -53,7 +53,72 @@ const bancoPalavras = {
         { palavra: "FEUDALISMO", dica: "Sistema economico da Idade Media" },
         { palavra: "CRUZADAS", dica: "Expedicoes militares religiosas" },
         { palavra: "IDADE ANTIGA", dica: "Periodo das primeiras civilizacoes" },
-        { palavra: "MESOPOTAMIA", dica: "Regiao entre os rios Tigre e Eufrates" }
+        { palavra: "MESOPOTAMIA", dica: "Regiao entre os rios Tigre e Eufrates" },
+        { palavra: "ATENAS", dica: "Cidade-estado grega berço da democracia" },
+        { palavra: "ESPARTA", dica: "Cidade-estado grega com sociedade militarizada" },
+        { palavra: "DEMOCRACIA ATENIENSE", dica: "Sistema politico criado na Grecia Antiga" },
+        { palavra: "GUERRAS MEDICAS", dica: "Conflitos entre gregos e persas" },
+        { palavra: "ALEXANDRE O GRANDE", dica: "Rei macedonio que criou um vasto imperio" },
+        { palavra: "IMPERIO MACEDONIO", dica: "Imperio fundado por Filipe II" },
+        { palavra: "HELENISMO", dica: "Mistura cultural grega e oriental" },
+        { palavra: "SOCRATES", dica: "Filosofo grego condenado a morte" },
+        { palavra: "PLATAO", dica: "Filosofo grego discipulo de Socrates" },
+        { palavra: "ARISTOTELES", dica: "Filosofo grego tutor de Alexandre" },
+
+        { palavra: "EGITO ANTIGO", dica: "Civilizacao desenvolvida as margens do Nilo" },
+        { palavra: "RIO NILO", dica: "Rio fundamental para a civilizacao egipcia" },
+        { palavra: "FARAOS", dica: "Governantes do Egito Antigo" },
+        { palavra: "PIRAMIDES DE GIZE", dica: "Monumentos funerarios egipcios" },
+        { palavra: "ESCRITA HIEROGRAFICA", dica: "Sistema de escrita egipcio" },
+        { palavra: "MUMIFICACAO", dica: "Processo funerario do Egito Antigo" },
+        { palavra: "CLEOPATRA", dica: "Ultima rainha do Egito Antigo" },
+        { palavra: "VALE DOS REIS", dica: "Local de sepultamento de faraos" },
+        { palavra: "DEUSES EGIPCIOS", dica: "Religiao politeista do Egito Antigo" },
+        { palavra: "ANUBIS", dica: "Deus egipcio ligado aos mortos" },
+
+        { palavra: "IMPERIO CAROLINGIO", dica: "Imperio europeu governado por Carlos Magno" },
+        { palavra: "CARLOS MAGNO", dica: "Rei dos francos coroado imperador" },
+        { palavra: "IDADE MODERNA", dica: "Periodo entre Idade Media e Contemporanea" },
+        { palavra: "ABSOLUTISMO", dica: "Sistema politico de poder centralizado" },
+        { palavra: "LUIS CATORZE", dica: "Rei frances conhecido como Rei Sol" },
+        { palavra: "REVOLUCAO GLORIOSA", dica: "Mudanca politica inglesa sem guerra civil" },
+        { palavra: "PARLAMENTARISMO", dica: "Sistema politico com poder do parlamento" },
+        { palavra: "REVOLUCOES LIBERAIS", dica: "Movimentos contra o absolutismo na Europa" },
+        { palavra: "IMPERIALISMO", dica: "Politica de expansao territorial europeia" },
+        { palavra: "NEOCOLONIALISMO", dica: "Dominacao europeia na Africa e Asia" },
+
+        { palavra: "BRASIL COLONIAL", dica: "Periodo do Brasil sob dominio portugues" },
+        { palavra: "BRASIL IMPERIO", dica: "Periodo monarquico brasileiro" },
+        { palavra: "BRASIL REPUBLICA", dica: "Periodo republicano brasileiro" },
+        { palavra: "ERA VARGAS", dica: "Periodo politico liderado por Getulio Vargas" },
+        { palavra: "GETULIO VARGAS", dica: "Presidente brasileiro do Estado Novo" },
+        { palavra: "ESTADO NOVO", dica: "Regime autoritario no Brasil" },
+        { palavra: "DITADURA MILITAR", dica: "Regime autoritario no Brasil entre 1964 e 1985" },
+        { palavra: "AI CINCO", dica: "Ato institucional mais repressivo do regime militar" },
+        { palavra: "CONSTITUICAO DE 1988", dica: "Lei maxima da Nova Republica" },
+        { palavra: "REDEMOCRATIZACAO", dica: "Retorno da democracia no Brasil" },
+
+        { palavra: "CIVILIZACOES PRE COLOMBIANAS", dica: "Sociedades americanas antes da colonizacao" },
+        { palavra: "MAIAS", dica: "Civilizacao da Mesoamerica" },
+        { palavra: "ASTECAS", dica: "Civilizacao dominante no Mexico" },
+        { palavra: "INCAS", dica: "Imperio da regiao andina" },
+        { palavra: "TENOCHTITLAN", dica: "Capital do imperio asteca" },
+        { palavra: "MACHU PICCHU", dica: "Cidade inca nos Andes" },
+        { palavra: "CONQUISTA DA AMERICA", dica: "Dominacao europeia no continente americano" },
+        { palavra: "HERNAN CORTES", dica: "Conquistador espanhol dos astecas" },
+        { palavra: "FRANCISCO PIZARRO", dica: "Conquistador do imperio inca" },
+        { palavra: "VICE REINOS", dica: "Divisoes administrativas da America espanhola" },
+
+        { palavra: "REVOLUCAO HAITIANA", dica: "Primeira revolta de escravizados vitoriosa" },
+        { palavra: "INDEPENDENCIA DOS EUA", dica: "Rompimento das colonias inglesas" },
+        { palavra: "DECLARACAO DE INDEPENDENCIA", dica: "Documento de 1776 nos Estados Unidos" },
+        { palavra: "GUERRA CIVIL AMERICANA", dica: "Conflito entre Norte e Sul dos EUA" },
+        { palavra: "ABRAHAM LINCOLN", dica: "Presidente dos EUA durante a Guerra Civil" },
+        { palavra: "GUERRA DE SECESSAO", dica: "Outro nome da Guerra Civil Americana" },
+        { palavra: "DOUTRINA MONROE", dica: "Politica externa dos Estados Unidos" },
+        { palavra: "AMERICA LATINA", dica: "Regiao colonizada por espanhois e portugueses" },
+        { palavra: "INDEPENDENCIAS AMERICANAS", dica: "Processo de emancipacao politica das colonias" },
+        { palavra: "SIMON BOLIVAR", dica: "Lider das independencias sul-americanas" }
     ],
     geografia: [
         { palavra: "AMAZONIA", dica: "Maior floresta tropical do mundo" },
@@ -131,7 +196,75 @@ const bancoPalavras = {
         { palavra: "HEMISFERIO SUL", dica: "Metade sul do planeta" },
         { palavra: "ROTACAO", dica: "Movimento da Terra em torno de si mesma" },
         { palavra: "TRANSLACAO", dica: "Movimento da Terra ao redor do Sol" },
-        { palavra: "ESTACOES DO ANO", dica: "Divisao climatica causada pela translacao" }
+        { palavra: "ESTACOES DO ANO", dica: "Divisao climatica causada pela translacao" },
+        // 🔸 Continentes e regioes
+        { palavra: "OCEANIA", dica: "Continente formado por ilhas" },
+        { palavra: "EURASIA", dica: "Massa continental da Europa e Asia" },
+        { palavra: "ORIENTE MEDIO", dica: "Regiao estrategica entre Europa e Asia" },
+        { palavra: "AMERICA LATINA", dica: "Regiao de paises de origem latina" },
+
+        // 🔸 Relevo (expansao)
+        { palavra: "MONTANHA", dica: "Grande elevacao do relevo" },
+        { palavra: "SERRA", dica: "Conjunto de montanhas" },
+        { palavra: "CHAPADA", dica: "Planalto com topo plano" },
+        { palavra: "VALE", dica: "Area baixa entre relevos" },
+        { palavra: "FALHA GEOLOGICA", dica: "Fratura na crosta terrestre" },
+
+        // 🔸 Climas (expansao)
+        { palavra: "CLIMA EQUATORIAL", dica: "Clima quente e umido o ano todo" },
+        { palavra: "CLIMA SEMIARIDO", dica: "Clima seco com poucas chuvas" },
+        { palavra: "CLIMA CONTINENTAL", dica: "Clima com grande variacao termica" },
+        { palavra: "CLIMA MEDITERRANEO", dica: "Veroes secos e invernos chuvosos" },
+        { palavra: "CLIMA DE MONTANHA", dica: "Clima influenciado pela altitude" },
+
+        // 🔸 Hidrografia (expansao)
+        { palavra: "AQUIFERO", dica: "Reserva subterranea de agua" },
+        { palavra: "LENCO FREATICO", dica: "Camada de agua subterranea" },
+        { palavra: "NASCENTE", dica: "Local onde nasce um rio" },
+        { palavra: "FOZ", dica: "Local onde o rio desagua" },
+        { palavra: "LAGO", dica: "Grande acumulacao de agua doce" },
+        { palavra: "LAGOA", dica: "Corpo de agua menor que lago" },
+
+        // 🔸 Biomas e vegetacao (expansao)
+        { palavra: "TUNDRA", dica: "Bioma frio com vegetacao rasteira" },
+        { palavra: "TAIGA", dica: "Floresta de coniferas em clima frio" },
+        { palavra: "SAVANA", dica: "Vegetacao de arvores espaçadas" },
+        { palavra: "FLORESTA TROPICAL", dica: "Vegetacao densa e umida" },
+        { palavra: "MANGUEZAL", dica: "Bioma costeiro de areas alagadas" },
+
+        // 🔸 Impactos ambientais
+        { palavra: "DESMATAMENTO", dica: "Retirada da cobertura vegetal" },
+        { palavra: "POLUICAO", dica: "Degradacao do meio ambiente" },
+        { palavra: "CHUVA ACIDA", dica: "Precipitacao contaminada" },
+        { palavra: "ILHA DE CALOR", dica: "Aumento da temperatura urbana" },
+        { palavra: "SUSTENTABILIDADE", dica: "Uso consciente dos recursos naturais" },
+
+        // 🔸 Geografia humana (expansao)
+        { palavra: "CRESCIMENTO VEGETATIVO", dica: "Diferenca entre nascimentos e mortes" },
+        { palavra: "NATALIDADE", dica: "Numero de nascimentos" },
+        { palavra: "MORTALIDADE", dica: "Numero de obitos" },
+        { palavra: "EXPECTATIVA DE VIDA", dica: "Media de anos vividos" },
+        { palavra: "IDH", dica: "Indice de desenvolvimento humano" },
+
+        // 🔸 Economia e territorio
+        { palavra: "SETOR PRIMARIO", dica: "Atividades ligadas a natureza" },
+        { palavra: "SETOR SECUNDARIO", dica: "Atividades industriais" },
+        { palavra: "SETOR TERCIARIO", dica: "Atividades de comercio e servicos" },
+        { palavra: "COMERCIO EXTERIOR", dica: "Troca entre paises" },
+        { palavra: "BALANCA COMERCIAL", dica: "Diferenca entre exportacoes e importacoes" },
+
+        // 🔸 Cartografia (expansao)
+        { palavra: "LEGENDA", dica: "Explicacao dos simbolos do mapa" },
+        { palavra: "PROJECAO CARTOGRAFICA", dica: "Forma de representar a Terra no mapa" },
+        { palavra: "MAPA POLITICO", dica: "Mapa com divisoes territoriais" },
+        { palavra: "MAPA FISICO", dica: "Mapa com relevo e hidrografia" },
+        { palavra: "MAPA TEMATICO", dica: "Mapa com tema especifico" },
+
+        // 🔸 Astronomia geografica
+        { palavra: "SOLSTICIO", dica: "Momento de maior duracao do dia ou noite" },
+        { palavra: "EQUINOXIO", dica: "Dia e noite com mesma duracao" },
+        { palavra: "ORBITA", dica: "Caminho de um astro no espaco" },
+        { palavra: "INCLINACAO DO EIXO", dica: "Responsavel pelas estacoes do ano" }
     ],
     quimica: [
         { palavra: "ATOMO", dica: "Menor unidade de um elemento quimico" },
@@ -209,9 +342,82 @@ const bancoPalavras = {
         { palavra: "ALCENO", dica: "Hidrocarboneto com ligacao dupla" },
         { palavra: "ALCINO", dica: "Hidrocarboneto com ligacao tripla" },
         { palavra: "POLIMERO", dica: "Molecula formada por repeticoes" },
-        { palavra: "QUIMICA ORGANICA", dica: "Estudo dos compostos de carbono" }
-    ]
-    ,
+        { palavra: "QUIMICA ORGANICA", dica: "Estudo dos compostos de carbono" },
+        // 🔸 Estrutura atomica (expansao)
+        { palavra: "ELETROSFERA", dica: "Regiao onde os eletrons se movimentam" },
+        { palavra: "NUCLEO", dica: "Parte central do atomo" },
+        { palavra: "CAMADA ELETRONICA", dica: "Nivel de energia dos eletrons" },
+        { palavra: "ORBITAL", dica: "Regiao de maior probabilidade do eletron" },
+        { palavra: "ISOTOPO", dica: "Atomos com mesmo numero atomico" },
+        { palavra: "ISOBARO", dica: "Atomos com mesma massa atomica" },
+        { palavra: "ISOTONO", dica: "Atomos com mesmo numero de neutrons" },
+
+        // 🔸 Tabela periodica (expansao)
+        { palavra: "METAIS", dica: "Elementos bons condutores" },
+        { palavra: "NAO METAIS", dica: "Elementos com baixa condutividade" },
+        { palavra: "SEMIMETAIS", dica: "Elementos com propriedades intermediarias" },
+        { palavra: "GASES NOBRES", dica: "Elementos quimicamente estaveis" },
+        { palavra: "METAIS ALCALINOS", dica: "Elementos do grupo um" },
+        { palavra: "METAIS ALCALINOTERROSOS", dica: "Elementos do grupo dois" },
+        { palavra: "HALOGENIOS", dica: "Elementos do grupo dezessete" },
+
+        // 🔸 Ligacoes e forcas
+        { palavra: "POLARIDADE", dica: "Distribuicao desigual de cargas" },
+        { palavra: "LIGACAO POLAR", dica: "Ligacao com polos eletricos" },
+        { palavra: "LIGACAO APOLAR", dica: "Ligacao sem polos eletricos" },
+        { palavra: "PONTE DE HIDROGENIO", dica: "Interacao forte entre moleculas" },
+        { palavra: "FORCAS INTERMOLECULARES", dica: "Atracao entre moleculas" },
+
+        // 🔸 Misturas e separacao
+        { palavra: "DECANTACAO", dica: "Separacao por diferenca de densidade" },
+        { palavra: "FILTRACAO", dica: "Separacao por tamanho das particulas" },
+        { palavra: "DESTILACAO", dica: "Separacao por ponto de ebulicao" },
+        { palavra: "CROMATOGRAFIA", dica: "Separacao por afinidade" },
+        { palavra: "CENTRIFUGACAO", dica: "Separacao por rotacao" },
+        { palavra: "IMANTACAO", dica: "Separacao por magnetismo" },
+
+        // 🔸 Estequiometria
+        { palavra: "COEFICIENTE", dica: "Numero que ajusta a equacao" },
+        { palavra: "RENDIMENTO", dica: "Quantidade real obtida na reacao" },
+        { palavra: "PUREZA", dica: "Grau de ausencia de impurezas" },
+        { palavra: "REAGENTE LIMITANTE", dica: "Reagente que acaba primeiro" },
+        { palavra: "REAGENTE EM EXCESSO", dica: "Reagente que sobra na reacao" },
+
+        // 🔸 Solucoes (expansao)
+        { palavra: "CONCENTRACAO", dica: "Quantidade de soluto na solucao" },
+        { palavra: "DILUICAO", dica: "Reducao da concentracao" },
+        { palavra: "MOLARIDADE", dica: "Mol de soluto por litro" },
+        { palavra: "SOLUCAO SATURADA", dica: "Contem soluto no limite maximo" },
+        { palavra: "SOLUCAO INSATURADA", dica: "Pode dissolver mais soluto" },
+        { palavra: "SOLUCAO SUPERSATURADA", dica: "Excesso de soluto dissolvido" },
+
+        // 🔸 Termoquimica
+        { palavra: "ENTALPIA", dica: "Energia envolvida na reacao" },
+        { palavra: "CALOR", dica: "Energia transferida" },
+        { palavra: "SISTEMA", dica: "Parte estudada da reacao" },
+        { palavra: "AMBIENTE", dica: "Tudo fora do sistema" },
+
+        // 🔸 Cinética e equilibrio
+        { palavra: "COLISAO EFETIVA", dica: "Choque que gera reacao" },
+        { palavra: "ENERGIA DE ATIVACAO", dica: "Energia minima para reacao" },
+        { palavra: "REACAO REVERSIVEL", dica: "Pode ocorrer nos dois sentidos" },
+        { palavra: "PRINCIPIO DE LE CHATELIER", dica: "Resposta do equilibrio a perturbacoes" },
+
+        // 🔸 Quimica ambiental
+        { palavra: "POLUENTE", dica: "Substancia nociva ao ambiente" },
+        { palavra: "BIODEGRADAVEL", dica: "Material que se decompone naturalmente" },
+        { palavra: "LIXO TOXICO", dica: "Residuos perigosos" },
+        { palavra: "TRATAMENTO DE AGUA", dica: "Processo de purificacao da agua" },
+
+        // 🔸 Quimica organica (expansao)
+        { palavra: "FUNCAO ORGANICA", dica: "Grupo caracteristico de compostos" },
+        { palavra: "ALCOOL", dica: "Composto com grupo hidroxila" },
+        { palavra: "ACIDO CARBOXILICO", dica: "Composto com grupo carboxila" },
+        { palavra: "ESTER", dica: "Composto de acido e alcool" },
+        { palavra: "AMINA", dica: "Composto derivado da amonia" },
+        { palavra: "AMIDA", dica: "Composto com nitrogenio e carbonila" },
+        { palavra: "PLASTICO", dica: "Material sintetico polimerico" }
+    ],
     biologia: [
         { palavra: "CELULA", dica: "Menor unidade estrutural dos seres vivos" },
         { palavra: "TECIDOS", dica: "Conjunto de celulas com mesma funcao" },
@@ -899,7 +1105,7 @@ const bancoPalavras = {
         { palavra: "SUBSTANTIVO", dica: "Classe de palavras que nomeia seres e coisas" },
         { palavra: "ADJETIVO", dica: "Classe de palavras que caracteriza o substantivo" },
         { palavra: "VERBO", dica: "Classe de palavras que indica ação ou estado" },
-        { palavra: "ADVÉRBIO", dica: "Classe de palavras que modifica o verbo" },
+        { palavra: "ADVERBIO", dica: "Classe de palavras que modifica o verbo" },
         { palavra: "PRONOME", dica: "Classe de palavras que substitui o substantivo" },
 
         { palavra: "ARTIGO", dica: "Classe de palavras que antecede o substantivo" },
@@ -971,7 +1177,88 @@ const bancoPalavras = {
         { palavra: "LINGUAGEM COLOQUIAL", dica: "Uso informal da língua" },
 
         { palavra: "DISCURSO DIRETO", dica: "Fala reproduzida exatamente" },
-        { palavra: "DISCURSO INDIRETO", dica: "Fala adaptada pelo narrador" }
+        { palavra: "DISCURSO INDIRETO", dica: "Fala adaptada pelo narrador" },
+        { palavra: "FONOLOGIA", dica: "Área da linguística que estuda os sons da língua" },
+        { palavra: "FONEMA", dica: "Menor unidade sonora capaz de diferenciar significados" },
+        { palavra: "MORFOLOGIA", dica: "Parte da gramática que estuda a forma das palavras" },
+        { palavra: "SINTAXE", dica: "Parte da gramática que estuda a organização das frases" },
+        { palavra: "SEMANTICA", dica: "Estudo do significado das palavras e expressões" },
+        { palavra: "PRAGMATICA", dica: "Estudo do uso da linguagem em contexto" },
+
+        { palavra: "RADICAL", dica: "Elemento que contém o significado básico da palavra" },
+        { palavra: "PREFIXO", dica: "Elemento que vem antes do radical" },
+        { palavra: "SUFIXO", dica: "Elemento que vem depois do radical" },
+        { palavra: "DESINENCIA", dica: "Elemento que indica flexão de gênero, número ou tempo" },
+        { palavra: "AFIXO", dica: "Elemento adicionado ao radical para formar palavras" },
+
+        { palavra: "DERIVACAO", dica: "Processo de formação de palavras por afixos" },
+        { palavra: "COMPOSICAO", dica: "Formação de palavras por junção de radicais" },
+        { palavra: "AGLUTINACAO", dica: "Composição com perda fonética" },
+        { palavra: "JUSTAPOSICAO", dica: "Composição sem alteração fonética" },
+
+        { palavra: "POLISSEMIA", dica: "Palavra com múltiplos significados" },
+        { palavra: "AMBIGUIDADE", dica: "Quando uma frase permite mais de uma interpretação" },
+        { palavra: "PLEONASMO", dica: "Repetição de ideias para reforço expressivo" },
+        { palavra: "PARADOXO", dica: "Ideias opostas que coexistem" },
+        { palavra: "ANTITESE", dica: "Aproximação de ideias opostas" },
+
+        { palavra: "PROSOPOPEIA", dica: "Atribuição de características humanas a seres inanimados" },
+        { palavra: "ANAFORA", dica: "Repetição de termos no início de frases" },
+        { palavra: "ALITERACAO", dica: "Repetição de sons consonantais" },
+        { palavra: "ASSINANCIA", dica: "Repetição de sons vocálicos" },
+
+        { palavra: "PERIODO HIPOTETICO", dica: "Estrutura com condição e consequência" },
+        { palavra: "ORACAO PRINCIPAL", dica: "Oração que depende de outra ou a rege" },
+        { palavra: "ORACAO SUBORDINADA", dica: "Oração que depende sintaticamente de outra" },
+        { palavra: "ORACAO COORDENADA", dica: "Oração independente sintaticamente" },
+
+        { palavra: "PLEONASMO VICIOSO", dica: "Redundância considerada erro gramatical" },
+        { palavra: "SOLECISMO", dica: "Erro de sintaxe" },
+        { palavra: "BARBARISMO", dica: "Erro de pronúncia ou grafia" },
+        { palavra: "CACOFONIA", dica: "Som desagradável na sequência de palavras" },
+        { palavra: "ECO", dica: "Repetição sonora desagradável" },
+
+        { palavra: "SILEPSE", dica: "Concordância feita com o sentido e não com a forma" },
+        { palavra: "ZEUGMA", dica: "Omissão de termo já mencionado" },
+        { palavra: "ELIPSE", dica: "Omissão de termo facilmente identificável" },
+
+        { palavra: "LITOTE", dica: "Afirmação feita por negação do contrário" },
+        { palavra: "ANACOLUTO", dica: "Quebra na estrutura sintática da frase" },
+
+        { palavra: "PERIODO COMPOSTO POR COORDENACAO", dica: "Período formado por orações independentes" },
+        { palavra: "PERIODO COMPOSTO POR SUBORDINACAO", dica: "Período formado por orações dependentes" },
+
+        { palavra: "LOCUCAO VERBAL", dica: "Conjunto de verbos com valor de um só" },
+        { palavra: "LOCUCAO ADJETIVA", dica: "Expressão que equivale a um adjetivo" },
+        { palavra: "LOCUCAO ADVERBIAL", dica: "Expressão que equivale a um advérbio" },
+        { palavra: "LOCUCAO PREPOSITIVA", dica: "Conjunto de palavras com valor de preposição" },
+        { palavra: "LOCUCAO CONJUNTIVA", dica: "Conjunto de palavras com valor de conjunção" },
+
+        { palavra: "PERIODO NOMINAL", dica: "Frase sem verbo" },
+        { palavra: "FRASE", dica: "Enunciado com sentido completo" },
+        { palavra: "ENUNCIADO", dica: "Unidade de comunicação linguística" },
+
+        { palavra: "TIPOLOGIA TEXTUAL", dica: "Classificação dos textos conforme sua estrutura" },
+        { palavra: "GENERO TEXTUAL", dica: "Forma social de uso da linguagem" },
+
+        { palavra: "RESENHA", dica: "Texto que analisa criticamente uma obra" },
+        { palavra: "ARTIGO DE OPINIAO", dica: "Texto que defende um ponto de vista" },
+        { palavra: "CRONICA", dica: "Texto curto sobre fatos do cotidiano" },
+        { palavra: "EDITORIAL", dica: "Texto opinativo institucional" },
+
+        { palavra: "ARGUMENTACAO", dica: "Uso de razões para defender uma ideia" },
+        { palavra: "TESE", dica: "Ideia central defendida em um texto" },
+        { palavra: "ARGUMENTO", dica: "Justificativa usada para sustentar uma tese" },
+
+        { palavra: "LINGUAGEM DENOTATIVA", dica: "Uso literal da linguagem" },
+        { palavra: "LINGUAGEM CONOTATIVA", dica: "Uso figurado da linguagem" },
+
+        { palavra: "VARIANTE PADRAO", dica: "Forma considerada socialmente prestigiada" },
+        { palavra: "VARIANTE NAO PADRAO", dica: "Forma usada fora da norma culta" },
+
+        { palavra: "NARRADOR OBSERVADOR", dica: "Narrador que não participa da história" },
+        { palavra: "NARRADOR PERSONAGEM", dica: "Narrador que participa da história" },
+        { palavra: "NARRADOR ONISCIENTE", dica: "Narrador que conhece tudo da narrativa" }
     ],
     matematica: [
         { palavra: "NUMERO", dica: "Elemento usado para contar e medir" },
@@ -1047,7 +1334,75 @@ const bancoPalavras = {
 
         { palavra: "TEOREMA", dica: "Proposição demonstrada matematicamente" },
         { palavra: "HIPOTENUSA", dica: "Maior lado do triângulo retângulo" },
-        { palavra: "CATETO", dica: "Lado do triângulo retângulo" }
+        { palavra: "CATETO", dica: "Lado do triângulo retângulo" },
+        // 🔸 Conjuntos e números
+        { palavra: "CONJUNTO", dica: "Colecao de elementos" },
+        { palavra: "SUBCONJUNTO", dica: "Conjunto contido em outro" },
+        { palavra: "INTERSECCAO", dica: "Elementos comuns entre conjuntos" },
+        { palavra: "UNIAO", dica: "Reuniao de conjuntos" },
+        { palavra: "INTERVALO", dica: "Conjunto de numeros entre limites" },
+        { palavra: "ABSOLUTO", dica: "Distancia de um numero ao zero" },
+
+        // 🔸 Aritmetica e algebra
+        { palavra: "MONOMIO", dica: "Expressao algébrica de um termo" },
+        { palavra: "POLINOMIO", dica: "Soma de monomios" },
+        { palavra: "BINOMIO", dica: "Expressao algébrica com dois termos" },
+        { palavra: "TRINOMIO", dica: "Expressao algébrica com tres termos" },
+        { palavra: "FATORACAO", dica: "Transformacao em produto" },
+        { palavra: "SIMPLIFICACAO", dica: "Reducao de uma expressao" },
+        { palavra: "SISTEMA", dica: "Conjunto de equacoes" },
+
+        // 🔸 Funcoes (expansao)
+        { palavra: "AFIM", dica: "Funcao do primeiro grau" },
+        { palavra: "QUADRATICA", dica: "Funcao do segundo grau" },
+        { palavra: "LINEAR", dica: "Funcao proporcional" },
+        { palavra: "EXPONENCIAL", dica: "Funcao com expoente variavel" },
+        { palavra: "LOGARITMICA", dica: "Funcao inversa da exponencial" },
+        { palavra: "CRESCENTE", dica: "Funcao que aumenta" },
+        { palavra: "DECRESCENTE", dica: "Funcao que diminui" },
+
+        // 🔸 Geometria plana (expansao)
+        { palavra: "LOSANGO", dica: "Quadrilatero com lados iguais" },
+        { palavra: "TRAPEZIO", dica: "Quadrilatero com dois lados paralelos" },
+        { palavra: "PENTAGONO", dica: "Poligono de cinco lados" },
+        { palavra: "HEXAGONO", dica: "Poligono de seis lados" },
+        { palavra: "OCTOGONO", dica: "Poligono de oito lados" },
+        { palavra: "DIAGONAL", dica: "Segmento entre vertices nao consecutivos" },
+        { palavra: "SIMETRIA", dica: "Correspondencia de formas" },
+
+        // 🔸 Geometria espacial (expansao)
+        { palavra: "PARALELEPIPEDO", dica: "Solido com faces retangulares" },
+        { palavra: "POLIEDRO", dica: "Solido com faces planas" },
+        { palavra: "VERTICE", dica: "Encontro de arestas" },
+        { palavra: "ARESTA", dica: "Segmento entre vertices" },
+        { palavra: "FACE", dica: "Superficie plana de um solido" },
+
+        // 🔸 Trigonometria (expansao)
+        { palavra: "SENO", dica: "Razao trigonometrica" },
+        { palavra: "COSSENO", dica: "Razao trigonometrica" },
+        { palavra: "TANGENTE", dica: "Razao trigonometrica" },
+        { palavra: "ARCO", dica: "Parte da circunferencia" },
+        { palavra: "RADIANO", dica: "Unidade de medida angular" },
+
+        // 🔸 Estatistica e probabilidade (expansao)
+        { palavra: "FREQUENCIA", dica: "Numero de ocorrencias" },
+        { palavra: "TABELA", dica: "Organizacao de dados" },
+        { palavra: "HISTOGRAMA", dica: "Grafico de barras contiguas" },
+        { palavra: "POPULACAO", dica: "Conjunto total de elementos" },
+        { palavra: "ALEATORIO", dica: "Resultado imprevisivel" },
+
+        // 🔸 Sequencias e progressoes (expansao)
+        { palavra: "ARITMETICA", dica: "Progressao de diferenca constante" },
+        { palavra: "GEOMETRICA", dica: "Progressao de razao constante" },
+        { palavra: "TERMO", dica: "Elemento de uma sequencia" },
+        { palavra: "RAZAO", dica: "Valor fixo da progressao" },
+
+        // 🔸 Nivel medio / inicio superior
+        { palavra: "LIMITE", dica: "Valor que uma funcao se aproxima" },
+        { palavra: "DERIVADA", dica: "Taxa de variacao" },
+        { palavra: "INTEGRAL", dica: "Operacao inversa da derivada" },
+        { palavra: "VETOR", dica: "Grandeza com direcao e sentido" },
+        { palavra: "ESCALAR", dica: "Grandeza apenas numerica" }
     ],
     tratamento: [
         { palavra: "COAGULACAO", dica: "Processo químico que aglomera partículas finas" },
@@ -1141,25 +1496,144 @@ const bancoPalavras = {
         { palavra: "TRATAMENTO", dica: "Conjunto de processos para tornar a água potável" },
         { palavra: "QUALIDADE", dica: "Conformidade com padrões estabelecidos" }
     ],
-    teste: [
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" },
-        { palavra: "TESTE", dica: "dica teste" }
+    biblia: [
+        { palavra: "GENESIS", dica: "Livro que narra a criação do mundo" },
+        { palavra: "EXODO", dica: "Livro que relata a saída do povo hebreu do Egito" },
+        { palavra: "LEVITICO", dica: "Livro com leis religiosas do povo de Israel" },
+        { palavra: "NUMEROS", dica: "Livro que registra o censo do povo hebreu" },
+        { palavra: "DEUTERONOMIO", dica: "Livro de recapitulação da Lei de Moisés" },
+
+        { palavra: "ANTIGO TESTAMENTO", dica: "Conjunto de livros anteriores a Jesus Cristo" },
+        { palavra: "NOVO TESTAMENTO", dica: "Conjunto de livros sobre a vida e ensinamentos de Jesus" },
+
+        { palavra: "ADAO", dica: "Primeiro homem criado por Deus" },
+        { palavra: "EVA", dica: "Primeira mulher segundo a Bíblia" },
+        { palavra: "NOE", dica: "Construtor da arca durante o dilúvio" },
+        { palavra: "ABRAAO", dica: "Patriarca do povo hebreu" },
+        { palavra: "ISAQUE", dica: "Filho de Abraão" },
+        { palavra: "JACO", dica: "Pai das doze tribos de Israel" },
+        { palavra: "JOSE DO EGITO", dica: "Filho de Jacó vendido como escravo" },
+
+        { palavra: "MOISES", dica: "Líder que libertou os hebreus do Egito" },
+        { palavra: "DEZ MANDAMENTOS", dica: "Leis entregues a Moisés no Monte Sinai" },
+        { palavra: "MAR VERMELHO", dica: "Mar aberto para a fuga dos hebreus" },
+        { palavra: "MONTE SINAI", dica: "Local onde Moisés recebeu a Lei" },
+
+        { palavra: "DAVI", dica: "Rei que derrotou Golias" },
+        { palavra: "GOLIAS", dica: "Gigante filisteu derrotado por Davi" },
+        { palavra: "SALOMAO", dica: "Rei conhecido por sua sabedoria" },
+        { palavra: "PROVERBIOS", dica: "Livro bíblico de sabedoria" },
+        { palavra: "ECLESIASTES", dica: "Livro que reflete sobre o sentido da vida" },
+        { palavra: "SALMOS", dica: "Livro de cânticos e orações" },
+
+        { palavra: "PROFETA", dica: "Pessoa que transmite mensagens divinas" },
+        { palavra: "ISAÍAS", dica: "Profeta do Antigo Testamento" },
+        { palavra: "JEREMIAS", dica: "Profeta conhecido como o profeta chorão" },
+        { palavra: "EZEQUIEL", dica: "Profeta do exílio babilônico" },
+        { palavra: "DANIEL", dica: "Profeta que interpretava sonhos" },
+
+        { palavra: "BELÉM", dica: "Cidade onde Jesus nasceu" },
+        { palavra: "JERUSALEM", dica: "Cidade sagrada para judeus e cristãos" },
+        { palavra: "NAZARE", dica: "Cidade onde Jesus cresceu" },
+        { palavra: "GALILEIA", dica: "Região onde Jesus pregou" },
+
+        { palavra: "JESUS CRISTO", dica: "Figura central do cristianismo" },
+        { palavra: "EVANGELHO", dica: "Boa nova anunciada por Jesus" },
+        { palavra: "MATEUS", dica: "Evangelista do Novo Testamento" },
+        { palavra: "MARCOS", dica: "Evangelista associado a Pedro" },
+        { palavra: "LUCAS", dica: "Evangelista e médico" },
+        { palavra: "JOAO", dica: "Evangelista conhecido como discípulo amado" },
+
+        { palavra: "APOSTOLO", dica: "Discípulo escolhido por Jesus" },
+        { palavra: "PEDRO", dica: "Apóstolo considerado líder da igreja primitiva" },
+        { palavra: "PAULO", dica: "Apóstolo missionário do cristianismo" },
+        { palavra: "DAMASCO", dica: "Cidade da conversão de Paulo" },
+
+        { palavra: "MILAGRE", dica: "Ato sobrenatural realizado por Deus" },
+        { palavra: "PARABOLA", dica: "História usada por Jesus para ensinar" },
+        { palavra: "BOM SAMARITANO", dica: "Parábola sobre amor ao próximo" },
+        { palavra: "FILHO PRODIGO", dica: "Parábola sobre perdão e arrependimento" },
+
+        { palavra: "CRUCIFICACAO", dica: "Forma de morte de Jesus" },
+        { palavra: "RESSURREICAO", dica: "Vitória de Jesus sobre a morte" },
+        { palavra: "ASCENSAO", dica: "Subida de Jesus aos céus" },
+
+        { palavra: "ESPIRITO SANTO", dica: "Terceira pessoa da Trindade" },
+        { palavra: "PENTECOSTES", dica: "Descida do Espírito Santo sobre os discípulos" },
+
+        { palavra: "IGREJA PRIMITIVA", dica: "Primeiras comunidades cristãs" },
+        { palavra: "ATOS DOS APOSTOLOS", dica: "Livro que narra a expansão do cristianismo" },
+
+        { palavra: "APOCALIPSE", dica: "Livro profético escrito por João" },
+        { palavra: "ARMAGEDOM", dica: "Batalha final entre o bem e o mal" },
+        { palavra: "JUÍZO FINAL", dica: "Evento do julgamento final da humanidade" },
+
+        { palavra: "FE", dica: "Confiança em Deus" },
+        { palavra: "GRACA", dica: "Favor imerecido concedido por Deus" },
+        { palavra: "SALVACAO", dica: "Libertação espiritual do pecado" },
+        { palavra: "PECADO", dica: "Desobediência à vontade divina" },
+        { palavra: "ARREPENDIMENTO", dica: "Mudança de atitude diante de Deus" },
+
+        { palavra: "ORACAO", dica: "Comunicação com Deus" },
+        { palavra: "JEJUM", dica: "Prática espiritual de abstinência" },
+        { palavra: "ADORACAO", dica: "Ato de louvar a Deus" },
+
+        { palavra: "ALIANCA", dica: "Compromisso entre Deus e seu povo" },
+        { palavra: "MESSIAS", dica: "Ungido prometido por Deus" },
+        { palavra: "BIBLIA", dica: "Livro sagrado do cristianismo" },
+        { palavra: "TESTAMENTO", dica: "Divisão principal da Bíblia" },
+        { palavra: "ANTIGO", dica: "Parte da Bíblia antes de Cristo" },
+        { palavra: "NOVO", dica: "Parte da Bíblia sobre Jesus e a Igreja" },
+
+        { palavra: "GENESIS", dica: "Primeiro livro da Bíblia" },
+        { palavra: "EXODO", dica: "Livro sobre a saída do povo do Egito" },
+        { palavra: "SALMOS", dica: "Livro de cânticos e orações" },
+        { palavra: "PROVERBIOS", dica: "Livro de sabedoria" },
+        { palavra: "APOCALIPSE", dica: "Último livro da Bíblia" },
+
+        { palavra: "DEUS", dica: "Criador de todas as coisas" },
+        { palavra: "JESUS", dica: "Filho de Deus e salvador" },
+        { palavra: "CRISTO", dica: "Messias prometido" },
+        { palavra: "ESPIRITO", dica: "Parte da Trindade" },
+        { palavra: "TRINDADE", dica: "Pai, Filho e Espírito Santo" },
+
+        { palavra: "MOISES", dica: "Líder que libertou o povo do Egito" },
+        { palavra: "ABRAAO", dica: "Pai de muitas nações" },
+        { palavra: "NOE", dica: "Construiu a arca" },
+        { palavra: "DAVID", dica: "Rei de Israel e autor de salmos" },
+        { palavra: "SALOMAO", dica: "Rei conhecido por sua sabedoria" },
+
+        { palavra: "PROFETA", dica: "Mensageiro de Deus" },
+        { palavra: "APOSTOLO", dica: "Seguidor escolhido por Jesus" },
+        { palavra: "DISCIPULO", dica: "Aprendiz de Jesus" },
+
+        { palavra: "EVANGELHO", dica: "Boas novas sobre Jesus" },
+        { palavra: "MILAGRE", dica: "Ato sobrenatural de Deus" },
+        { palavra: "ORACAO", dica: "Comunicação com Deus" },
+        { palavra: "JEJUM", dica: "Prática espiritual de abstinência" },
+        { palavra: "ADORACAO", dica: "Ato de louvar a Deus" },
+
+        { palavra: "PECADO", dica: "Desobediência a Deus" },
+        { palavra: "PERDAO", dica: "Remissão dos pecados" },
+        { palavra: "SALVACAO", dica: "Libertação espiritual" },
+        { palavra: "ARREPENDIMENTO", dica: "Mudança de atitude diante de Deus" },
+        { palavra: "FE", dica: "Confiança em Deus" },
+
+        { palavra: "CEU", dica: "Morada de Deus" },
+        { palavra: "INFERNO", dica: "Lugar de separação de Deus" },
+        { palavra: "PARAISO", dica: "Lugar de descanso eterno" },
+
+        { palavra: "MANDAMENTO", dica: "Ordem dada por Deus" },
+        { palavra: "LEI", dica: "Conjunto de regras divinas" },
+        { palavra: "ALIANCA", dica: "Acordo entre Deus e seu povo" },
+
+        { palavra: "IGREJA", dica: "Comunidade dos cristãos" },
+        { palavra: "TEMPLO", dica: "Lugar de adoração" },
+        { palavra: "ALTAR", dica: "Lugar de oferta a Deus" },
+
+        { palavra: "CRUZ", dica: "Símbolo da morte de Jesus" },
+        { palavra: "RESSURREICAO", dica: "Vitória de Jesus sobre a morte" },
+        { palavra: "BATISMO", dica: "Ato público de fé" },
+        { palavra: "CEIA", dica: "Memorial da morte de Jesus" }
     ]
 }
