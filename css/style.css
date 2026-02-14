@@ -187,9 +187,11 @@ label {
 /* ===== Footer ===== */
 footer {
     display: flex;
+    justify-content: space-between;
     background-color: #0a2540;
     padding: 1rem;
     text-align: center;
+    align-items: center;
 }
 
 .copyright {
@@ -197,7 +199,19 @@ footer {
     font-size: 0.9rem;
 }
 
+.termos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.termos a {
+    font-size: .8rem;
+}
+
 /* ===== Responsivo ===== */
 @media (max-width: 650px) {
-
+    footer {
+        flex-direction: column;
+    }
 }

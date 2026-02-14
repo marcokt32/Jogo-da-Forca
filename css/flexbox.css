@@ -396,6 +396,10 @@ body {
     gap: 8px;
 }
 
+.rodape a {
+    color: #ffffff;
+}
+
 /*Modo Responsivo*/
 
 @media screen and (max-width: 650px) {
