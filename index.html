@@ -123,6 +123,16 @@
 			<div class="grid-container" id="categorias-container">
 			</div>
 		</section>
+		<div id="cookie-banner">
+			<div class="cookie-content">
+				<p>
+					Utilizamos cookies para melhorar sua experiência e exibir anúncios personalizados.
+					Ao continuar navegando, você concorda com nossa
+					<a href="/politica.html" target="_blank">Política de Privacidade</a>.
+				</p>
+				<button id="aceitar-cookies">Aceitar</button>
+			</div>
+		</div>
 	</main>
 
 	<footer class="rodape">
@@ -138,6 +148,21 @@
 	<script type="text/javascript" src="js/render.js"></script>
 	<script type="text/javascript" src="js/forca.js"></script>
 	<script type="text/javascript" src="js/canvas.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const banner = document.getElementById("cookie-banner");
+			const botao = document.getElementById("aceitar-cookies");
+
+			if (!localStorage.getItem("cookiesAceitos")) {
+				banner.style.display = "block";
+			}
+
+			botao.addEventListener("click", function () {
+				localStorage.setItem("cookiesAceitos", "true");
+				banner.style.display = "none";
+			});
+		});
+	</script>
 </body>
 
 </html>

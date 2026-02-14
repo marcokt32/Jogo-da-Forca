@@ -209,6 +209,43 @@ footer {
     font-size: .8rem;
 }
 
+#cookie-banner {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #111;
+    color: white;
+    padding: 15px;
+    display: none;
+    z-index: 9999;
+}
+
+.cookie-content {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#cookie-banner a {
+    color: #00bfff;
+    text-decoration: underline;
+}
+
+#aceitar-cookies {
+    background: #00bfff;
+    border: none;
+    padding: 8px 15px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
 /* ===== Responsivo ===== */
 @media (max-width: 650px) {
     footer {
