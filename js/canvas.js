@@ -108,6 +108,7 @@ function complementarForca(erros) {
     if (erros >= totalEstrelas) {
         fim = true;
         document.querySelector(".pop-up-perdeu").style.display = "flex";
+        pararTimer()
         registrarErro();
     }
 }

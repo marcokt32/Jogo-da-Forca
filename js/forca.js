@@ -3,7 +3,7 @@ let palavraAtualIndex = null;
 let errosRestantes = 3;
 let medidorCombo = 0;
 let estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
-let tempoPadrao = 40
+let tempoPadrao = 60
 let tempoRestante = 30; // segundos
 let intervaloTimer = null;
 
