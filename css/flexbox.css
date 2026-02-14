@@ -219,8 +219,8 @@ body {
 }
 
 .teclado-virtual button {
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2.5rem;
+    height: 3rem;
 }
 
 .fileira {
@@ -429,8 +429,8 @@ body {
     }
 
     .letra {
-        width: 15px;
-        height: 2rem;
+        width: 20px;
+        height: 3rem;
     }
 
     .teclado-virtual {
