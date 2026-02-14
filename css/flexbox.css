@@ -426,6 +426,19 @@ body {
         padding: 0;
     }
 
+    .card img {
+        min-width: 2.5rem;
+    }
+
+    .card h2 {
+        font-size: 1.1rem;
+        flex-wrap: wrap;
+    }
+
+    .card-info {
+        gap: 1rem;
+    }
+
     .categorias-tittle-box {
         padding: 5% 0;
     }
@@ -463,6 +476,11 @@ body {
 
     .dica-palavra {
         font-size: 1.1rem;
+    }
+
+    .btn-limpar {
+        display: flex;
+        position: inherit;
     }
 
 }

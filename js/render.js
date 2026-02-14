@@ -83,10 +83,10 @@ function renderizarCategorias() {
         const titulo = document.createElement('h2');
         titulo.textContent = categoria.nome;
 
-        card.appendChild(botaoLimpar); // 👈 primeiro elemento (fica sobreposto)
         card.appendChild(img);
         card.appendChild(titulo);
         card.appendChild(info);
+        card.appendChild(botaoLimpar); // 👈 primeiro elemento (fica sobreposto)
 
         container.appendChild(card);
     });
