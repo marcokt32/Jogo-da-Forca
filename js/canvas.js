@@ -2,14 +2,51 @@ function desenharLinhas() {
     const forca = document.getElementById("forca");
     forca.innerHTML = "";
 
+    let linha = document.createElement("div");
+    linha.classList.add("linha");
+
+    let contadorLetras = 0;
+    const LIMITE_POR_LINHA = 15;
+
     for (let i = 0; i < palavraSecreta.length; i++) {
-        if (palavraSecreta[i] === " ") {
-            forca.innerHTML += `<p class="letra espaco"></p>`;
-        } else {
-            forca.innerHTML += `<p class="letra" id="letra-${i}"></p>`;
+
+        const caractere = palavraSecreta[i];
+
+        // 🔹 Se for espaço, finaliza linha atual
+        if (caractere === " ") {
+            forca.appendChild(linha);
+
+            linha = document.createElement("div");
+            linha.classList.add("linha");
+
+            contadorLetras = 0;
+            continue;
         }
+
+        // 🔹 Se ultrapassar limite e não houver espaço
+        if (contadorLetras >= LIMITE_POR_LINHA) {
+            forca.appendChild(linha);
+
+            linha = document.createElement("div");
+            linha.classList.add("linha");
+
+            contadorLetras = 0;
+        }
+
+        const letra = document.createElement("p");
+        letra.classList.add("letra");
+        letra.id = `letra-${i}`;
+
+        linha.appendChild(letra);
+
+        contadorLetras++;
     }
+
+    // adiciona última linha
+    forca.appendChild(linha);
 }
+
+
 
 
 function escreverLetraCorreta(index, letra) {

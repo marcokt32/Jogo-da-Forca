@@ -219,8 +219,8 @@ body {
 }
 
 .teclado-virtual button {
-    width: 2rem;
-    height: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
 }
 
 .fileira {
@@ -325,6 +325,8 @@ body {
 
 
 #forca {
+    display: flex;
+    flex-direction: column;
     max-width: 100%;
     justify-content: center;
     align-items: center;
@@ -369,50 +371,74 @@ body {
     text-align: center;
 }
 
+.linha {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
 /*Modo Responsivo*/
 
 @media screen and (max-width: 650px) {
-    body {
-        display: flex;
-        flex-direction: column;
+    html {
+        font-size: .8rem;
     }
 
-    main {
-        padding: 2% 0;
+    h2 {
+        font-size: 1.2rem;
     }
 
-    .tutorial {
-        display: none;
+    .principal {
+        padding: 3%;
+    }
+
+    .categorias {
+        width: 100%;
+    }
+
+    .grid-container {
+        width: 90%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card {
+        flex-direction: row;
+        height: 5rem;
+        padding: 0;
+    }
+
+    .categorias-tittle-box {
+        padding: 5% 0;
+    }
+
+    .status-categoria {
+        width: 100%;
+        margin: 1rem 0;
+    }
+
+    .dica-palavra {
+        height: auto;
     }
 
     .container-principal {
-        flex-direction: column;
-    }
-
-    .desenho-forca {
-        width: 80%;
+        width: 100%;
     }
 
     .area-canvas {
         width: 100%;
     }
 
-    main {
-        min-height: 100%;
-        height: auto;
+    .letra {
+        width: 15px;
+        height: 2rem;
     }
 
     .teclado-virtual {
-        padding: .3rem;
+        padding: .5rem 0;
     }
 
-    #forca {
-        gap: .5rem;
+    .dica-palavra {
+        font-size: 1.1rem;
     }
-
-    .letra {
-        width: 1rem;
-    }
-
 
 }

@@ -199,11 +199,5 @@ footer {
 
 /* ===== Responsivo ===== */
 @media (max-width: 650px) {
-    html {
-        font-size: 15px;
-    }
 
-    main {
-        padding: 1rem;
-    }
 }
