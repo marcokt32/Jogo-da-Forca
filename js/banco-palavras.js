@@ -1283,7 +1283,7 @@ const bancoPalavras = {
         { palavra: "EXPRESSAO", dica: "Conjunto de números e operações" },
         { palavra: "EQUACAO", dica: "Igualdade com incógnita" },
         { palavra: "INEQUACAO", dica: "Desigualdade matemática" },
-        { palavra: "INCÓGNITA", dica: "Valor desconhecido em uma equação" },
+        { palavra: "INCOGNITA", dica: "Valor desconhecido em uma equação" },
 
         { palavra: "ALGEBRA", dica: "Área da matemática que usa letras e símbolos" },
         { palavra: "ARITMETICA", dica: "Área da matemática que estuda números e operações" },
