@@ -61,7 +61,9 @@
 						<div class="display-vidas"></div>
 						<h2 class="display-pontuacao"></h2>
 						<div class="combo-container">
-							<div id="barra-combo"></div>
+							<div id="barra-combo">
+								<span id="texto-combo"></span>
+							</div>
 						</div>
 					</div>
 					<div class="status-categoria">
@@ -70,6 +72,8 @@
 							<div class="barra-preenchida"></div>
 						</div>
 						<span class="status-contador"></span>
+						<span class="timer-span">TEMPO</span>
+						<div id="timer">60</div>
 					</div>
 					<h2 class="dica-palavra"></h2>
 					<div class="vidas">
@@ -107,7 +111,8 @@
 			<div class="botoes-in-game">
 				<button class="botao-reiniciar" id="botao-reiniciar" onclick="reiniciar()">Reiniciar</button>
 				<button class="botao-proxima" id="botao-proxima" onclick="novaRodada()">Próxima</button>
-				<button class="botao-nova-categoria" id="botao-nova-categoria" onclick="mudarCategoria()">Mudar Categoria</button>
+				<button class="botao-nova-categoria" id="botao-nova-categoria" onclick="mudarCategoria()">Mudar
+					Categoria</button>
 			</div>
 		</section>
 		<section class="categorias" id="categorias">

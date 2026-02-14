@@ -223,8 +223,8 @@ body {
 }
 
 .teclado-virtual button {
-    width: 2.5rem;
-    height: 3.5rem;
+    width: 2rem;
+    height: 2.5rem;
 }
 
 .fileira {
@@ -246,11 +246,16 @@ body {
 }
 
 .dica-palavra {
+    width: 90%;
     display: flex;
     height: 1.5rem;
     font-size: 1.2rem;
     justify-content: center;
     align-items: center;
+}
+
+.timer-span {
+    font-weight: bold;
 }
 
 .display {
@@ -284,6 +289,16 @@ body {
     transition: width 0.3s ease;
 }
 
+#texto-combo {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#timer {
+    font-weight: bold;
+}
+
 .display-categoria,
 .display-pontuacao {
     display: flex;
@@ -302,7 +317,7 @@ body {
     gap: 1rem;
     margin: .5rem 0;
     font-family: "Inter", sans-serif;
-    width: 30rem
+    width: 90%
 }
 
 .barra-progresso {
@@ -416,7 +431,7 @@ body {
     }
 
     .status-categoria {
-        width: 100%;
+        width: 90%;
         margin: 1rem 0;
     }
 
@@ -439,6 +454,11 @@ body {
 
     .teclado-virtual {
         padding: .5rem 0;
+    }
+
+    .teclado-virtual button {
+        width: 2.5rem;
+        height: 3.5rem;
     }
 
     .dica-palavra {

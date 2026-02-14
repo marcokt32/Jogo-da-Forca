@@ -47,6 +47,20 @@ function desenharLinhas() {
 }
 
 
+function atualizarTimerTela() {
+    document.getElementById("timer").innerText = tempoRestante;
+}
+
+function fimDeJogoPorTempo() {
+    alert("⏰ Tempo esgotado!");
+    fim = true;
+    document.querySelector(".pop-up-perdeu").style.display = "flex";
+    registrarErro();
+    pararTimer()
+    resetarCombo()
+    finalizarJogo(false);
+}
+
 
 
 function escreverLetraCorreta(index, letra) {
@@ -97,14 +111,21 @@ function complementarForca(erros) {
         registrarErro();
     }
 }
+
 function atualizarBarraCombo() {
     const barra = document.getElementById("barra-combo");
+    const texto = document.getElementById("texto-combo");
 
     if (medidorCombo > 1) {
         let porcentagem = (medidorCombo / 8) * 100;
+
+        if (porcentagem > 100) porcentagem = 100;
+
         barra.style.width = porcentagem + "%";
+        texto.innerText = medidorCombo + "x";
     } else {
-        barra.style.width = 0 + "%";
+        barra.style.width = "0%";
+        texto.innerText = "";
     }
 }
 

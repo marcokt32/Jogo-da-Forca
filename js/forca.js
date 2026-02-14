@@ -3,6 +3,10 @@ let palavraAtualIndex = null;
 let errosRestantes = 3;
 let medidorCombo = 0;
 let estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
+let tempoPadrao = 40
+let tempoRestante = 30; // segundos
+let intervaloTimer = null;
+
 
 let palavrasRespondidas = JSON.parse(
     localStorage.getItem('palavrasRespondidas')
@@ -77,6 +81,8 @@ function zeraPontuacao() {
 }
 
 function iniciarJogo() {
+    clearInterval(intervaloTimer);
+    iniciarTimer();
     limparEstado();
     atualizarBarraCombo();
 
@@ -298,6 +304,7 @@ function verificarVitoria() {
         }
         fim = true;
         document.querySelector(".pop-up-ganhou").style.display = "flex";
+        pararTimer()
         calcularPontuacao()
         confirmarPalavraRespondida();
         atualizarStatusCategoria(categoriaAtual);
@@ -547,4 +554,26 @@ function atualizarDisplayVidas() {
 function resetarCombo() {
     medidorCombo = 0;
     atualizarBarraCombo();
+}
+
+function iniciarTimer() {
+    tempoRestante = tempoPadrao;
+    atualizarTimerTela();
+
+    intervaloTimer = setInterval(() => {
+        tempoRestante--;
+        atualizarTimerTela();
+
+        if (tempoRestante <= 0) {
+            clearInterval(intervaloTimer);
+            fimDeJogoPorTempo();
+        }
+    }, 1000);
+}
+
+function pararTimer() {
+    if (intervaloTimer !== null) {
+        clearInterval(intervaloTimer);
+        intervaloTimer = null;
+    }
 }
