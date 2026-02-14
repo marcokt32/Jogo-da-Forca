@@ -1509,30 +1509,27 @@ const bancoPalavras = {
         { palavra: "ADAO", dica: "Primeiro homem criado por Deus" },
         { palavra: "EVA", dica: "Primeira mulher segundo a Bíblia" },
         { palavra: "NOE", dica: "Construtor da arca durante o dilúvio" },
-        { palavra: "ABRAAO", dica: "Patriarca do povo hebreu" },
         { palavra: "ISAQUE", dica: "Filho de Abraão" },
         { palavra: "JACO", dica: "Pai das doze tribos de Israel" },
-        { palavra: "JOSE DO EGITO", dica: "Filho de Jacó vendido como escravo" },
+        { palavra: "JOSE", dica: "Filho de Jacó vendido como escravo" },
 
         { palavra: "MOISES", dica: "Líder que libertou os hebreus do Egito" },
         { palavra: "DEZ MANDAMENTOS", dica: "Leis entregues a Moisés no Monte Sinai" },
         { palavra: "MAR VERMELHO", dica: "Mar aberto para a fuga dos hebreus" },
         { palavra: "MONTE SINAI", dica: "Local onde Moisés recebeu a Lei" },
 
-        { palavra: "DAVI", dica: "Rei que derrotou Golias" },
         { palavra: "GOLIAS", dica: "Gigante filisteu derrotado por Davi" },
-        { palavra: "SALOMAO", dica: "Rei conhecido por sua sabedoria" },
         { palavra: "PROVERBIOS", dica: "Livro bíblico de sabedoria" },
         { palavra: "ECLESIASTES", dica: "Livro que reflete sobre o sentido da vida" },
         { palavra: "SALMOS", dica: "Livro de cânticos e orações" },
 
         { palavra: "PROFETA", dica: "Pessoa que transmite mensagens divinas" },
-        { palavra: "ISAÍAS", dica: "Profeta do Antigo Testamento" },
+        { palavra: "ISAIAS", dica: "Profeta do Antigo Testamento" },
         { palavra: "JEREMIAS", dica: "Profeta conhecido como o profeta chorão" },
         { palavra: "EZEQUIEL", dica: "Profeta do exílio babilônico" },
-        { palavra: "DANIEL", dica: "Profeta que interpretava sonhos" },
+        { palavra: "DANIEL", dica: "Jogado na cova do leões" },
 
-        { palavra: "BELÉM", dica: "Cidade onde Jesus nasceu" },
+        { palavra: "BELEM", dica: "Cidade onde Jesus nasceu" },
         { palavra: "JERUSALEM", dica: "Cidade sagrada para judeus e cristãos" },
         { palavra: "NAZARE", dica: "Cidade onde Jesus cresceu" },
         { palavra: "GALILEIA", dica: "Região onde Jesus pregou" },
@@ -1555,7 +1552,6 @@ const bancoPalavras = {
         { palavra: "FILHO PRODIGO", dica: "Parábola sobre perdão e arrependimento" },
 
         { palavra: "CRUCIFICACAO", dica: "Forma de morte de Jesus" },
-        { palavra: "RESSURREICAO", dica: "Vitória de Jesus sobre a morte" },
         { palavra: "ASCENSAO", dica: "Subida de Jesus aos céus" },
 
         { palavra: "ESPIRITO SANTO", dica: "Terceira pessoa da Trindade" },
@@ -1566,12 +1562,11 @@ const bancoPalavras = {
 
         { palavra: "APOCALIPSE", dica: "Livro profético escrito por João" },
         { palavra: "ARMAGEDOM", dica: "Batalha final entre o bem e o mal" },
-        { palavra: "JUÍZO FINAL", dica: "Evento do julgamento final da humanidade" },
+        { palavra: "JUIZO FINAL", dica: "Evento do julgamento final da humanidade" },
 
         { palavra: "FE", dica: "Confiança em Deus" },
         { palavra: "GRACA", dica: "Favor imerecido concedido por Deus" },
         { palavra: "SALVACAO", dica: "Libertação espiritual do pecado" },
-        { palavra: "PECADO", dica: "Desobediência à vontade divina" },
         { palavra: "ARREPENDIMENTO", dica: "Mudança de atitude diante de Deus" },
 
         { palavra: "ORACAO", dica: "Comunicação com Deus" },
@@ -1582,11 +1577,9 @@ const bancoPalavras = {
         { palavra: "MESSIAS", dica: "Ungido prometido por Deus" },
         { palavra: "BIBLIA", dica: "Livro sagrado do cristianismo" },
         { palavra: "TESTAMENTO", dica: "Divisão principal da Bíblia" },
-        { palavra: "ANTIGO", dica: "Parte da Bíblia antes de Cristo" },
-        { palavra: "NOVO", dica: "Parte da Bíblia sobre Jesus e a Igreja" },
+        { palavra: "ANTIGO TESTAMENTO", dica: "Parte da Bíblia antes de Cristo" },
+        { palavra: "NOVO TESTAMENTO", dica: "Parte da Bíblia sobre Jesus e a Igreja" },
 
-        { palavra: "GENESIS", dica: "Primeiro livro da Bíblia" },
-        { palavra: "EXODO", dica: "Livro sobre a saída do povo do Egito" },
         { palavra: "SALMOS", dica: "Livro de cânticos e orações" },
         { palavra: "PROVERBIOS", dica: "Livro de sabedoria" },
         { palavra: "APOCALIPSE", dica: "Último livro da Bíblia" },
@@ -1600,7 +1593,7 @@ const bancoPalavras = {
         { palavra: "MOISES", dica: "Líder que libertou o povo do Egito" },
         { palavra: "ABRAAO", dica: "Pai de muitas nações" },
         { palavra: "NOE", dica: "Construiu a arca" },
-        { palavra: "DAVID", dica: "Rei de Israel e autor de salmos" },
+        { palavra: "DAVI", dica: "Rei de Israel e autor de salmos" },
         { palavra: "SALOMAO", dica: "Rei conhecido por sua sabedoria" },
 
         { palavra: "PROFETA", dica: "Mensageiro de Deus" },
@@ -1609,9 +1602,7 @@ const bancoPalavras = {
 
         { palavra: "EVANGELHO", dica: "Boas novas sobre Jesus" },
         { palavra: "MILAGRE", dica: "Ato sobrenatural de Deus" },
-        { palavra: "ORACAO", dica: "Comunicação com Deus" },
         { palavra: "JEJUM", dica: "Prática espiritual de abstinência" },
-        { palavra: "ADORACAO", dica: "Ato de louvar a Deus" },
 
         { palavra: "PECADO", dica: "Desobediência a Deus" },
         { palavra: "PERDAO", dica: "Remissão dos pecados" },
