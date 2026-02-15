@@ -38,25 +38,77 @@ function atualizarContadores() {
         `${totalPalavras} palavras`;
 }
 
-function renderizarCategorias() {
+function renderizarCategorias(modo) {
+    modoAtual = modo;
+    configurarInterfacePorModo();
+
     const container = document.querySelector('.grid-container');
     container.innerHTML = '';
 
+    // Renderiza UM ÚNICO card Modo Misto
+    const cardMisto = document.createElement('div');
+    cardMisto.classList.add('card', 'card-misto');
+    cardMisto.innerHTML = `<h2>🔥 Modo Misto</h2>`;
+
+    document.getElementById('fechar-misto')
+        .addEventListener('click', () => {
+            document.getElementById('modal-misto')
+                .classList.add('oculto');
+        });
+    document.getElementById('check-todas')
+        .addEventListener('change', function () {
+
+            const checkboxes = document
+                .querySelectorAll('#lista-categorias-misto input');
+
+            checkboxes.forEach(cb => {
+                cb.checked = this.checked;
+            });
+
+        });
+    document.getElementById('iniciar-misto')
+        .addEventListener('click', () => {
+
+            const selecionadas = [
+                ...document.querySelectorAll(
+                    '#lista-categorias-misto input:checked'
+                )
+            ].map(cb => cb.value);
+
+            if (selecionadas.length === 0) {
+                alert("Selecione pelo menos uma categoria.");
+                return;
+            }
+
+            document.getElementById('modal-misto')
+                .classList.add('oculto');
+
+            sortearPalavraModoMisto(selecionadas);
+        });
+    cardMisto.addEventListener('click', abrirModalMisto);
+
+    container.appendChild(cardMisto);
+
+    // Renderiza categorias normais
     categorias.forEach(categoria => {
+
         const dados = obterDadosCategoria(categoria.id);
+
         const info = document.createElement('div');
         info.classList.add('card-info');
+
         const card = document.createElement('div');
         card.classList.add('card');
         card.dataset.categoria = categoria.id;
 
         info.innerHTML = `
-    <p>🥇<br> ${dados.hiscore}</p>
-    <p>📚<br> ${dados.descobertas}/${dados.totalPalavras}</p>
-`;
+            <p>🥇<br> ${dados.hiscore}</p>
+            <p>📚<br> ${dados.descobertas}/${dados.totalPalavras}</p>
+        `;
 
-
-        card.addEventListener('click', () => iniciarJogoCategoria(categoria.id));
+        card.addEventListener('click', () =>
+            iniciarJogoCategoria(categoria.id)
+        );
 
         // 🔹 Botão limpar
         const botaoLimpar = document.createElement('button');
@@ -64,7 +116,7 @@ function renderizarCategorias() {
         botaoLimpar.classList.add('btn-limpar');
 
         botaoLimpar.addEventListener('click', (e) => {
-            e.stopPropagation(); // 🚨 impede abrir o jogo
+            e.stopPropagation();
 
             const confirmar = confirm(
                 `Deseja limpar as palavras respondidas da categoria "${categoria.nome}"?`
@@ -86,11 +138,13 @@ function renderizarCategorias() {
         card.appendChild(img);
         card.appendChild(titulo);
         card.appendChild(info);
-        card.appendChild(botaoLimpar); // 👈 primeiro elemento (fica sobreposto)
+        card.appendChild(botaoLimpar);
 
         container.appendChild(card);
     });
+
 }
+
 
 function obterDadosCategoria(categoriaId) {
     const totalPalavras = bancoPalavras[categoriaId]?.length || 0;

@@ -89,6 +89,10 @@ footer {
     padding: .5rem;
 }
 
+.titulo .titulo {
+    font-size: 2rem;
+}
+
 .logo {
     height: 100%;
 }
@@ -250,5 +254,9 @@ footer {
 @media (max-width: 650px) {
     footer {
         flex-direction: column;
+    }
+
+    .titulo .titulo {
+        font-size: 2rem;
     }
 }

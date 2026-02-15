@@ -36,20 +36,6 @@
 		<h1 class="titulo">O Enforcado</h1>
 	</header>
 	<main id="main">
-		<section class="campo-nova-palavra">
-			<h2>Jogo Personalizado</h2>
-			<div class="container-nova-palavra">
-				<label for="palavra">Digite a Palavra Secreta.</label>
-				<textarea type="text" name="palavra" id="palavra" class="input"
-					placeholder="Exemplo: futebol"></textarea>
-				<label for="dica">Digite uma Dica.</label>
-				<textarea type="text" name="dica" id="dica" class="input" placeholder="Exemplo: esporte"></textarea>
-			</div>
-			<div class="botoes">
-				<button class="botao" onclick="IniciarJogoPersonalizado()">Iniciar Jogo</button>
-				<button class="botao" onclick="voltar()">Voltar</button>
-			</div>
-		</section>
 		<section class="principal" id="principal">
 			<div class="container-principal">
 				<div class="titulo">
@@ -106,9 +92,11 @@
 			<div class="menu-inicial">
 				<div class="botoes">
 					<a href="#categorias">
-						<button class="botao" onclick=renderizarCategorias()>categorias</button>
+						<button class="botao" onclick="renderizarCategorias('casual')">🎮 Casual</button>
 					</a>
-					<button class="botao" onclick="adicionarPalavra()">Jogo Personalizado</button>
+					<a href="#categorias">
+						<button class="botao" onclick="renderizarCategorias('desafio')">⏱️ Desafio</button>
+					</a>
 				</div>
 			</div>
 			<div class="pop-up-perdeu">
@@ -138,6 +126,25 @@
 				<p class="categorias-subtittle">Selecione um tópico e comece seu desafio</p>
 			</div>
 			<div class="grid-container" id="categorias-container">
+			</div>
+			<div id="modal-misto" class="modal oculto">
+				<div class="modal-conteudo">
+
+					<h2>🔥 Modo Misto</h2>
+
+					<label class="checkbox-todas">
+						<input type="checkbox" id="check-todas">
+						Selecionar Todas
+					</label>
+
+					<div id="lista-categorias-misto"></div>
+
+					<div class="botoes-misto">
+						<button id="iniciar-misto" class="iniciar-misto">Iniciar Jogo</button>
+						<button id="fechar-misto" class="fechar-misto">Voltar</button>
+					</div>
+
+				</div>
 			</div>
 		</section>
 		<div id="cookie-banner">

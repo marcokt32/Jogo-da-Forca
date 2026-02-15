@@ -6,6 +6,10 @@ let estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
 let tempoPadrao = 60
 let tempoRestante = 30; // segundos
 let intervaloTimer = null;
+let modoAtual = null; // "casual" ou "desafio"
+let modoMisto = false
+let categoriasModoMisto = []
+
 
 
 let palavrasRespondidas = JSON.parse(
@@ -28,10 +32,12 @@ function iniciarJogoCategoria(categoria) {
     limparEstado()
     limparJogo()
     resetarCombo()
+    if (modoMisto === false) {
+        errosRestantes = 3; // 🔥 reseta vidas
+    }
     categoriaAtual = categoria;
     atualizarStatusCategoria(categoria);
     mostrarPontuacaoCategoria(categoria);
-    errosRestantes = 3; // 🔥 reseta vidas
     atualizarDisplayVidas()
     zeraPontuacao()
 
@@ -51,22 +57,25 @@ function iniciarJogoCategoria(categoria) {
 function continuarCategoria(categoria) {
     document.querySelector(".pop-up-perdeu").style.display = "none";
     document.querySelector(".pop-up-ganhou").style.display = "none";
-    categoriaAtual = categoria;
     atualizarStatusCategoria(categoria);
     mostrarPontuacaoCategoria(categoria);
     atualizarDisplayVidas()
+    if (modoMisto === true) {
+        sortearPalavraModoMisto(categoriasModoMisto)
+    } else {
+        categoriaAtual = categoria;
 
-    const sorteada = sortearPalavraCategoria(categoria);
+        const sorteada = sortearPalavraCategoria(categoria);
 
-    if (!sorteada) {
-        alert("🎉 Você já completou esta categoria!");
-        return;
+        if (!sorteada) {
+            alert("🎉 Você já completou esta categoria!");
+            return;
+        }
+
+        palavraSecreta = sorteada.palavra;
+        dicaAtual = sorteada.dica;
+        iniciarJogo();
     }
-
-    palavraSecreta = sorteada.palavra;
-    dicaAtual = sorteada.dica;
-
-    iniciarJogo();
 }
 
 function zeraPontuacao() {
@@ -82,9 +91,11 @@ function zeraPontuacao() {
 
 function iniciarJogo() {
     clearInterval(intervaloTimer);
-    iniciarTimer();
     limparEstado();
     atualizarBarraCombo();
+    if (modoAtual === "desafio") {
+        iniciarTimer();
+    }
 
     totalLetras = palavraSecreta.replace(/ /g, "").length;
     adicionaTecladoVirtual();
@@ -146,23 +157,6 @@ function adicionaTecladoVirtual() {
 
 }
 
-function IniciarJogoPersonalizado() {
-    palavraSecreta = document.getElementById('palavra').value.toUpperCase();
-    dicaAtual = document.getElementById('dica').value.toUpperCase();
-
-    adicionaTecladoVirtual();
-    document.querySelector(".tutorial").style.display = "none";
-    document.querySelector(".area-canvas").style.display = "flex";
-    document.querySelector(".menu-inicial").style.display = "none";
-    document.getElementById("botao-desistir").style.display = "initial";
-    document.getElementById("forca").style.display = "flex";
-    document.querySelector(".campo-nova-palavra").style.display = "none";
-    document.querySelector(".principal").style.display = "flex";
-    document.querySelector(".dica-palavra").innerText = "Dica da Palvra:  " + dicaAtual;
-    iniciarJogo();
-
-}
-
 function verificarLetra(codkey) {
     let estado = false
     if (((codkey >= 97) && (codkey <= 122))) {
@@ -217,13 +211,16 @@ function novaRodada() {
     limparJogo()
     if (errosRestantes > 1) {
         if (document.querySelector(".pop-up-perdeu").style.display === "none"
-            & document.querySelector(".pop-up-ganhou").style.display === "none") {
+            && document.querySelector(".pop-up-ganhou").style.display === "none") {
+            continuarCategoria(categoriaAtual)
             registrarErro()
+        } else {
+            continuarCategoria(categoriaAtual)
         }
-        continuarCategoria(categoriaAtual)
+
     } else if (errosRestantes === 1) {
         if (document.querySelector(".pop-up-perdeu").style.display === "none"
-            & document.querySelector(".pop-up-ganhou").style.display === "none") {
+            && document.querySelector(".pop-up-ganhou").style.display === "none") {
             alert("Você não pode pular essa!")
         } else {
             continuarCategoria(categoriaAtual)
@@ -235,22 +232,20 @@ function novaRodada() {
 function reiniciarPagina() {
     resetarCombo()
     limparEstado()
-    document.querySelector(".categorias").style.display = "flex";
-    document.querySelector(".principal").style.display = "flex";
-    document.querySelector(".tutorial").style.display = "flex";
-    document.querySelector(".contadores").style.display = "flex";
-    document.querySelector(".menu-inicial").style.display = "flex";
-    document.querySelector(".pop-up-perdeu").style.display = "none";
-    document.querySelector(".pop-up-ganhou").style.display = "none";
-    document.querySelector(".campo-nova-palavra").style.display = "none";
-    document.querySelector(".area-canvas").style.display = "none";
-    document.querySelector(".teclado-virtual").style.display = "none";
-    document.querySelector(".botoes-in-game").style.display = "none";
+    limparJogo()
+    pararTimer()
+    window.location.hash = "";
+    modoAtual = "";
+
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
+    document.getElementById('categorias').style.display = "none"
+
+    location.reload();
 }
 
 function adicionarPalavra() {
@@ -316,6 +311,7 @@ function limparEstado() {
     erros = 0;
     acertos = 0;
     letrasUsadas = [];
+    console.log(categoriaAtual)
 }
 
 function limparJogo() {
@@ -419,6 +415,41 @@ function sortearPalavraCategoria(categoria) {
     palavraAtualIndex = indice; // guarda temporariamente
     return lista[indice];
 }
+
+function sortearPalavraModoMisto(categoriasSelecionadas) {
+    categoriasModoMisto = categoriasSelecionadas
+    modoMisto = true
+    let categoriasDisponiveis = [...categoriasSelecionadas];
+    while (categoriasDisponiveis.length > 0) {
+
+        const indiceCategoria = Math.floor(
+            Math.random() * categoriasDisponiveis.length
+        );
+
+        const categoriaSorteada = categoriasDisponiveis[indiceCategoria];
+
+        // Testa se ainda existe palavra disponível
+        const palavraTeste = sortearPalavraCategoria(categoriaSorteada);
+
+        if (palavraTeste !== null) {
+
+            // ⚠️ Importante:
+            // precisamos "desfazer" o sorteio teste
+            palavrasRespondidas[categoriaSorteada].pop();
+
+            // Agora inicia o jogo oficialmente
+            categoriaAtual = categoriaSorteada
+            iniciarJogoCategoria(categoriaAtual);
+            return;
+        }
+
+        // Remove categoria esgotada
+        categoriasDisponiveis.splice(indiceCategoria, 1);
+    }
+
+    alert("Todas as categorias selecionadas foram concluídas.");
+}
+
 
 function atualizarStatusCategoria(categoria) {
     const total = bancoPalavras[categoria].length;
@@ -576,4 +607,38 @@ function pararTimer() {
         clearInterval(intervaloTimer);
         intervaloTimer = null;
     }
+}
+
+function configurarInterfacePorModo() {
+    const timer = document.getElementById("timer");
+    const timerSpan = document.querySelector(".timer-span");
+    const statusContador = document.querySelector(".status-contador");
+
+    if (modoAtual === "casual") {
+        timer.style.display = "none";
+        timerSpan.style.display = "none";
+        statusContador.style.display = "none";
+    } else {
+        timer.style.display = "block";
+        timerSpan.style.display = "inline";
+        statusContador.style.display = "inline";
+    }
+}
+
+function abrirModalMisto() {
+    const modal = document.getElementById('modal-misto');
+    const lista = document.getElementById('lista-categorias-misto');
+
+    lista.innerHTML = '';
+
+    categorias.forEach(cat => {
+        const label = document.createElement('label');
+        label.innerHTML = `
+      <input type="checkbox" value="${cat.id}">
+      ${cat.nome}
+    `;
+        lista.appendChild(label);
+    });
+
+    modal.classList.remove('oculto');
 }
