@@ -26,7 +26,15 @@ function inicializarCategoria(categoria) {
     }
 }
 
+function iniciarModoMisto(selecionadas) {
+    categoriasModoMisto = selecionadas
+    modoMisto = true
+    const sorteada = sortearCategoria(selecionadas)
+    iniciarJogoCategoria(sorteada)
+}
+
 function iniciarJogoCategoria(categoria) {
+
     document.querySelector(".pop-up-perdeu").style.display = "none";
     document.querySelector(".pop-up-ganhou").style.display = "none";
     limparEstado()
@@ -60,22 +68,19 @@ function continuarCategoria(categoria) {
     atualizarStatusCategoria(categoria);
     mostrarPontuacaoCategoria(categoria);
     atualizarDisplayVidas()
-    if (modoMisto === true) {
-        sortearPalavraModoMisto(categoriasModoMisto)
-    } else {
-        categoriaAtual = categoria;
 
-        const sorteada = sortearPalavraCategoria(categoria);
+    categoriaAtual = categoria;
 
-        if (!sorteada) {
-            alert("🎉 Você já completou esta categoria!");
-            return;
-        }
+    const sorteada = sortearPalavraCategoria(categoria);
 
-        palavraSecreta = sorteada.palavra;
-        dicaAtual = sorteada.dica;
-        iniciarJogo();
+    if (!sorteada) {
+        alert("🎉 Você já completou esta categoria!");
+        return;
     }
+
+    palavraSecreta = sorteada.palavra;
+    dicaAtual = sorteada.dica;
+    iniciarJogo();
 }
 
 function zeraPontuacao() {
@@ -90,6 +95,7 @@ function zeraPontuacao() {
 }
 
 function iniciarJogo() {
+    pararTimer()
     clearInterval(intervaloTimer);
     limparEstado();
     atualizarBarraCombo();
@@ -99,7 +105,6 @@ function iniciarJogo() {
 
     totalLetras = palavraSecreta.replace(/ /g, "").length;
     adicionaTecladoVirtual();
-
 
     document.querySelector(".pop-up-perdeu").style.display = "none";
     document.querySelector(".pop-up-ganhou").style.display = "none";
@@ -113,6 +118,7 @@ function iniciarJogo() {
     document.getElementById("forca").style.display = "flex";
     document.getElementById("botao-reiniciar").style.display = "none";
     document.getElementById("botao-proxima").style.display = "block"
+    document.getElementById("canvas-titulo").style.display = "none"
 
     window.scrollTo({
         top: 0,
@@ -212,9 +218,17 @@ function novaRodada() {
     if (errosRestantes > 1) {
         if (document.querySelector(".pop-up-perdeu").style.display === "none"
             && document.querySelector(".pop-up-ganhou").style.display === "none") {
-            continuarCategoria(categoriaAtual)
             registrarErro()
+            if (modoMisto) {
+                const sorteada = sortearCategoria(categoriasModoMisto)
+                categoriaAtual = sorteada
+            }
+            continuarCategoria(categoriaAtual)
         } else {
+            if (modoMisto) {
+                const sorteada = sortearCategoria(categoriasModoMisto)
+                categoriaAtual = sorteada
+            }
             continuarCategoria(categoriaAtual)
         }
 
@@ -223,6 +237,10 @@ function novaRodada() {
             && document.querySelector(".pop-up-ganhou").style.display === "none") {
             alert("Você não pode pular essa!")
         } else {
+            if (modoMisto) {
+                const sorteada = sortearCategoria(categoriasModoMisto)
+                categoriaAtual = sorteada
+            }
             continuarCategoria(categoriaAtual)
         }
     }
@@ -311,7 +329,6 @@ function limparEstado() {
     erros = 0;
     acertos = 0;
     letrasUsadas = [];
-    console.log(categoriaAtual)
 }
 
 function limparJogo() {
@@ -320,7 +337,7 @@ function limparJogo() {
 }
 
 function mudarCategoria() {
-    renderizarCategorias()
+    renderizarCategorias(modoAtual)
     const categorias = document.getElementById("categorias");
 
     document.querySelector(".categorias").style.display = "flex";
@@ -448,6 +465,13 @@ function sortearPalavraModoMisto(categoriasSelecionadas) {
     }
 
     alert("Todas as categorias selecionadas foram concluídas.");
+}
+
+function sortearCategoria(categoriasSelecionadas) {
+    const indiceCategoria = Math.floor(
+        Math.random() * categoriasSelecionadas.length
+    );
+    return categoriasSelecionadas[indiceCategoria];
 }
 
 

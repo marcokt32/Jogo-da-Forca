@@ -82,8 +82,8 @@ function renderizarCategorias(modo) {
 
             document.getElementById('modal-misto')
                 .classList.add('oculto');
-
-            sortearPalavraModoMisto(selecionadas);
+            iniciarModoMisto(selecionadas)
+            //sortearPalavraModoMisto(selecionadas);
         });
     cardMisto.addEventListener('click', abrirModalMisto);
 
