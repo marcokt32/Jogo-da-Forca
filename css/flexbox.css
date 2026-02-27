@@ -200,6 +200,12 @@ body {
     gap: 2rem;
 }
 
+.info-misto {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
 .card-info p {
     font-size: .9rem;
 }
@@ -316,6 +322,9 @@ body {
 }
 
 #barra-combo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     width: 0%;
     background: orange;
@@ -521,6 +530,10 @@ body {
 
     .card img {
         min-width: 2.5rem;
+    }
+
+    .info-misto {
+        flex-direction: row;
     }
 
     .card h2 {

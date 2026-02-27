@@ -41,14 +41,26 @@ function atualizarContadores() {
 function renderizarCategorias(modo) {
     modoAtual = modo;
     configurarInterfacePorModo();
-
     const container = document.querySelector('.grid-container');
     container.innerHTML = '';
 
     // Renderiza UM ÚNICO card Modo Misto
+    const dadosMisto = carregarPontuacoes();
     const cardMisto = document.createElement('div');
     cardMisto.classList.add('card', 'card-misto');
-    cardMisto.innerHTML = `<h2>🔥 Modo Misto</h2>`;
+    let hiscoreMistoCasual = 0;
+    let hiscoreMistoDesafio = 0;
+
+    hiscoreMistoCasual = dadosMisto.misto.casual.hiscore
+    hiscoreMistoDesafio = dadosMisto.misto.desafio.hiscore
+
+    cardMisto.innerHTML = `
+    <h2>🔥 Modo Misto</h2>
+    <div class="info-misto">
+    <p>🎮 ${hiscoreMistoCasual}</p>
+    <p>⏱️ ${hiscoreMistoDesafio}</p>
+    </div>
+    `;
 
     document.getElementById('fechar-misto')
         .addEventListener('click', () => {
@@ -102,7 +114,8 @@ function renderizarCategorias(modo) {
         card.dataset.categoria = categoria.id;
 
         info.innerHTML = `
-            <p>🥇<br> ${dados.hiscore}</p>
+            <p>🎮<br> ${dados.casual}</p>
+            <p>⏱️<br> ${dados.desafio}</p>
             <p>📚<br> ${dados.descobertas}/${dados.totalPalavras}</p>
         `;
 
@@ -147,16 +160,26 @@ function renderizarCategorias(modo) {
 
 
 function obterDadosCategoria(categoriaId) {
+
     const totalPalavras = bancoPalavras[categoriaId]?.length || 0;
     const descobertas = palavrasRespondidas[categoriaId]?.length || 0;
 
-    const pontos = pontuacoes[categoriaId]?.pontos || 0;
-    const hiscore = pontuacoes[categoriaId]?.hiscore || 0;
+    const dados = carregarPontuacoes();
+
+    // Busca somente no modo CASUAL por categoria
+    const dadosCategoriaCasual = dados.casual.categorias[categoriaId] || {
+        pontos: 0,
+        hiscore: 0
+    };
+    const dadosCategoriaDesafio = dados.casual.categorias[categoriaId] || {
+        pontos: 0,
+        hiscore: 0
+    };
 
     return {
         totalPalavras,
         descobertas,
-        pontos,
-        hiscore
+        casual: dadosCategoriaCasual.hiscore,
+        desafio: dadosCategoriaDesafio.hiscore
     };
 }

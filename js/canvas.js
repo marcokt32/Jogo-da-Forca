@@ -67,10 +67,7 @@ function fimDeJogoPorTempo() {
     registrarErro();
     pararTimer()
     resetarCombo()
-    finalizarJogo(false);
 }
-
-
 
 function escreverLetraCorreta(index, letra) {
     if (fim) return;

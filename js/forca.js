@@ -10,21 +10,9 @@ let modoAtual = null; // "casual" ou "desafio"
 let modoMisto = false
 let categoriasModoMisto = []
 
-
-
 let palavrasRespondidas = JSON.parse(
     localStorage.getItem('palavrasRespondidas')
 ) || {};
-
-let pontuacoes = JSON.parse(
-    localStorage.getItem('pontuacoesCategorias')
-) || {};
-
-function inicializarCategoria(categoria) {
-    if (!palavrasRespondidas[categoria]) {
-        palavrasRespondidas[categoria] = [];
-    }
-}
 
 function iniciarModoMisto(selecionadas) {
     categoriasModoMisto = selecionadas
@@ -37,7 +25,6 @@ function iniciarJogoCategoria(categoria) {
 
     document.querySelector(".pop-up-perdeu").style.display = "none";
     document.querySelector(".pop-up-ganhou").style.display = "none";
-    limparEstado()
     limparJogo()
     resetarCombo()
     if (modoMisto === false) {
@@ -45,9 +32,9 @@ function iniciarJogoCategoria(categoria) {
     }
     categoriaAtual = categoria;
     atualizarStatusCategoria(categoria);
-    mostrarPontuacaoCategoria(categoria);
-    atualizarDisplayVidas()
-    zeraPontuacao()
+    zeraPontuacao();
+    mostrarPontuacaoAtual();
+    atualizarDisplayVidas();
 
     const sorteada = sortearPalavraCategoria(categoria);
 
@@ -66,7 +53,7 @@ function continuarCategoria(categoria) {
     document.querySelector(".pop-up-perdeu").style.display = "none";
     document.querySelector(".pop-up-ganhou").style.display = "none";
     atualizarStatusCategoria(categoria);
-    mostrarPontuacaoCategoria(categoria);
+    mostrarPontuacaoAtual();
     atualizarDisplayVidas()
 
     categoriaAtual = categoria;
@@ -83,21 +70,9 @@ function continuarCategoria(categoria) {
     iniciarJogo();
 }
 
-function zeraPontuacao() {
-    if (pontuacoes[categoriaAtual]) {
-        pontuacoes[categoriaAtual].pontos = 0; // zera só a pontuação atual
-
-        localStorage.setItem(
-            'pontuacoesCategorias',
-            JSON.stringify(pontuacoes)
-        );
-    }
-}
-
 function iniciarJogo() {
     pararTimer()
     clearInterval(intervaloTimer);
-    limparEstado();
     atualizarBarraCombo();
     if (modoAtual === "desafio") {
         iniciarTimer();
@@ -205,15 +180,11 @@ function recarregar() {
 }
 
 function reiniciar() {
-    errosRestantes = 3
-    limparJogo()
-    limparEstado()
     resetarCombo()
     novaRodada()
 }
 
 function novaRodada() {
-    limparEstado()
     limparJogo()
     if (errosRestantes > 1) {
         if (document.querySelector(".pop-up-perdeu").style.display === "none"
@@ -249,7 +220,6 @@ function novaRodada() {
 
 function reiniciarPagina() {
     resetarCombo()
-    limparEstado()
     limparJogo()
     pararTimer()
     window.location.hash = "";
@@ -324,16 +294,14 @@ function verificarVitoria() {
     }
 }
 
-function limparEstado() {
+function limparJogo() {
     fim = false;
     erros = 0;
     acertos = 0;
     letrasUsadas = [];
-}
-
-function limparJogo() {
     palavraSecreta = ""
     dicaAtual = ""
+    errosRestantes = 3
 }
 
 function mudarCategoria() {
@@ -348,68 +316,6 @@ function mudarCategoria() {
             block: "start"
         });
     }
-}
-
-function calcularPontuacao() {
-    if (!categoriaAtual) return;
-
-    const estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
-    const multiplicadorCombo = medidorCombo > 0 ? medidorCombo : 1;
-    const pontosGanhos = 10 * estrelasAtivas * multiplicadorCombo;
-
-    if (pontosGanhos === 0) return;
-
-    if (!pontuacoes[categoriaAtual]) {
-        pontuacoes[categoriaAtual] = {
-            pontos: 0,
-            hiscore: 0
-        };
-    }
-
-    const valorInicial = pontuacoes[categoriaAtual].pontos;
-    const valorFinal = valorInicial + pontosGanhos;
-
-    // Atualiza pontuação real
-    pontuacoes[categoriaAtual].pontos = valorFinal;
-
-    // Atualiza hi-score
-    if (valorFinal > pontuacoes[categoriaAtual].hiscore) {
-        pontuacoes[categoriaAtual].hiscore = valorFinal;
-    }
-
-    // Salva
-    localStorage.setItem(
-        'pontuacoesCategorias',
-        JSON.stringify(pontuacoes)
-    );
-
-    // 🔥 Agora anima
-    animarPontuacao(valorInicial, valorFinal, categoriaAtual);
-}
-
-function animarPontuacao(valorInicial, valorFinal, categoria) {
-    const display = document.querySelector('.display-pontuacao');
-    const inicio = performance.now();
-    const duracao = 600;
-
-    function animar(tempoAtual) {
-        const progresso = Math.min((tempoAtual - inicio) / duracao, 1);
-
-        const valorAtual = Math.floor(
-            valorInicial + (valorFinal - valorInicial) * progresso
-        );
-
-        const hiscore = pontuacoes[categoria]?.hiscore || 0;
-
-        display.textContent =
-            `Pontos: ${valorAtual} | Recorde: ${hiscore}`;
-
-        if (progresso < 1) {
-            requestAnimationFrame(animar);
-        }
-    }
-
-    requestAnimationFrame(animar);
 }
 
 function sortearPalavraCategoria(categoria) {
@@ -529,45 +435,6 @@ function limparCategoria(categoria) {
     console.log(`Categoria ${categoria} limpa COMPLETAMENTE.`);
 }
 
-function adicionarPontos(categoria, pontos) {
-    if (!pontuacoes[categoria]) {
-        pontuacoes[categoria] = {
-            pontos: 0,
-            hiscore: 0
-        };
-    }
-
-    pontuacoes[categoria].pontos += pontos;
-
-    // Atualiza hi-score se necessário
-    if (pontuacoes[categoria].pontos > pontuacoes[categoria].hiscore) {
-        pontuacoes[categoria].hiscore = pontuacoes[categoria].pontos;
-    }
-
-    salvarPontuacoes();
-}
-
-function salvarPontuacoes() {
-    localStorage.setItem(
-        'pontuacoesCategorias',
-        JSON.stringify(pontuacoes)
-    );
-}
-
-function resetarPontuacaoCategoria(categoria) {
-    if (!pontuacoes[categoria]) return;
-
-    pontuacoes[categoria].pontos = 0;
-    salvarPontuacoes();
-}
-
-function mostrarPontuacaoCategoria(categoria) {
-    const dados = pontuacoes[categoria] || { pontos: 0, hiscore: 0 };
-
-    document.querySelector('.display-pontuacao').textContent =
-        `Pontos: ${dados.pontos} | Recorde: ${dados.hiscore}`;
-}
-
 function registrarErro() {
     if (errosRestantes <= 0) return;
 
@@ -596,7 +463,7 @@ function gameOver() {
         );
     }
 
-    mostrarPontuacaoCategoria(categoriaAtual);
+    mostrarPontuacaoAtual();
 }
 
 
