@@ -203,18 +203,27 @@ function novaRodada() {
             continuarCategoria(categoriaAtual)
         }
 
-    } else if (errosRestantes === 1) {
-        if (document.querySelector(".pop-up-perdeu").style.display === "none"
-            && document.querySelector(".pop-up-ganhou").style.display === "none") {
-            alert("Você não pode pular essa!")
+    } else
+        if (errosRestantes === 1) {
+            if (document.querySelector(".pop-up-perdeu").style.display === "none"
+                && document.querySelector(".pop-up-ganhou").style.display === "none") {
+                alert("Você não pode pular essa!")
+            } else {
+                if (modoMisto) {
+                    const sorteada = sortearCategoria(categoriasModoMisto)
+                    categoriaAtual = sorteada
+                }
+                continuarCategoria(categoriaAtual)
+            }
         } else {
             if (modoMisto) {
                 const sorteada = sortearCategoria(categoriasModoMisto)
                 categoriaAtual = sorteada
             }
+            zeraPontuacao()
+            errosRestantes = 3
             continuarCategoria(categoriaAtual)
         }
-    }
 
 }
 
@@ -301,7 +310,6 @@ function limparJogo() {
     letrasUsadas = [];
     palavraSecreta = ""
     dicaAtual = ""
-    errosRestantes = 3
 }
 
 function mudarCategoria() {
@@ -452,16 +460,6 @@ function gameOver() {
     document.querySelector(".botao-proxima").style.display = "none";
 
     alert("Game Over! Você errou 3 vezes.");
-
-
-    if (pontuacoes[categoriaAtual]) {
-        pontuacoes[categoriaAtual].pontos = 0;
-
-        localStorage.setItem(
-            'pontuacoesCategorias',
-            JSON.stringify(pontuacoes)
-        );
-    }
 
     mostrarPontuacaoAtual();
 }

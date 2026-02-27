@@ -161,8 +161,6 @@ function mostrarPontuacaoAtual() {
 }
 
 function zeraPontuacao() {
-    console.log("zerapontuação funcionou")
-
     const dados = carregarPontuacoes();
 
     // 🔹 Casual por categoria
