@@ -444,6 +444,7 @@ function limparCategoria(categoria) {
 }
 
 function registrarErro() {
+    resetarCombo()
     if (errosRestantes <= 0) return;
 
     errosRestantes--;
