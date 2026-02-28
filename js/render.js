@@ -178,26 +178,22 @@ function renderizarCategorias() {
 }
 
 function popUp(categoriaId) {
-    if (Array.isArray(categoriaId)) {
+    const popup = document.getElementById('popupModo');
+    popup.classList.remove('oculto');
 
-    } else {
-        const popup = document.getElementById('popupModo');
-        popup.classList.remove('oculto');
+    const botoes = popup.querySelectorAll('button');
 
-        const botoes = popup.querySelectorAll('button');
+    botoes.forEach(btn => {
 
-        botoes.forEach(btn => {
+        // BOTÃO VOLTAR
+        if (btn.classList.contains('voltar')) {
+            btn.onclick = () => popup.classList.add('oculto');
+            return;
+        }
 
-            // BOTÃO VOLTAR
-            if (btn.classList.contains('voltar')) {
-                btn.onclick = () => popup.classList.add('oculto');
-                return;
-            }
-
-            // BOTÕES DE MODO
-            btn.onclick = () => popUpModo(btn.value, categoriaId);
-        });
-    }
+        // BOTÕES DE MODO
+        btn.onclick = () => popUpModo(btn.value, categoriaId);
+    });
 
 }
 
@@ -205,7 +201,11 @@ function popUpModo(btnValue, categoriaId) {
     modoAtual = btnValue;
     const popup = document.getElementById('popupModo');
     popup.classList.add('oculto');
-    iniciarJogoCategoria(categoriaId);
+    if (Array.isArray(categoriaId)) {
+        iniciarModoMisto(categoriaId);
+    } else {
+        iniciarJogoCategoria(categoriaId);
+    }
 }
 
 function obterDadosCategoria(categoriaId) {
