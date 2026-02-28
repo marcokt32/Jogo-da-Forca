@@ -62,13 +62,13 @@ function calcularPontuacao() {
 
 function salvarPontuacoes({ modoAtual, modoMisto, categoriaAtual, pontosGanhos }) {
 
-    if (!modoAtual) return;
+    if (!modoAtual) return; // finaliza se modoAtual for vazio
 
-    const dados = carregarPontuacoes();
+    const dados = carregarPontuacoes(); // carrega a estrutura de pontuações e atribui a dados
     let estruturaAtual;
 
-    // 🎯 MODO POR CATEGORIA
-    if (!modoMisto) {
+    // MODO POR CATEGORIA
+    if (!modoMisto) { //SE modoMisto fo FALSE
 
         if (!dados[modoAtual].categorias[categoriaAtual]) {
             dados[modoAtual].categorias[categoriaAtual] = {
@@ -95,6 +95,7 @@ function salvarPontuacoes({ modoAtual, modoMisto, categoriaAtual, pontosGanhos }
     if (valorFinal > estruturaAtual.hiscore) {
         estruturaAtual.hiscore = valorFinal;
     }
+    console.log(estruturaAtual)
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
 

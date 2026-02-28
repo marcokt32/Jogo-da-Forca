@@ -176,7 +176,7 @@ body {
 
 .card {
     padding: 1rem;
-    justify-content: space-around;
+    justify-content: space-between;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -473,12 +473,23 @@ body {
     z-index: 999;
 }
 
+.checkbox-todas {
+    padding: .2rem;
+    border-bottom: 1px solid #0a2540;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .modal-conteudo {
+    margin-top: 1.5rem;
     background: white;
     padding: 20px;
     border-radius: 12px;
     width: 300px;
-    max-height: 80vh;
+    max-height: 75vh;
     overflow-y: auto;
     position: relative;
 }
@@ -493,8 +504,81 @@ body {
     cursor: pointer;
 }
 
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+}
+
 .oculto {
     display: none;
+}
+
+.popup-container {
+    background: white;
+    padding: 3%;
+    border-radius: 12px;
+    text-align: center;
+    width: auto;
+    max-width: 50%;
+    height: auto;
+}
+
+.botoes-modo {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-modo {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: green;
+    color: #0a2540;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-modo span {
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+.btn-modo:hover {
+    background: darkgreen;
+}
+
+.btn-modo.desafio {
+    background: yellow;
+}
+
+.btn-modo.desafio:hover {
+    background: rgb(150, 150, 17);
+}
+
+.btn-modo.voltar {
+    background: red;
+}
+
+.btn-modo.voltar:hover {
+    background: darkred;
 }
 
 
@@ -525,7 +609,7 @@ body {
     .card {
         flex-direction: row;
         height: 5rem;
-        padding: 0;
+        padding: 0 1rem;
     }
 
     .card img {
@@ -587,10 +671,17 @@ body {
     .btn-limpar {
         display: flex;
         position: inherit;
+        top: 0;
+        right: 0;
     }
 
     .tutorial {
         width: 90%;
+    }
+
+    .popup-container {
+        width: auto;
+        max-width: 90%;
     }
 
 }

@@ -92,11 +92,14 @@
 			<div class="menu-inicial">
 				<div class="botoes">
 					<a href="#categorias">
+						<button class="botao" onclick="renderizarCategorias()">Ver categorias</button>
+					</a>
+					<!--<a href="#categorias">
 						<button class="botao" onclick="renderizarCategorias('casual')">🎮 Casual</button>
 					</a>
 					<a href="#categorias">
 						<button class="botao" onclick="renderizarCategorias('desafio')">⏱️ Desafio</button>
-					</a>
+					</a>-->
 				</div>
 			</div>
 			<div class="pop-up-perdeu">
@@ -156,6 +159,30 @@
 				</p>
 				<button id="aceitar-cookies">Aceitar</button>
 			</div>
+		</div>
+		<!-- POPUP DE SELEÇÃO DE MODO -->
+		<div id="popupModo" class="popup-overlay oculto">
+
+			<div class="popup-container">
+
+				<h2>Modo de jogo</h2>
+				<p>Escolha seu estilo de jogo</p>
+				<div class="botoes-modo">
+					<button id="btnCasual" class="btn-modo casual" value='casual'>
+						🎮 Casual
+					</button>
+					<span>Jogue sem pressão, acumule pontos.</span>
+					<button id="btnDesafio" class="btn-modo desafio" value='desafio'>
+						⏱️ Desafio
+					</button>
+					<span>Desafio com tempo, não deixe o relógio zerar</span>
+					<button id="btnVoltar" class="btn-modo voltar" value='desafio'>
+						Voltar
+					</button>
+				</div>
+
+			</div>
+
 		</div>
 	</main>
 

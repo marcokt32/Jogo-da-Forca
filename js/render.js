@@ -38,9 +38,9 @@ function atualizarContadores() {
         `${totalPalavras} palavras`;
 }
 
-function renderizarCategorias(modo) {
-    modoAtual = modo;
-    configurarInterfacePorModo();
+function renderizarCategorias() {
+    document.getElementById('categorias').style.display = "flex"
+    //modoAtual = modo;
     const container = document.querySelector('.grid-container');
     container.innerHTML = '';
 
@@ -55,12 +55,12 @@ function renderizarCategorias(modo) {
     hiscoreMistoDesafio = dadosMisto.misto.desafio.hiscore
 
     cardMisto.innerHTML = `
-    <h2>🔥 Modo Misto</h2>
-    <div class="info-misto">
-    <p>🎮 ${hiscoreMistoCasual}</p>
-    <p>⏱️ ${hiscoreMistoDesafio}</p>
-    </div>
-    `;
+        <h2>🔥 Modo Misto</h2>
+        <div class="info-misto">
+        <p>🎮 ${hiscoreMistoCasual}</p>
+        <p>⏱️ ${hiscoreMistoDesafio}</p>
+        </div>
+        `;
 
     document.getElementById('fechar-misto')
         .addEventListener('click', () => {
@@ -94,10 +94,29 @@ function renderizarCategorias(modo) {
 
             document.getElementById('modal-misto')
                 .classList.add('oculto');
-            iniciarModoMisto(selecionadas)
+            popUp(selecionadas)
+            //iniciarModoMisto(selecionadas)
             //sortearPalavraModoMisto(selecionadas);
         });
+    const botaoLimparMisto = document.createElement('button');
+    botaoLimparMisto.textContent = "🗑";
+    botaoLimparMisto.classList.add('btn-limpar');
+
+    botaoLimparMisto.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        const confirmar = confirm(
+            `Deseja limpar TODAS as pontuações do Modo Misto?`
+        );
+
+        if (confirmar) {
+            limparModoMisto();
+            alert("Modo Misto resetado com sucesso!");
+        }
+    });
+
     cardMisto.addEventListener('click', abrirModalMisto);
+    cardMisto.appendChild(botaoLimparMisto);
 
     container.appendChild(cardMisto);
 
@@ -105,7 +124,6 @@ function renderizarCategorias(modo) {
     categorias.forEach(categoria => {
 
         const dados = obterDadosCategoria(categoria.id);
-
         const info = document.createElement('div');
         info.classList.add('card-info');
 
@@ -114,13 +132,14 @@ function renderizarCategorias(modo) {
         card.dataset.categoria = categoria.id;
 
         info.innerHTML = `
-            <p>🎮<br> ${dados.casual}</p>
-            <p>⏱️<br> ${dados.desafio}</p>
-            <p>📚<br> ${dados.descobertas}/${dados.totalPalavras}</p>
-        `;
+                <p>🎮<br> ${dados.casual}</p>
+                <p>⏱️<br> ${dados.desafio}</p>
+                <p>📚<br> ${dados.descobertas}/${dados.totalPalavras}</p>
+            `;
 
         card.addEventListener('click', () =>
-            iniciarJogoCategoria(categoria.id)
+            popUp(categoria.id)
+            //iniciarJogoCategoria(categoria.id)
         );
 
         // 🔹 Botão limpar
@@ -158,6 +177,36 @@ function renderizarCategorias(modo) {
 
 }
 
+function popUp(categoriaId) {
+    if (Array.isArray(categoriaId)) {
+
+    } else {
+        const popup = document.getElementById('popupModo');
+        popup.classList.remove('oculto');
+
+        const botoes = popup.querySelectorAll('button');
+
+        botoes.forEach(btn => {
+
+            // BOTÃO VOLTAR
+            if (btn.classList.contains('voltar')) {
+                btn.onclick = () => popup.classList.add('oculto');
+                return;
+            }
+
+            // BOTÕES DE MODO
+            btn.onclick = () => popUpModo(btn.value, categoriaId);
+        });
+    }
+
+}
+
+function popUpModo(btnValue, categoriaId) {
+    modoAtual = btnValue;
+    const popup = document.getElementById('popupModo');
+    popup.classList.add('oculto');
+    iniciarJogoCategoria(categoriaId);
+}
 
 function obterDadosCategoria(categoriaId) {
 
@@ -171,7 +220,7 @@ function obterDadosCategoria(categoriaId) {
         pontos: 0,
         hiscore: 0
     };
-    const dadosCategoriaDesafio = dados.casual.categorias[categoriaId] || {
+    const dadosCategoriaDesafio = dados.desafio.categorias[categoriaId] || {
         pontos: 0,
         hiscore: 0
     };

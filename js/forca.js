@@ -71,6 +71,7 @@ function continuarCategoria(categoria) {
 }
 
 function iniciarJogo() {
+    configurarInterfacePorModo()
     pararTimer()
     clearInterval(intervaloTimer);
     atualizarBarraCombo();
@@ -165,20 +166,6 @@ function adicionarErro() {
     }
 }
 
-function recarregar() {
-
-    document.querySelector(".categorias").style.display = "flex";
-    document.querySelector(".principal").style.display = "flex";
-    document.querySelector(".pop-up-perdeu").style.display = "none";
-    document.querySelector(".pop-up-ganhou").style.display = "none";
-    document.querySelector(".campo-nova-palavra").style.display = "none";
-
-    document.getElementById("categorias").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-}
-
 function reiniciar() {
     resetarCombo()
     novaRodada()
@@ -194,43 +181,44 @@ function novaRodada() {
                 const sorteada = sortearCategoria(categoriasModoMisto)
                 categoriaAtual = sorteada
             }
-            continuarCategoria(categoriaAtual)
+            continuarCategoria(categoriaAtual);
         } else {
             if (modoMisto) {
-                const sorteada = sortearCategoria(categoriasModoMisto)
-                categoriaAtual = sorteada
+                const sorteada = sortearCategoria(categoriasModoMisto);
+                categoriaAtual = sorteada;
             }
-            continuarCategoria(categoriaAtual)
+            continuarCategoria(categoriaAtual);
         }
 
     } else
         if (errosRestantes === 1) {
             if (document.querySelector(".pop-up-perdeu").style.display === "none"
                 && document.querySelector(".pop-up-ganhou").style.display === "none") {
-                alert("Você não pode pular essa!")
+                alert("Você não pode pular essa!");
             } else {
                 if (modoMisto) {
-                    const sorteada = sortearCategoria(categoriasModoMisto)
-                    categoriaAtual = sorteada
+                    const sorteada = sortearCategoria(categoriasModoMisto);
+                    categoriaAtual = sorteada;
                 }
-                continuarCategoria(categoriaAtual)
+                continuarCategoria(categoriaAtual);
             }
         } else {
             if (modoMisto) {
-                const sorteada = sortearCategoria(categoriasModoMisto)
-                categoriaAtual = sorteada
+                const sorteada = sortearCategoria(categoriasModoMisto);
+                categoriaAtual = sorteada;
             }
-            zeraPontuacao()
-            errosRestantes = 3
-            continuarCategoria(categoriaAtual)
+            zeraPontuacao();
+            errosRestantes = 3;
+            continuarCategoria(categoriaAtual);
         }
 
 }
 
 function reiniciarPagina() {
-    resetarCombo()
-    limparJogo()
-    pararTimer()
+    document.getElementById('categorias').style.display = "none"
+    resetarCombo();
+    limparJogo();
+    pararTimer();
     window.location.hash = "";
     modoAtual = "";
 
@@ -240,21 +228,8 @@ function reiniciarPagina() {
         behavior: "smooth"
     });
 
-    document.getElementById('categorias').style.display = "none"
 
     location.reload();
-}
-
-function adicionarPalavra() {
-    document.querySelector(".campo-nova-palavra").style.display = "flex";
-    document.querySelector(".principal").style.display = "none";
-    document.querySelector(".categorias").style.display = "none";
-}
-
-function voltar() {
-    document.querySelector(".campo-nova-palavra").style.display = "none";
-    document.querySelector(".principal").style.display = "flex";
-    document.querySelector(".categorias").style.display = "flex";
 }
 
 function validarJogada(letra) {
@@ -316,7 +291,7 @@ function mudarCategoria() {
     renderizarCategorias(modoAtual)
     const categorias = document.getElementById("categorias");
 
-    document.querySelector(".categorias").style.display = "flex";
+    categorias.style.display = "flex";
 
     if (categorias) {
         categorias.scrollIntoView({
@@ -419,6 +394,7 @@ function confirmarPalavraRespondida() {
 }
 
 function limparCategoria(categoria) {
+
     // 🔹 Remove palavras respondidas
     if (palavrasRespondidas[categoria]) {
         delete palavrasRespondidas[categoria];
@@ -428,19 +404,56 @@ function limparCategoria(categoria) {
         );
     }
 
-    // 🔹 Remove pontuação E hi-score da categoria
-    if (pontuacoes[categoria]) {
-        delete pontuacoes[categoria];
-        localStorage.setItem(
-            'pontuacoesCategorias',
-            JSON.stringify(pontuacoes)
-        );
+    // 🔹 Carrega estrutura nova de pontuação
+    const dados = carregarPontuacoes();
+
+    // 🔥 Remove categoria no modo casual
+    if (dados.casual?.categorias?.[categoria]) {
+        delete dados.casual.categorias[categoria];
     }
 
+    // 🔥 Remove categoria no modo desafio
+    if (dados.desafio?.categorias?.[categoria]) {
+        delete dados.desafio.categorias[categoria];
+    }
+
+    // 🔹 Salva novamente
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(dados)
+    );
+
     // 🔹 Atualiza interface
-    renderizarCategorias();
+    renderizarCategorias(modoAtual);
 
     console.log(`Categoria ${categoria} limpa COMPLETAMENTE.`);
+}
+
+function limparModoMisto() {
+
+    const dados = carregarPontuacoes();
+
+    if (dados.misto) {
+
+        dados.misto.casual = {
+            pontos: 0,
+            hiscore: 0
+        };
+
+        dados.misto.desafio = {
+            pontos: 0,
+            hiscore: 0
+        };
+    }
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(dados)
+    );
+
+    renderizarCategorias(modoAtual);
+
+    console.log("Modo Misto resetado completamente.");
 }
 
 function registrarErro() {
