@@ -28,6 +28,13 @@ body {
     flex-direction: column;
 }
 
+.principal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-width: 100%;
+}
+
 .botoes-misto {
     display: flex;
     flex-direction: row;
@@ -75,6 +82,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
 }
 
 .principal {
@@ -84,7 +92,7 @@ body {
             #e2e2f5);
     width: 100%;
     min-height: 90vh;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .botoes {
@@ -146,7 +154,7 @@ body {
     text-align: center;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 70%;
     min-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -581,10 +589,19 @@ body {
     background: darkred;
 }
 
+.ad-container {
+    text-align: center;
+    background-color: green;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15%;
+    max-width: 15%;
+}
 
 /*Modo Responsivo*/
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 750px) {
     html {
         font-size: .8rem;
     }

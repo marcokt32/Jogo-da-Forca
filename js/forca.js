@@ -520,11 +520,9 @@ function configurarInterfacePorModo() {
     if (modoAtual === "casual") {
         timer.style.display = "none";
         timerSpan.style.display = "none";
-        statusContador.style.display = "none";
     } else {
         timer.style.display = "block";
         timerSpan.style.display = "inline";
-        statusContador.style.display = "inline";
     }
 }
 
