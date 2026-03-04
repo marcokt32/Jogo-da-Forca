@@ -92,7 +92,7 @@ body {
             #e2e2f5);
     width: 100%;
     min-height: 90vh;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .botoes {
@@ -591,12 +591,9 @@ body {
 
 .ad-container {
     text-align: center;
-    background-color: green;
     position: absolute;
     left: 0;
-    top: 0;
-    width: 15%;
-    max-width: 15%;
+    top: 95px;
 }
 
 /*Modo Responsivo*/
