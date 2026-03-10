@@ -279,7 +279,7 @@ body {
     flex-direction: row;
     gap: 0.2rem;
     justify-content: center;
-    padding: .5rem
+    padding: .25rem
 }
 
 /*Determina o tabuleiro do Jogo*/
@@ -608,7 +608,7 @@ body {
     }
 
     .principal {
-        padding: 3%;
+        padding: 1%;
     }
 
     .categorias {
@@ -674,8 +674,8 @@ body {
     }
 
     .teclado-virtual button {
-        width: 2.5rem;
-        height: 3.5rem;
+        width: 2.6rem;
+        height: 4rem;
     }
 
     .dica-palavra {
