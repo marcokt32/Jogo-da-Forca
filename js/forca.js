@@ -543,3 +543,38 @@ function abrirModalMisto() {
 
     modal.classList.remove('oculto');
 }
+
+let deferredPrompt;
+
+const btnInstalar = document.getElementById("btn-instalar");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+
+    // impede o popup automático
+    e.preventDefault();
+
+    // guarda o evento
+    deferredPrompt = e;
+
+    // mostra nosso botão
+    btnInstalar.style.display = "block";
+
+});
+
+btnInstalar.addEventListener("click", async () => {
+
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    const choice = await deferredPrompt.userChoice;
+
+    if (choice.outcome === "accepted") {
+        console.log("Usuário instalou o app");
+    }
+
+    deferredPrompt = null;
+
+    btnInstalar.style.display = "none";
+
+});

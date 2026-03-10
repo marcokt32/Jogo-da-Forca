@@ -232,3 +232,16 @@ function obterDadosCategoria(categoriaId) {
         desafio: dadosCategoriaDesafio.hiscore
     };
 }
+
+if ("serviceWorker" in navigator) {
+
+    navigator.serviceWorker
+        .register("/sw.js")
+        .then(() => {
+            console.log("Service Worker registrado");
+        })
+        .catch(error => {
+            console.log("Erro no Service Worker:", error);
+        });
+
+}

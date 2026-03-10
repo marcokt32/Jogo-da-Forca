@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#121212">
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8119130352737496"
 		crossorigin="anonymous"></script>
 	<title>Jogo da Forca Online Grátis - O Enforcado</title>
@@ -23,6 +24,7 @@
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://oenforcado.com">
 	<meta property="og:image" content="https://oenforcado.com/imagem-preview.png">
+	<link rel="manifest" href="/manifest.json">
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/flexbox.css">
@@ -35,8 +37,13 @@
 
 <body>
 	<header id="header">
-		<img src="img/hung.png" class="logo" alt="logo do enforcado" onclick="reiniciarPagina()">
-		<h1 class="titulo">O Enforcado</h1>
+		<div style="display: flex; flex-direction: row;height: 100%;">
+			<img src="img/hung.png" class="logo" alt="logo do enforcado" onclick="reiniciarPagina()">
+			<h1 class="titulo">O Enforcado</h1>
+		</div>
+		<button id="btn-instalar" style="display:none;">
+			📲 Instale o App
+		</button>
 	</header>
 	<main id="main">
 		<section class="principal" id="principal">

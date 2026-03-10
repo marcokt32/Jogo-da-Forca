@@ -58,6 +58,8 @@ header {
     background-color: #fefefe;
     border-bottom: 2px solid #37415156;
     box-shadow: 0px 5px 10px #a3a3a383;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* ===== footer =====*/
