@@ -279,7 +279,7 @@ body {
     flex-direction: row;
     gap: 0.2rem;
     justify-content: center;
-    padding: .25rem
+    padding: .5rem
 }
 
 /*Determina o tabuleiro do Jogo*/
