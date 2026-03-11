@@ -198,15 +198,20 @@ function popUp(categoriaId) {
 }
 
 function popUpModo(btnValue, categoriaId) {
-    modoAtual = btnValue;
-    const popup = document.getElementById('popupModo');
-    popup.classList.add('oculto');
-    if (Array.isArray(categoriaId)) {
-        iniciarModoMisto(categoriaId);
-    } else {
-        iniciarJogoCategoria(categoriaId);
+    if (!btnValue || !categoriaId) {
+        alert("Modo ou categoria não definidos!");
+        return;
     }
-}
+
+    const url = `categoria.html?cat=${encodeURIComponent(categoriaId)}&modo=${encodeURIComponent(btnValue)}`;
+    console.log("Redirecionando para:", url); // ✅ verifica se os parâmetros estão corretos
+    window.location.href = url;
+} // redireciona
+/*if (Array.isArray(categoriaId)) {
+    iniciarModoMisto(categoriaId);
+} else {
+    iniciarJogoCategoria(categoriaId);
+}*/
 
 function obterDadosCategoria(categoriaId) {
 

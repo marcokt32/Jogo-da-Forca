@@ -22,7 +22,7 @@ function iniciarModoMisto(selecionadas) {
 }
 
 function iniciarJogoCategoria(categoria) {
-
+    console.log(categoria, modoAtual)
     document.querySelector(".pop-up-perdeu").style.display = "none";
     document.querySelector(".pop-up-ganhou").style.display = "none";
     limparJogo()
@@ -219,7 +219,7 @@ function reiniciarPagina() {
     resetarCombo();
     limparJogo();
     pararTimer();
-    window.location.hash = "";
+    history.replaceState(null, "", window.location.pathname + window.location.search);
     modoAtual = "";
 
 
@@ -229,7 +229,7 @@ function reiniciarPagina() {
     });
 
 
-    location.reload();
+    window.location.href = 'index.html'
 }
 
 function validarJogada(letra) {
