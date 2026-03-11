@@ -236,7 +236,7 @@ function obterDadosCategoria(categoriaId) {
 if ("serviceWorker" in navigator) {
 
     navigator.serviceWorker
-        .register("/sw.js")
+        .register("js/sw.js")
         .then(() => {
             console.log("Service Worker registrado");
         })
