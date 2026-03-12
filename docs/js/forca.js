@@ -71,6 +71,10 @@ function continuarCategoria(categoria) {
 }
 
 function iniciarJogo() {
+    gtag('event', 'game_start', {
+        category: categoriaAtual,
+        word: palavraSecreta
+    });
     configurarInterfacePorModo()
     pararTimer()
     clearInterval(intervaloTimer);
@@ -172,6 +176,9 @@ function reiniciar() {
 }
 
 function novaRodada() {
+    gtag('event', 'game_progress', {
+        result: 'word_solved'
+    });
     limparJogo()
     if (errosRestantes > 1) {
         if (document.querySelector(".pop-up-perdeu").style.display === "none"
@@ -269,6 +276,9 @@ function verificarVitoria() {
         } else {
             resetarCombo();
         }
+        gtag('event', 'word_discovered', {
+            word: palavraSecreta
+        });
         fim = true;
         document.querySelector(".pop-up-ganhou").style.display = "flex";
         pararTimer()
@@ -470,6 +480,10 @@ function registrarErro() {
 }
 
 function gameOver() {
+    gtag('event', 'game_over', {
+        score: pontos
+    });
+
     document.querySelector(".botao-reiniciar").style.display = "block";
     document.querySelector(".botao-proxima").style.display = "none";
 

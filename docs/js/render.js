@@ -202,6 +202,9 @@ function popUpModo(btnValue, categoriaId) {
         alert("Modo ou categoria não definidos!");
         return;
     }
+    gtag('event', 'game_mode', {
+        mode: btnValue,
+    });
 
     const url = `categoria.html?cat=${encodeURIComponent(categoriaId)}&modo=${encodeURIComponent(btnValue)}`;
     console.log("Redirecionando para:", url); // ✅ verifica se os parâmetros estão corretos
