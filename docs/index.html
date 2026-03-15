@@ -46,15 +46,64 @@
 </head>
 
 <body>
+	<script type="module">
+
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+		import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+		const firebaseConfig = {
+			apiKey: "AIzaSyDonNicRdW-Cy1MkDVlTLEMksjFkITmg7A",
+			authDomain: "oenforcado.firebaseapp.com",
+			projectId: "oenforcado",
+			storageBucket: "oenforcado.firebasestorage.app",
+			messagingSenderId: "179259322356",
+			appId: "1:179259322356:web:cecbc39bcf76c665b093a1",
+			measurementId: "G-T5SGQRR3VZ"
+		};
+
+		const app = initializeApp(firebaseConfig);
+		const db = getFirestore(app);
+
+	</script>
 	<header id="header">
 		<div style="display: flex; flex-direction: row;height: 100%;">
 			<img src="img/hung.png" class="logo" alt="logo do enforcado" onclick="reiniciarPagina()">
 			<h1 class="titulo">O Enforcado</h1>
 		</div>
-		<button id="btn-instalar" style="display:none;">
+		<!--button id="btn-instalar" style="display:none;">
 			📲 Instale o App
-		</button>
+		</button-->
+		<div id="userBox">
+			<div id="userInfo">
+				<span id="userNome"></span>
+				<span id="xp"></span>
+			</div>
+			<img id="userAvatar">
+		</div>
 	</header>
+	<!-- Modal ou dropdown -->
+	<div id="userModal" class="userModal">
+		<h2>Editar Perfil</h2>
+		<img id="modalAvatar" style="cursor: pointer;">
+		<label>
+			Nome:
+			<input type="text" id="input-nome" placeholder="Seu nome">
+		</label>
+		<div class="botoes-modal">
+			<button onclick="salvarUsuario()">Salvar</button>
+			<button onclick="fecharEditorUsuario()">Cancelar</button>
+		</div>
+	</div>
+	<!-- Modal de seleção de avatar -->
+	<div id="modal-avatar-lista" class="avatar-lista oculto">
+		<div class="avatar-grid" id="avatar-grid"></div>
+		<button onclick="fecharListaAvatar()">Fechar</button>
+	</div>
+	<!-- banner de instalação -->
+	<div id="install-banner" class="install-banner oculto">
+		<span>📲 Baixe O Enforcado para jogar direto do celular ou pc!</span>
+		<button id="btn-instalar">Instalar</button>
+	</div>
 	<main id="main">
 		<section class="principal" id="principal">
 			<div class="ad-container">
@@ -232,6 +281,7 @@
 	<script type="text/javascript" src="js/forca.js"></script>
 	<script type="text/javascript" src="js/canvas.js"></script>
 	<script type="text/javascript" src="js/pontuacao.js"></script>
+	<script type="text/javascript" src="js/user.js"></script>
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
 			const banner = document.getElementById("cookie-banner");
@@ -247,6 +297,7 @@
 			});
 		});
 	</script>
+
 </body>
 
 </html>

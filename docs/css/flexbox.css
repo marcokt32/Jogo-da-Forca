@@ -596,6 +596,146 @@ body {
     top: 95px;
 }
 
+#userBox {
+    display: flex;
+    flex-direction: row;
+    gap: .5rem;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 40%;
+    cursor: pointer;
+}
+
+#userInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+#userAvatar {
+    height: 100%;
+}
+
+#userNome {
+    font-weight: bold;
+}
+
+.install-banner {
+    position: fixed;
+    top: -70vh;
+    left: 0;
+    width: 100%;
+    background: #1e1e1e;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    z-index: 0;
+    transition: top 1s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    height: 10vh;
+}
+
+.install-banner span {
+    font-size: 1.2rem;
+}
+
+.install-banner button {
+    background: #4CAF50;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.install-banner.show {
+    top: 10vh;
+}
+
+#userModal {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 50%;
+    color: #fff;
+    transform: translateY(0);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background-color: #fefefe;
+    border-radius: 15px;
+    padding: 3%;
+}
+
+#userModal.show {
+    transform: translateY(10vh);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#userModal label {
+    font-size: 1.5rem;
+}
+
+.botoes-modal {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+#modalAvatar {
+    height: 30%;
+}
+
+#modal-avatar-lista {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1e1e1e;
+    color: #fff;
+    padding: 20px;
+    z-index: 10000;
+    width: 50vw;
+    max-width: 500px;
+    border-radius: 10px;
+    display: none;
+    /* inicial */
+}
+
+#modal-avatar-lista.show {
+    display: block;
+    pointer-events: auto;
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: .5rem;
+    padding: 3%;
+}
+
+.avatar-grid img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border 0.2s;
+}
+
+.avatar-grid img:hover {
+    border-color: #ffd700;
+}
+
 /*Modo Responsivo*/
 
 @media screen and (max-width: 750px) {
@@ -696,6 +836,23 @@ body {
     .popup-container {
         width: auto;
         max-width: 90%;
+    }
+
+    #userAvatar {
+        height: 80%;
+    }
+
+    #userModal {
+        width: 90%;
+        right: 5%;
+    }
+
+    .avatar-grid {
+        grid-template-columns: repeat(3, minmax(60px, 1fr));
+    }
+
+    #modal-avatar-lista {
+        width: 90%;
     }
 
 }

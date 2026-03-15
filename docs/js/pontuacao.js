@@ -11,6 +11,10 @@ function criarEstruturaPadrao() {
         misto: {
             casual: { pontos: 0, hiscore: 0 },
             desafio: { pontos: 0, hiscore: 0 }
+        },
+        ranking: {
+            xp: 0,
+            palavras: 0
         }
     };
 }
@@ -40,7 +44,8 @@ function calcularPontuacao() {
 
     const estrelasAtivas = document.querySelectorAll('.estrela.ativa').length;
     const multiplicadorCombo = medidorCombo > 0 ? medidorCombo : 1;
-    const pontosGanhos = 10 * estrelasAtivas * multiplicadorCombo;
+    const basePontos = modoAtual === "desafio" ? 15 : 10;
+    const pontosGanhos = basePontos * estrelasAtivas * multiplicadorCombo;
 
     if (pontosGanhos === 0) return;
 
@@ -51,13 +56,15 @@ function calcularPontuacao() {
         pontosGanhos
     });
 
-    if (!resultado) return;
-
     animarPontuacao(
         resultado.valorInicial,
         resultado.valorFinal,
-        resultado.hiscoreAtual
+        resultado.hiscoreAtual,
+        resultado.xpInicial,
+        resultado.xpFinal
     );
+    
+    if (!resultado) return;
 }
 
 function salvarPontuacoes({ modoAtual, modoMisto, categoriaAtual, pontosGanhos }) {
@@ -66,6 +73,9 @@ function salvarPontuacoes({ modoAtual, modoMisto, categoriaAtual, pontosGanhos }
 
     const dados = carregarPontuacoes(); // carrega a estrutura de pontuações e atribui a dados
     let estruturaAtual;
+    let estruturaGlobal;
+
+    estruturaGlobal = dados.ranking
 
     // MODO POR CATEGORIA
     if (!modoMisto) { //SE modoMisto fo FALSE
@@ -85,30 +95,36 @@ function salvarPontuacoes({ modoAtual, modoMisto, categoriaAtual, pontosGanhos }
         estruturaAtual = dados.misto[modoAtual];
     }
 
-    if (!estruturaAtual) return;
+    if (!estruturaAtual && !estruturaGlobal) return;
 
     const valorInicial = estruturaAtual.pontos;
     const valorFinal = valorInicial + pontosGanhos;
+    const xpInicial = estruturaGlobal.xp;
+    const xpFinal = xpInicial + pontosGanhos;
 
     estruturaAtual.pontos = valorFinal;
+    estruturaGlobal.xp = xpFinal;
 
     if (valorFinal > estruturaAtual.hiscore) {
         estruturaAtual.hiscore = valorFinal;
     }
-    console.log(estruturaAtual)
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
 
     return {
         valorInicial,
         valorFinal,
-        hiscoreAtual: estruturaAtual.hiscore
+        hiscoreAtual: estruturaAtual.hiscore,
+        xpInicial,
+        xpFinal
     };
 }
 
-function animarPontuacao(valorInicial, valorFinal, hiscoreAtual) {
+function animarPontuacao(valorInicial, valorFinal, hiscoreAtual, xpInicial, xpFinal) {
 
     const display = document.querySelector('.display-pontuacao');
+    const xpDisplay = document.getElementById("xp");
+
     const inicio = performance.now();
     const duracao = 600;
 
@@ -120,8 +136,15 @@ function animarPontuacao(valorInicial, valorFinal, hiscoreAtual) {
             valorInicial + (valorFinal - valorInicial) * progresso
         );
 
+        const xpAtual = Math.floor(
+            xpInicial + (xpFinal - xpInicial) * progresso
+        );
+
         display.textContent =
             `Pontos: ${valorAtual} | Recorde: ${hiscoreAtual}`;
+
+        xpDisplay.textContent =
+            `XP: ${xpAtual}`;
 
         if (progresso < 1) {
             requestAnimationFrame(animar);
@@ -134,9 +157,11 @@ function animarPontuacao(valorInicial, valorFinal, hiscoreAtual) {
 function mostrarPontuacaoAtual() {
 
     const display = document.querySelector('.display-pontuacao');
+    const xpDisplay = document.getElementById('xp');
     const dados = carregarPontuacoes();
 
     let estruturaAtual;
+    let global;
 
     // 🎯 Modo por categoria
     if (!modoMisto) {
@@ -157,8 +182,13 @@ function mostrarPontuacaoAtual() {
             };
     }
 
+    global = dados.ranking
+
     display.textContent =
         `Pontos: ${estruturaAtual.pontos} | Recorde: ${estruturaAtual.hiscore}`;
+    xpDisplay.textContent =
+        `XP: ${global.xp}`;
+    
 }
 
 function zeraPontuacao() {

@@ -14,13 +14,6 @@ let palavrasRespondidas = JSON.parse(
     localStorage.getItem('palavrasRespondidas')
 ) || {};
 
-function iniciarModoMisto(selecionadas) {
-    categoriasModoMisto = selecionadas
-    modoMisto = true
-    const sorteada = sortearCategoria(selecionadas)
-    iniciarJogoCategoria(sorteada)
-}
-
 function iniciarJogoCategoria(categoria) {
     console.log(categoria, modoAtual)
     document.querySelector(".pop-up-perdeu").style.display = "none";
@@ -236,7 +229,7 @@ function reiniciarPagina() {
     });
 
 
-    window.location.href = 'index.html'
+    window.location.href = '/'
 }
 
 function validarJogada(letra) {
@@ -560,35 +553,43 @@ function abrirModalMisto() {
 
 let deferredPrompt;
 
-const btnInstalar = document.getElementById("btn-instalar");
-
 window.addEventListener("beforeinstallprompt", (e) => {
 
-    // impede o popup automático
     e.preventDefault();
-
-    // guarda o evento
     deferredPrompt = e;
 
-    // mostra nosso botão
-    btnInstalar.style.display = "block";
+    const banner = document.getElementById("install-banner");
+
+    setTimeout(() => {
+        banner.classList.add("show");
+    }, 1000);
 
 });
 
-btnInstalar.addEventListener("click", async () => {
+document.getElementById("btn-instalar").addEventListener("click", async () => {
 
     if (!deferredPrompt) return;
 
     deferredPrompt.prompt();
 
-    const choice = await deferredPrompt.userChoice;
+    const { outcome } = await deferredPrompt.userChoice;
 
-    if (choice.outcome === "accepted") {
-        console.log("Usuário instalou o app");
+    if (outcome === "accepted") {
+        document.getElementById("install-banner").style.display = "none";
     }
 
     deferredPrompt = null;
 
-    btnInstalar.style.display = "none";
-
 });
+
+function esconderBanner() {
+
+    const banner = document.getElementById("install-banner");
+
+    if (banner) {
+        banner.classList.remove("show");
+    }
+
+}
+
+document.addEventListener("scroll", esconderBanner);

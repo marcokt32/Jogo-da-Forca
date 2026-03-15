@@ -5,15 +5,17 @@ const arquivos = [
   "/index.html",
   "/manifest.json",
 
-  "/css/reset.css",
-  "/css/style.css",
-  "/css/flexbox.css",
+  "css/reset.css",
+  "css/style.css",
+  "css/flexbox.css",
 
-  "/js/script.js", 
-  "/js/pontuacoes.js",
+  "js/render.js",
+  "js/forca.js",
+  "js/canvas.js",
+  "js/banco-palavras.js",
 
-  "/icons/icon-192.png",
-  "/icons/icon-512.png"
+  "icons/icon-192.png",
+  "icons/icon-512.png"
 ];
 
 self.addEventListener("install", event => {
@@ -34,7 +36,7 @@ self.addEventListener("activate", event => {
     caches.keys().then(keys => {
       return Promise.all(
         keys.filter(key => key !== CACHE_NAME)
-            .map(key => caches.delete(key))
+          .map(key => caches.delete(key))
       );
     })
   );

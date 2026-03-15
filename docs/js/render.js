@@ -1,7 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     renderizarCategorias();
     atualizarContadores();
 });
+
 
 const categorias = [
     { id: 'portugues', nome: 'Portugues', imagem: 'img/portugues.png' },
@@ -25,6 +26,7 @@ const categorias = [
 
 function atualizarContadores() {
     const totalCategorias = Object.keys(bancoPalavras).length;
+    const xpDisplay = document.getElementById('xp')
 
     let totalPalavras = 0;
     Object.values(bancoPalavras).forEach(lista => {
@@ -36,6 +38,12 @@ function atualizarContadores() {
 
     document.getElementById("contador-palavras").innerText =
         `${totalPalavras} palavras`;
+
+    const dados = carregarPontuacoes();
+    const xpTotal = dados.ranking.xp;
+
+    xpDisplay.textContent =
+        `XP: ${xpTotal}`;
 }
 
 function renderizarCategorias() {
@@ -244,7 +252,7 @@ function obterDadosCategoria(categoriaId) {
 if ("serviceWorker" in navigator) {
 
     navigator.serviceWorker
-        .register("js/sw.js")
+        .register("/sw.js")
         .then(() => {
             console.log("Service Worker registrado");
         })
@@ -253,3 +261,50 @@ if ("serviceWorker" in navigator) {
         });
 
 }
+
+const modalAvatarBtn = document.getElementById('modalAvatar');
+const modalAvatarLista = document.getElementById('modal-avatar-lista');
+const avatarGrid = document.getElementById('avatar-grid');
+const avatarModal = document.getElementById('avatar-modal');
+
+
+const totalAvatares = 13; // coloque aqui o número atual de avatares
+const avatares = [];
+
+for (let i = 1; i <= totalAvatares; i++) {
+    avatares.push(`img/avatars/avatar${i}.png`);
+}
+
+// Abrir modal de seleção de avatar
+function abrirListaAvatar() {
+    renderizarAvatares(); // renderiza toda vez que abrir
+    modalAvatarLista.classList.add('show');
+}
+
+// Fechar modal de seleção
+function fecharListaAvatar() {
+    modalAvatarLista.classList.remove('show');
+}
+
+// Renderiza os avatares no grid
+function renderizarAvatares() {
+    avatarGrid.innerHTML = ''; // limpa antes
+    avatares.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.addEventListener('click', () => selecionarAvatar(src));
+        avatarGrid.appendChild(img);
+    });
+}
+
+// Seleciona avatar, salva no localStorage e atualiza a tela
+function selecionarAvatar(src) {
+    modalAvatarBtn.src = src;
+    let usuario = JSON.parse(localStorage.getItem('usuario'));
+    if (!usuario) return;
+    usuario.avatar = src;
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+    fecharListaAvatar();
+}
+
+modalAvatarBtn.addEventListener('click', abrirListaAvatar);
