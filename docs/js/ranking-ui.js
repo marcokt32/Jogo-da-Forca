@@ -34,8 +34,10 @@ function carregarRanking(){
 
             topDiv.innerHTML += `
                 <div class="ranking-linha">
-                    <span>${index+1}º</span>
-                    <img src="${player.avatar}">
+                    <div class="left-ui-info">
+                        <span>${index+1}º</span>
+                        <img src="${player.avatar}">
+                    </div>
                     <span>${player.nome}</span>
                     <span>${player.xp}</span>
                 </div>
