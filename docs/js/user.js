@@ -9,6 +9,7 @@ function iniciarUsuario() {
 
     let usuario = JSON.parse(localStorage.getItem("usuario"));
 
+    // cria usuário se não existir
     if (!usuario) {
 
         usuario = {
@@ -18,11 +19,20 @@ function iniciarUsuario() {
         };
 
         localStorage.setItem("usuario", JSON.stringify(usuario));
+    }
 
+    // garante que o ID exista (caso venha de versão antiga)
+    if (!usuario.id) {
+        usuario.id = crypto.randomUUID();
+        localStorage.setItem("usuario", JSON.stringify(usuario));
+    }
+
+    // 🔥 sincroniza com firebase
+    if (typeof carregarUsuarioFirebase === "function") {
+        carregarUsuarioFirebase();
     }
 
     return usuario;
-
 }
 
 function gerarNomeUsuario() {
@@ -84,7 +94,7 @@ function abrirEditorUsuario() {
     const nome = document.getElementById("input-nome");
     const avatar = document.getElementById("modalAvatar");
 
-    if (nome) nome.textContent = usuario.nome;
+    if (nome) nome.placeholder = usuario.nome;
     if (avatar) avatar.src = usuario.avatar;
 
 
@@ -114,6 +124,11 @@ function salvarUsuario() {
     document.getElementById('userAvatar').src = usuario.avatar;
     document.getElementById('userNome').textContent = usuario.nome;
 
+    // 🔥 envia atualização para firebase
+    if (typeof sincronizarUsuarioFirebase === "function") {
+        sincronizarUsuarioFirebase();
+    }
+
     fecharEditorUsuario();
 }
 
@@ -122,4 +137,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const usuario = JSON.parse(localStorage.getItem("usuario")) || iniciarUsuario();
     document.getElementById('userAvatar').src = usuario.avatar;
     document.getElementById('userNome').textContent = usuario.nome;
+
 });

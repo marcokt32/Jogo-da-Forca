@@ -35,44 +35,25 @@
 		rel="stylesheet">
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-LPB04DJLXC"></script>
+	<!-- Firebase SDK -->
+	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
-
 		gtag('config', 'G-LPB04DJLXC');
 		gtag('config', 'AW-10942914304');
 	</script>
 </head>
 
 <body>
-	<script type="module">
-
-		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-		import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-		const firebaseConfig = {
-			apiKey: "AIzaSyDonNicRdW-Cy1MkDVlTLEMksjFkITmg7A",
-			authDomain: "oenforcado.firebaseapp.com",
-			projectId: "oenforcado",
-			storageBucket: "oenforcado.firebasestorage.app",
-			messagingSenderId: "179259322356",
-			appId: "1:179259322356:web:cecbc39bcf76c665b093a1",
-			measurementId: "G-T5SGQRR3VZ"
-		};
-
-		const app = initializeApp(firebaseConfig);
-		const db = getFirestore(app);
-
-	</script>
 	<header id="header">
 		<div style="display: flex; flex-direction: row;height: 100%;">
 			<img src="img/hung.png" class="logo" alt="logo do enforcado" onclick="reiniciarPagina()">
 			<h1 class="titulo">O Enforcado</h1>
 		</div>
-		<!--button id="btn-instalar" style="display:none;">
-			📲 Instale o App
-		</button-->
 		<div id="userBox">
 			<div id="userInfo">
 				<span id="userNome"></span>
@@ -81,11 +62,11 @@
 			<img id="userAvatar">
 		</div>
 	</header>
-	<!-- Modal ou dropdown -->
+	<!-- Modal de Informações de usuário -->
 	<div id="userModal" class="userModal">
 		<h2>Editar Perfil</h2>
 		<img id="modalAvatar" style="cursor: pointer;">
-		<label>
+		<label id="modalNameInfo">
 			Nome:
 			<input type="text" id="input-nome" placeholder="Seu nome">
 		</label>
@@ -95,9 +76,29 @@
 		</div>
 	</div>
 	<!-- Modal de seleção de avatar -->
-	<div id="modal-avatar-lista" class="avatar-lista oculto">
-		<div class="avatar-grid" id="avatar-grid"></div>
-		<button onclick="fecharListaAvatar()">Fechar</button>
+	<div id="modal-avatar-overlay" class="modal-avatar-overlay oculto">
+		<div id="modal-avatar-lista" class="avatar-lista oculto">
+			<div class="avatar-grid" id="avatar-grid"></div>
+			<button onclick="fecharListaAvatar()">Fechar</button>
+		</div>
+	</div>
+	<!-- Modal do ranking global-->
+	<div id="modalRanking" class="modal-ranking oculto">
+
+		<div class="ranking-box">
+
+			<h2>🏆 Ranking Global</h2>
+
+			<div id="ranking-top10"></div>
+
+			<div class="ranking-separador"></div>
+
+			<div id="ranking-meu"></div>
+
+			<button onclick="fecharRanking()">Fechar</button>
+
+		</div>
+
 	</div>
 	<!-- banner de instalação -->
 	<div id="install-banner" class="install-banner oculto">
@@ -173,6 +174,9 @@
 				<div class="botoes">
 					<a href="#categorias">
 						<button class="botao" onclick="renderizarCategorias()">Ver categorias</button>
+					</a>
+					<a>
+						<button onclick="abrirRanking()">🏆 Ranking</button>
 					</a>
 					<!--<a href="#categorias">
 							<button class="botao" onclick="renderizarCategorias('casual')">🎮 Casual</button>
@@ -276,7 +280,13 @@
 			<a href="/termos.html">Termos de Uso</a>
 		</div>
 	</footer>
+	<!-- inicialização -->
+	<script src="js/firebase-init.js"></script>
+	<script src="js/firebase-fcm.js"></script>
+	<!-- funções de ranking -->
+	<script src="js/firebase-ranking.js"></script>
 	<script src="js/banco-palavras.js"></script>
+	<script src="js/ranking-ui.js"></script>
 	<script type="text/javascript" src="js/render.js"></script>
 	<script type="text/javascript" src="js/forca.js"></script>
 	<script type="text/javascript" src="js/canvas.js"></script>

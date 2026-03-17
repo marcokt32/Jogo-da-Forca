@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     renderizarCategorias();
     atualizarContadores();
+    iniciarNotificacoes();
 });
 
 
@@ -279,11 +280,15 @@ for (let i = 1; i <= totalAvatares; i++) {
 function abrirListaAvatar() {
     renderizarAvatares(); // renderiza toda vez que abrir
     modalAvatarLista.classList.add('show');
+    document.getElementById("modal-avatar-overlay")
+        .classList.remove("oculto");
 }
 
 // Fechar modal de seleção
 function fecharListaAvatar() {
     modalAvatarLista.classList.remove('show');
+    document.getElementById("modal-avatar-overlay")
+        .classList.add("oculto");
 }
 
 // Renderiza os avatares no grid

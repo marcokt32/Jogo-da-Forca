@@ -63,7 +63,7 @@ function calcularPontuacao() {
         resultado.xpInicial,
         resultado.xpFinal
     );
-    
+
     if (!resultado) return;
 }
 
@@ -110,6 +110,9 @@ function salvarPontuacoes({ modoAtual, modoMisto, categoriaAtual, pontosGanhos }
     }
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(dados));
+    if (typeof enviarPontuacaoFirebase === "function" && pontosGanhos > 0) {
+        enviarPontuacaoFirebase(xpFinal);
+    }
 
     return {
         valorInicial,
@@ -188,7 +191,7 @@ function mostrarPontuacaoAtual() {
         `Pontos: ${estruturaAtual.pontos} | Recorde: ${estruturaAtual.hiscore}`;
     xpDisplay.textContent =
         `XP: ${global.xp}`;
-    
+
 }
 
 function zeraPontuacao() {
