@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarUsuario();
 });
 
+let usuarioEnviado = false;
 let usuarioAtual = null;
 
 function iniciarUsuario() {
@@ -27,12 +28,20 @@ function iniciarUsuario() {
         localStorage.setItem("usuario", JSON.stringify(usuario));
     }
 
-    // 🔥 sincroniza com firebase
+    /*/ 🔥 sincroniza com firebase
     if (typeof carregarUsuarioFirebase === "function") {
         carregarUsuarioFirebase();
-    }
+    }*/
 
     return usuario;
+}
+
+function enviarUsuarioFirebase() {
+    if (usuarioEnviado) return; // evita duplicados
+    if (typeof carregarUsuarioFirebase === "function") {
+        carregarUsuarioFirebase(); // aqui o envio pro Firebase acontece
+        usuarioEnviado = true;
+    }
 }
 
 function gerarNomeUsuario() {

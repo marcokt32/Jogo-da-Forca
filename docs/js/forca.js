@@ -64,6 +64,7 @@ function continuarCategoria(categoria) {
 }
 
 function iniciarJogo() {
+    enviarUsuarioFirebase();
     gtag('event', 'game_start', {
         category: categoriaAtual,
         word: palavraSecreta
@@ -164,6 +165,8 @@ function adicionarErro() {
 }
 
 function reiniciar() {
+    const overlay = document.getElementById("gameOverScreenOverlay")
+    overlay.classList.add("oculto")
     resetarCombo()
     novaRodada()
 }
@@ -474,17 +477,49 @@ function registrarErro() {
 
 function gameOver() {
     gtag('event', 'game_over', {
-        score: pontos
+        resultado: 'lose'
     });
 
     document.querySelector(".botao-reiniciar").style.display = "block";
     document.querySelector(".botao-proxima").style.display = "none";
 
-    alert("Game Over! Você errou 3 vezes.");
-
     mostrarPontuacaoAtual();
+    showGameOverSreen();
 }
 
+function showGameOverSreen(pontos) {
+    const dados = carregarPontuacoes();
+    // 🎯 Modo por categoria
+    if (!modoMisto) {
+
+        estruturaAtual =
+            dados[modoAtual]?.categorias[categoriaAtual] || {
+                pontos: 0,
+                hiscore: 0
+            };
+    }
+
+    // 🎲 Modo misto
+    else {
+        estruturaAtual =
+            dados.misto?.[modoAtual] || {
+                pontos: 0,
+                hiscore: 0
+            };
+    }
+    const overlay = document.getElementById('gameOverScreenOverlay');
+    const screen = document.getElementById('gameOverScreen');
+    screen.innerHTML = `
+    <h2>Fim de jogo 😢</h2>
+    <p>Sua pontuação: ${estruturaAtual.pontos}</p>
+
+    <button onclick="reiniciar()">Jogar novamente</button>
+    <a href="#categorias">
+        <button class="botao" onclick="renderizarCategorias()">Ver categorias</button>
+    </a>
+`;
+    overlay.classList.remove('oculto');
+}
 
 function atualizarDisplayVidas() {
     const display = document.querySelector('.display-vidas');

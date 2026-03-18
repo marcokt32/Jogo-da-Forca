@@ -48,7 +48,12 @@ function atualizarContadores() {
 }
 
 function renderizarCategorias() {
-    document.getElementById('categorias').style.display = "flex"
+    const overlay = document.getElementById('gameOverScreenOverlay');
+
+    if (overlay) {
+        overlay.classList.add("oculto");
+    }
+    document.getElementById('categorias').style.display = "flex";
     //modoAtual = modo;
     const container = document.querySelector('.grid-container');
     container.innerHTML = '';
