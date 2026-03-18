@@ -25,9 +25,9 @@
 	<meta property="og:url" content="https://oenforcado.com">
 	<meta property="og:image" content="https://oenforcado.com/imagem-preview.png">
 	<link rel="manifest" href="/manifest.json">
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/flexbox.css">
+	<link rel="stylesheet" href="css/reset.css?v=1.0.2">
+	<link rel="stylesheet" href="css/style.css?v=1.0.2">
+	<link rel="stylesheet" href="css/flexbox.css?v=1.0.2">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
@@ -207,6 +207,16 @@
 					Categoria</button>
 			</div>
 		</section>
+		<div id="cookie-banner">
+			<div class="cookie-content">
+				<p>
+					Utilizamos cookies para melhorar sua experiência e exibir anúncios personalizados.
+					Ao continuar navegando, você concorda com nossa
+					<a href="/politica.html" target="_blank">Política de Privacidade</a>.
+				</p>
+				<button id="aceitar-cookies">Aceitar</button>
+			</div>
+		</div>
 		<section class="categorias" id="categorias">
 			<div class="categorias-tittle-box">
 				<h2 class="categorias-tittle">Escolha sua categoria</h2>
@@ -233,60 +243,50 @@
 
 				</div>
 			</div>
-			<div id="historiaForca" class="historiaForca" style="margin-top: 2rem;width: 90%;">
-				<h2>História do Jogo da Forca</h2>
-				<br>
-				<p style="text-align: left;">
-					O jogo da forca, conhecido em inglês como Hangman,
-					é um dos jogos de palavras mais antigos e populares do mundo.
-					Ele surgiu provavelmente no século XIX, na Inglaterra,
-					como uma forma de aprender e praticar ortografia de maneira divertida.
-				</p>
-				<br>
-				<p style="text-align: left;">
-					A dinâmica básica é simples: um jogador pensa em uma palavra, e o outro
-					tenta adivinhar letra por letra. Cada erro aproxima o desenho de uma “forca” — daí o nome do jogo.
-					Apesar do aspecto “sinistro”, o objetivo original era apenas tornar o aprendizado de palavras mais
-					envolvente e desafiador.
-				</p>
-				<br>
-			</div>
-		</section>
+			<!-- POPUP DE SELEÇÃO DE MODO -->
+			<div id="popupModo" class="popup-overlay oculto">
 
-		<div id="cookie-banner">
-			<div class="cookie-content">
-				<p>
-					Utilizamos cookies para melhorar sua experiência e exibir anúncios personalizados.
-					Ao continuar navegando, você concorda com nossa
-					<a href="/politica.html" target="_blank">Política de Privacidade</a>.
-				</p>
-				<button id="aceitar-cookies">Aceitar</button>
-			</div>
-		</div>
-		<!-- POPUP DE SELEÇÃO DE MODO -->
-		<div id="popupModo" class="popup-overlay oculto">
+				<div class="popup-container">
 
-			<div class="popup-container">
+					<h2>Modo de jogo</h2>
+					<p>Escolha seu estilo de jogo</p>
+					<div class="botoes-modo">
+						<button id="btnCasual" class="btn-modo casual" value='casual'>
+							🎮 Casual
+						</button>
+						<span>Jogue sem pressão, acumule pontos.</span>
+						<button id="btnDesafio" class="btn-modo desafio" value='desafio'>
+							⏱️ Desafio
+						</button>
+						<span>Desafio com tempo, não deixe o relógio zerar</span>
+						<button id="btnVoltar" class="btn-modo voltar" value='desafio'>
+							Voltar
+						</button>
+					</div>
 
-				<h2>Modo de jogo</h2>
-				<p>Escolha seu estilo de jogo</p>
-				<div class="botoes-modo">
-					<button id="btnCasual" class="btn-modo casual" value='casual'>
-						🎮 Casual
-					</button>
-					<span>Jogue sem pressão, acumule pontos.</span>
-					<button id="btnDesafio" class="btn-modo desafio" value='desafio'>
-						⏱️ Desafio
-					</button>
-					<span>Desafio com tempo, não deixe o relógio zerar</span>
-					<button id="btnVoltar" class="btn-modo voltar" value='desafio'>
-						Voltar
-					</button>
 				</div>
 
 			</div>
-
+		</section>
+		<div id="historiaForca" class="historiaForca">
+			<h2>História do Jogo da Forca</h2>
+			<br>
+			<p style="text-align: left;">
+				O jogo da forca, conhecido em inglês como Hangman,
+				é um dos jogos de palavras mais antigos e populares do mundo.
+				Ele surgiu provavelmente no século XIX, na Inglaterra,
+				como uma forma de aprender e praticar ortografia de maneira divertida.
+			</p>
+			<br>
+			<p style="text-align: left;">
+				A dinâmica básica é simples: um jogador pensa em uma palavra, e o outro
+				tenta adivinhar letra por letra. Cada erro aproxima o desenho de uma “forca” — daí o nome do jogo.
+				Apesar do aspecto “sinistro”, o objetivo original era apenas tornar o aprendizado de palavras mais
+				envolvente e desafiador.
+			</p>
+			<br>
 		</div>
+		</section>
 	</main>
 
 	<footer class="rodape">

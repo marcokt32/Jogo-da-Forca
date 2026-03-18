@@ -14,7 +14,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-const CACHE_NAME = "enforcado-v3";
+// 🔥 IMPORTANTE: altere a versão quando fizer deploy
+const CACHE_NAME = "enforcado-v4";
 
 const arquivos = [
   "/",
@@ -34,6 +35,7 @@ const arquivos = [
   "icons/icon-512.png"
 ];
 
+// 📦 INSTALL
 self.addEventListener("install", event => {
 
   self.skipWaiting();
@@ -46,30 +48,58 @@ self.addEventListener("install", event => {
 
 });
 
+// 🔄 ACTIVATE
 self.addEventListener("activate", event => {
 
   event.waitUntil(
     caches.keys().then(keys => {
       return Promise.all(
-        keys.filter(key => key !== CACHE_NAME)
+        keys
+          .filter(key => key !== CACHE_NAME)
           .map(key => caches.delete(key))
       );
     })
   );
 
+  self.clients.claim(); // 👈 garante controle imediato
+
 });
 
+// 🌐 FETCH (INTELIGENTE)
 self.addEventListener("fetch", event => {
 
+  const request = event.request;
+
+  // 🔥 CSS sempre atualizado
+  if (request.url.includes(".css")) {
+    event.respondWith(fetch(request));
+    return;
+  }
+
+  // 🚀 Stale-while-revalidate
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        return response || fetch(event.request);
-      })
+    caches.match(request).then(cachedResponse => {
+
+      const fetchPromise = fetch(request).then(networkResponse => {
+
+        if (networkResponse && networkResponse.status === 200) {
+          const responseClone = networkResponse.clone();
+
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(request, responseClone);
+          });
+        }
+
+        return networkResponse;
+      }).catch(() => cachedResponse); // fallback offline
+
+      return cachedResponse || fetchPromise;
+    })
   );
 
 });
 
+// 🔔 PUSH (FCM)
 self.addEventListener("push", function (event) {
 
   if (!event.data) return;
@@ -92,6 +122,7 @@ self.addEventListener("push", function (event) {
 
 });
 
+// 👆 CLICK NOTIFICAÇÃO
 self.addEventListener("notificationclick", function (event) {
 
   event.notification.close();

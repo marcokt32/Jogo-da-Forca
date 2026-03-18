@@ -848,6 +848,12 @@ body {
     animation: aparecer 0.3s ease;
 }
 
+#historiaForca {
+    margin-top: 2rem;
+    width: 70%;
+    padding: 3%;
+}
+
 /* Animação suave */
 @keyframes aparecer {
     from {
@@ -864,6 +870,11 @@ body {
 /*Modo Responsivo*/
 
 @media screen and (max-width: 750px) {
+
+    #historiaForca {
+        width: 90%;
+    }
+
     html {
         font-size: .8rem;
     }
